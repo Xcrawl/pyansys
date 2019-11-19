@@ -25,7 +25,6 @@ Visualize the result of verification manual test 33.
 
 
 
-
 Download the result file from verification manual test case 33
 
 
@@ -47,15 +46,6 @@ Download the result file from verification manual test case 33
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    [(4.256762018493109, 2.258665575329393, 2.3586655753293932), (1.9980964431637156, 2.7755575615628914e-17, 0.10000000000000002), (0.0, 0.0, 1.0)]
-
 
 
 Plot with contours
@@ -75,21 +65,12 @@ Plot with contours
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    [(4.256762018493109, 2.258665575329393, 2.3586655753293932), (1.9980964431637156, 2.7755575615628914e-17, 0.10000000000000002), (0.0, 0.0, 1.0)]
-
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.375 seconds)
+   **Total running time of the script:** ( 0 minutes  1.813 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_load_thermal_result.py:

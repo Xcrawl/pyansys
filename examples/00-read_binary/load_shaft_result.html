@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Shaft Modal Analysis &mdash; pyansys 0.39.4 documentation</title>
+  <title>Shaft Modal Analysis &mdash; pyansys 0.38.1 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.39.4
+                0.38.1
               </div>
             
           
@@ -89,6 +89,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../ansys_control.html">ANSYS APDL Interactive Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ansys_functions.html">ANSYS Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ansys_functions.html#available-commands">Available Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../apdl_conversion.html">APDL Conversion Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
 </ul>
@@ -98,7 +99,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result File (rst)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (*.emat)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Result Visulization Gallery</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Shaft Modal Analysis</a></li>
@@ -176,8 +177,8 @@
            <div itemprop="articleBody">
             
   <div class="sphx-glr-download-link-note admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Click <a class="reference internal" href="#sphx-glr-download-examples-00-read-binary-load-shaft-result-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-examples-00-read-binary-load-shaft-result-py"><span class="std std-ref">here</span></a> to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="shaft-modal-analysis">
 <span id="ref-load-shaft-result"></span><span id="sphx-glr-examples-00-read-binary-load-shaft-result-py"></span><h1>Shaft Modal Analysis<a class="headerlink" href="#shaft-modal-analysis" title="Permalink to this headline">¶</a></h1>
@@ -201,7 +202,7 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>UnstructuredGrid (0x7f75ac4e89f0)
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>UnstructuredGrid (0x7f426712df48)
   N Cells:      25051
   N Points:     27132
   X Bounds:     0.000e+00, 2.700e+02
@@ -218,7 +219,7 @@
 </div>
 <img alt="../../_images/sphx_glr_load_shaft_result_001.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_shaft_result_001.png" />
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(461.5153157248284, 326.5153157248283, 326.5153157248283), (135.00000000000003, 0.0, 0.0), (0.0, 0.0, 1.0)]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>WARNING:root:`.plot()` is deprecated. Please use `.show()` instead.
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">shaft</span><span class="o">.</span><span class="n">node_components</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
@@ -237,38 +238,22 @@
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_load_shaft_result_002.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_shaft_result_002.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(-115.35773008378118, 285.36602704380107, -393.9029392590675), (126.12852038381345, 0.2179228023931401, 5.236408799851887), (0.3724622281297882, 0.8468424028124544, 0.37964435122285484)]
-</pre></div>
-</div>
 <p>Plot a node component as a wireframe</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shaft</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">node_components</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SHAFT_MESH&#39;</span><span class="p">],</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;wireframe&#39;</span><span class="p">,</span>
            <span class="n">lighting</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_load_shaft_result_003.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_shaft_result_003.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(-115.35773008378118, 285.36602704380107, -393.9029392590675), (126.12852038381345, 0.2179228023931401, 5.236408799851887), (0.3724622281297882, 0.8468424028124544, 0.37964435122285484)]
-</pre></div>
-</div>
 <p>Plot the shaft with edges and with a blue color</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shaft</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_load_shaft_result_004.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_shaft_result_004.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(461.5153157248284, 326.5153157248283, 326.5153157248283), (135.00000000000003, 0.0, 0.0), (0.0, 0.0, 1.0)]
-</pre></div>
-</div>
 <p>Plot the shaft without lighting but with edges and with a blue color</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shaft</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lighting</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_load_shaft_result_005.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_shaft_result_005.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(461.5153157248284, 326.5153157248283, 326.5153157248283), (135.00000000000003, 0.0, 0.0), (0.0, 0.0, 1.0)]
-</pre></div>
-</div>
 <p>plot a mode shape without contours</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shaft</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">node_components</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SHAFT_MESH&#39;</span><span class="p">],</span>
                           <span class="n">show_displacement</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_disp</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">overlay_wireframe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -276,10 +261,6 @@
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_load_shaft_result_006.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_shaft_result_006.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(-115.35773008378118, 285.36602704380107, -393.9029392590675), (126.12852038381345, 0.2179228023931401, 5.236408799851887), (0.3724622281297882, 0.8468424028124544, 0.37964435122285484)]
-</pre></div>
-</div>
 <p>plot a mode shape with contours</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shaft</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">node_components</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SHAFT_MESH&#39;</span><span class="p">],</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                           <span class="n">show_displacement</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_disp</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">overlay_wireframe</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -287,10 +268,6 @@
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_load_shaft_result_007.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_shaft_result_007.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(-115.35773008378118, 285.36602704380107, -393.9029392590675), (126.12852038381345, 0.2179228023931401, 5.236408799851887), (0.3724622281297882, 0.8468424028124544, 0.37964435122285484)]
-</pre></div>
-</div>
 <p>Animate a mode of a component the shaft</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shaft</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">node_components</span><span class="o">=</span><span class="s1">&#39;SHAFT_MESH&#39;</span><span class="p">,</span> <span class="n">comp</span><span class="o">=</span><span class="s1">&#39;norm&#39;</span><span class="p">,</span>
                              <span class="n">max_disp</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span>
@@ -299,16 +276,14 @@
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_load_shaft_result_008.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_shaft_result_008.png" />
-<p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(-115.35773008378118, 285.36602704380107, -393.9029392590675), (126.12852038381345, 0.2179228023931401, 5.236408799851887), (0.37246222812978824, 0.8468424028124546, 0.37964435122285495)]
-</pre></div>
-</div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  2.386 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.272 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-00-read-binary-load-shaft-result-py">
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" download="" href="../../_downloads/aa1dc9b950c0526a443d3a3d6217f297/load_shaft_result.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">load_shaft_result.py</span></code></a></div>
+<p><a class="reference download internal" download="" href="../../_downloads/0d39ed7668e1343e3a45896cd1e5db29/load_shaft_result.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">load_shaft_result.py</span></code></a></p>
+</div>
 <div class="sphx-glr-download docutils container">
-<a class="reference download internal" download="" href="../../_downloads/1a056aa8e838e3116dbef9e3457554e0/load_shaft_result.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">load_shaft_result.ipynb</span></code></a></div>
+<p><a class="reference download internal" download="" href="../../_downloads/7fb25713d315ff3246c6aa04dde67e5c/load_shaft_result.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">load_shaft_result.ipynb</span></code></a></p>
+</div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </div>

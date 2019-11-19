@@ -28,7 +28,6 @@ Visualize a shaft modal analysis
 
 
 
-
 Geometry is stored both as a dictionary...
 
 
@@ -50,7 +49,6 @@ Geometry is stored both as a dictionary...
 
 
 
-
 ...as a VTK object
 
 
@@ -68,14 +66,13 @@ Geometry is stored both as a dictionary...
 
  .. code-block:: none
 
-    UnstructuredGrid (0x7f75ac4e89f0)
+    UnstructuredGrid (0x7f426712df48)
       N Cells:      25051
       N Points:     27132
       X Bounds:     0.000e+00, 2.700e+02
       Y Bounds:     -4.000e+01, 4.000e+01
       Z Bounds:     -4.000e+01, 4.000e+01
       N Arrays:     21
-
 
 
 
@@ -101,8 +98,7 @@ Plot the shaft
 
  .. code-block:: none
 
-
-    [(461.5153157248284, 326.5153157248283, 326.5153157248283), (135.00000000000003, 0.0, 0.0), (0.0, 0.0, 1.0)]
+    WARNING:root:`.plot()` is deprecated. Please use `.show()` instead.
 
 
 
@@ -125,7 +121,6 @@ Plot the shaft
 
 
 
-
 Plot a node component
 
 
@@ -145,15 +140,6 @@ Plot a node component
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    [(-115.35773008378118, 285.36602704380107, -393.9029392590675), (126.12852038381345, 0.2179228023931401, 5.236408799851887), (0.3724622281297882, 0.8468424028124544, 0.37964435122285484)]
-
 
 
 Plot a node component as a wireframe
@@ -172,15 +158,6 @@ Plot a node component as a wireframe
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    [(-115.35773008378118, 285.36602704380107, -393.9029392590675), (126.12852038381345, 0.2179228023931401, 5.236408799851887), (0.3724622281297882, 0.8468424028124544, 0.37964435122285484)]
-
 
 
 Plot the shaft with edges and with a blue color
@@ -196,15 +173,6 @@ Plot the shaft with edges and with a blue color
 .. image:: /examples/00-read_binary/images/sphx_glr_load_shaft_result_004.png
     :class: sphx-glr-single-img
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    [(461.5153157248284, 326.5153157248283, 326.5153157248283), (135.00000000000003, 0.0, 0.0), (0.0, 0.0, 1.0)]
 
 
 
@@ -222,15 +190,6 @@ Plot the shaft without lighting but with edges and with a blue color
 .. image:: /examples/00-read_binary/images/sphx_glr_load_shaft_result_005.png
     :class: sphx-glr-single-img
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    [(461.5153157248284, 326.5153157248283, 326.5153157248283), (135.00000000000003, 0.0, 0.0), (0.0, 0.0, 1.0)]
 
 
 
@@ -250,15 +209,6 @@ plot a mode shape without contours
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    [(-115.35773008378118, 285.36602704380107, -393.9029392590675), (126.12852038381345, 0.2179228023931401, 5.236408799851887), (0.3724622281297882, 0.8468424028124544, 0.37964435122285484)]
-
 
 
 plot a mode shape with contours
@@ -276,15 +226,6 @@ plot a mode shape with contours
 .. image:: /examples/00-read_binary/images/sphx_glr_load_shaft_result_007.png
     :class: sphx-glr-single-img
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    [(-115.35773008378118, 285.36602704380107, -393.9029392590675), (126.12852038381345, 0.2179228023931401, 5.236408799851887), (0.3724622281297882, 0.8468424028124544, 0.37964435122285484)]
 
 
 
@@ -304,21 +245,12 @@ Animate a mode of a component the shaft
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    [(-115.35773008378118, 285.36602704380107, -393.9029392590675), (126.12852038381345, 0.2179228023931401, 5.236408799851887), (0.37246222812978824, 0.8468424028124546, 0.37964435122285495)]
-
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.386 seconds)
+   **Total running time of the script:** ( 0 minutes  6.272 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_load_shaft_result.py:

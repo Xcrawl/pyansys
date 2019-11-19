@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pyansys Documentation &mdash; pyansys 0.39.4 documentation</title>
+  <title>pyansys Documentation &mdash; pyansys 0.38.1 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.39.4
+                0.38.1
               </div>
             
           
@@ -88,6 +88,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ansys_control.html">ANSYS APDL Interactive Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_functions.html">ANSYS Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ansys_functions.html#available-commands">Available Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apdl_conversion.html">APDL Conversion Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
 </ul>
@@ -97,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result File (rst)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (*.emat)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">Result Visulization Gallery</a></li>
 </ul>
 
@@ -165,12 +166,11 @@
             
   <div class="section" id="pyansys-documentation">
 <h1>pyansys Documentation<a class="headerlink" href="#pyansys-documentation" title="Permalink to this headline">¶</a></h1>
-<dl class="docutils">
-<dt>This Python module allows you to:</dt>
-<dd><ul class="first last simple">
-<li>Interactively control an instance of ANSYS v17.0 + using Python.</li>
-<li>Extract data directly from binary ANSYS v14.5+ files and to display or animate them.</li>
-<li>Rapidly read in binary result <code class="docutils literal notranslate"><span class="pre">(.rst)</span></code>, binary mass and stiffness <code class="docutils literal notranslate"><span class="pre">(.full)</span></code>, and ASCII block archive <code class="docutils literal notranslate"><span class="pre">(.cdb)</span></code>, and element matrix <code class="docutils literal notranslate"><span class="pre">(.emat)</span></code> files.</li>
+<dl class="simple">
+<dt>This Python module allows you to:</dt><dd><ul class="simple">
+<li><p>Interactively control an instance of ANSYS v17.0 + using Python.</p></li>
+<li><p>Extract data directly from binary ANSYS v14.5+ files and to display or animate them.</p></li>
+<li><p>Rapidly read in binary result <code class="docutils literal notranslate"><span class="pre">(.rst)</span></code>, binary mass and stiffness <code class="docutils literal notranslate"><span class="pre">(.full)</span></code>, and ASCII block archive <code class="docutils literal notranslate"><span class="pre">(.cdb)</span></code>, and element matrix <code class="docutils literal notranslate"><span class="pre">(.emat)</span></code> files.</p></li>
 </ul>
 </dd>
 </dl>
@@ -191,35 +191,35 @@
 <div class="section" id="interactive-control">
 <h3>Interactive Control<a class="headerlink" href="#interactive-control" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pyansys</span></code> lets you create an instance of ANSYS and send commands to it pythonically:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
 
 <span class="c1"># create a square area using keypoints</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">al</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">Prep7</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">Al</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">Save</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">Exit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="direct-access-to-binary-files">
 <h3>Direct Access to Binary Files<a class="headerlink" href="#direct-access-to-binary-files" title="Permalink to this headline">¶</a></h3>
 <p>Here’s a quick example code block to show how easy it is to load and plots results directly from an ANSYS result file using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>:</p>
-<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;rotor.rst&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">stress</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">stress</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
 <span class="go">array([[-1.2874937e-06,  1.2874934e-06,  5.6843419e-14,  0.0000000e+00,  8.1756007e-06, -8.1756007e-06],</span>
 <span class="go">       [-1.1674185e-04, -1.1674478e-04, -3.0856981e-04, -1.7892545e-06, -2.5823609e-05,  2.5835518e-05],</span>
 <span class="go">       [-5.7354209e-05, -5.5398770e-05, -1.4944717e-04, -1.0580692e-06, -1.7659733e-05, -3.5462126e-06]], dtype=float32)</span>
@@ -240,7 +240,7 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure">
+<div class="figure align-center">
 <a class="reference internal image-reference" href="_images/rotor.jpg"><img alt="_images/rotor.jpg" src="_images/rotor.jpg" style="width: 500pt;" /></a>
 </div>
 </div>
@@ -254,20 +254,18 @@
 <p>You can also visit <a class="reference external" href="http://pypi.python.org/pypi/pyansys">PyPi</a> or <a class="reference external" href="https://github.com/akaszynski/pyansys">GitHub</a> to download the source.</p>
 <p>Dependencies:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">numpy</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">cython</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">pyvista</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">pexpect</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">appdirs</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">vtk</span></code></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cython</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pyvista</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pexpect</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">appdirs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk</span></code></p></li>
 </ul>
 <p>Dependencies are installed automatically through <code class="docutils literal notranslate"><span class="pre">pip</span></code>, except for Python 2.7 in Windows, which will require some additional work to install <code class="docutils literal notranslate"><span class="pre">VTK</span></code>.  See <a class="reference external" href="https://docs.pyvista.org/getting-started/installation.html">installing pyvista</a> for more information.</p>
 </div>
-<div class="section" id="license-and-acknowledgments">
-<h2>License and Acknowledgments<a class="headerlink" href="#license-and-acknowledgments" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">pyansys</span></code> is licensed under the MIT license.</p>
-<p>ANSYS documentation and functions build from html provided by <a class="reference external" href="https://www.sharcnet.ca/Software/Ansys/">Sharcnet</a>.  Thanks!</p>
-<p>This module, <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> makes no commercial claim over ANSYS whatsoever.  This tool extends the functionality of <code class="docutils literal notranslate"><span class="pre">ANSYS</span></code> by adding a python interface in both file interface as well as interactive scripting without changing the core behavior or license of the original software.  The use of the interactive APDL control of <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> requires a legally licensed local copy of ANSYS.</p>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>This module is licensed under the MIT license.  See the license file for more details.</p>
 </div>
 </div>
 

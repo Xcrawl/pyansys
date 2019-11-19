@@ -13,7 +13,7 @@ Here is a gallery of pyansys result visualization examples.
 
 .. raw:: html
 
-    <div class="sphx-glr-clear"></div>
+    <div style='clear:both'></div>
 
 
 
@@ -30,9 +30,9 @@ Loading and Visualizing Result Files
 
 .. only:: html
 
- .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_load_shaft_result_thumb.png
+    .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_load_shaft_result_thumb.png
 
-     :ref:`sphx_glr_examples_00-read_binary_load_shaft_result.py`
+        :ref:`sphx_glr_examples_00-read_binary_load_shaft_result.py`
 
 .. raw:: html
 
@@ -50,9 +50,9 @@ Loading and Visualizing Result Files
 
 .. only:: html
 
- .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_load_thermal_result_thumb.png
+    .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_load_thermal_result_thumb.png
 
-     :ref:`sphx_glr_examples_00-read_binary_load_thermal_result.py`
+        :ref:`sphx_glr_examples_00-read_binary_load_thermal_result.py`
 
 .. raw:: html
 
@@ -70,9 +70,9 @@ Loading and Visualizing Result Files
 
 .. only:: html
 
- .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_pontoon_thumb.png
+    .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_pontoon_thumb.png
 
-     :ref:`sphx_glr_examples_00-read_binary_pontoon.py`
+        :ref:`sphx_glr_examples_00-read_binary_pontoon.py`
 
 .. raw:: html
 
@@ -90,9 +90,9 @@ Loading and Visualizing Result Files
 
 .. only:: html
 
- .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_sector_model_thumb.png
+    .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_sector_model_thumb.png
 
-     :ref:`sphx_glr_examples_00-read_binary_sector_model.py`
+        :ref:`sphx_glr_examples_00-read_binary_sector_model.py`
 
 .. raw:: html
 
@@ -105,7 +105,7 @@ Loading and Visualizing Result Files
    /examples/00-read_binary/sector_model
 .. raw:: html
 
-    <div class="sphx-glr-clear"></div>
+    <div style='clear:both'></div>
 
 
 
@@ -117,13 +117,13 @@ Loading and Visualizing Result Files
 
   .. container:: sphx-glr-download
 
-    :download:`Download all examples in Python source code: examples_python.zip <//home/alex/afrl/python/source/pyansys/docs/examples/examples_python.zip>`
+    :download:`Download all examples in Python source code: examples_python.zip <//home/travis/build/akaszynski/pyansys/docs/examples/examples_python.zip>`
 
 
 
   .. container:: sphx-glr-download
 
-    :download:`Download all examples in Jupyter notebooks: examples_jupyter.zip <//home/alex/afrl/python/source/pyansys/docs/examples/examples_jupyter.zip>`
+    :download:`Download all examples in Jupyter notebooks: examples_jupyter.zip <//home/travis/build/akaszynski/pyansys/docs/examples/examples_jupyter.zip>`
 
 
 .. only:: html

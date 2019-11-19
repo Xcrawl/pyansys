@@ -25,7 +25,6 @@ Visualize a full cyclic model
 
 
 
-
 load a sector modal analysis file
 
 
@@ -54,7 +53,6 @@ load a sector modal analysis file
 
 
 
-
 plot the rotor
 
 
@@ -69,16 +67,6 @@ plot the rotor
 .. image:: /examples/00-read_binary/images/sphx_glr_sector_model_001.png
     :class: sphx-glr-single-img
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-    WARNING:root:`.plot()` is deprecated. Please use `.show()` instead.
-
-    [(6.016947139062611, 6.18892994477724, 5.6068584676165), (-0.0006467092362623106, 0.17133609647836667, -0.41073538068237314), (0.0, 0.0, 1.0)]
 
 
 
@@ -97,15 +85,6 @@ plot a sector of the rotor
     :class: sphx-glr-single-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    [(1.5632969566470036, 1.094216390469371, 1.732764281460423), (-0.5802027054957924, -1.049283271673425, -0.41073538068237303), (0.0, 0.0, 1.0)]
-
 
 
 plot a nodal solution
@@ -122,15 +101,6 @@ plot a nodal solution
 .. image:: /examples/00-read_binary/images/sphx_glr_sector_model_003.png
     :class: sphx-glr-single-img
 
-
-.. rst-class:: sphx-glr-script-out
-
- Out:
-
- .. code-block:: none
-
-
-    [(6.501737475645392, 6.524253991464702, 6.091648804199281), (-0.0006467092362623106, 0.021869806583048046, -0.41073538068237314), (0.0, 0.0, 1.0)]
 
 
 
@@ -151,10 +121,9 @@ animate a mode
 
 
 
-
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.512 seconds)
+   **Total running time of the script:** ( 0 minutes  5.940 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_sector_model.py:
