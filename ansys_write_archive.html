@@ -1,0 +1,449 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Reading and Writing ANSYS Archives &mdash; pyansys 0.39.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Working with a ANSYS Result File (rst)" href="loading_results.html" />
+    <link rel="prev" title="ANSYS APDL Interactive Control Examples" href="ansys_examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyansys
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.39.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">APDL Python Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ansys_control.html">ANSYS APDL Interactive Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ansys_functions.html">ANSYS Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apdl_conversion.html">APDL Conversion Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">File IO and Visualization</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reading and Writing ANSYS Archives</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reading-ansys-archives">Reading ANSYS Archives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-ansys-archives">Writing ANSYS Archives</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#supported-elements">Supported Elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-pyansys.archive">Write Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result File (rst)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Result Visulization Gallery</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyansys</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Reading and Writing ANSYS Archives</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ansys_write_archive.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="reading-and-writing-ansys-archives">
+<h1>Reading and Writing ANSYS Archives<a class="headerlink" href="#reading-and-writing-ansys-archives" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="reading-ansys-archives">
+<h2>Reading ANSYS Archives<a class="headerlink" href="#reading-ansys-archives" title="Permalink to this headline">¶</a></h2>
+<p>ANSYS archive files containing solid elements (both legacy and modern) can be loaded using Archive and then converted to a vtk object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="c1"># Sample *.cdb</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span>
+
+<span class="c1"># Read ansys archive file</span>
+<span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="c1"># Print raw data from cdb</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">:</span>
+   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+
+<span class="c1"># Create a vtk unstructured grid from the raw data and plot it</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">(</span><span class="n">force_linear</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also optionally read in any stored parameters within the archive file by enabling the <code class="docutils literal notranslate"><span class="pre">read_parameters</span></code> parameter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="s1">&#39;mesh.cdb&#39;</span><span class="p">)</span>
+
+<span class="c1"># parameters are stored as a dictionary</span>
+<span class="k">print</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="writing-ansys-archives">
+<h2>Writing ANSYS Archives<a class="headerlink" href="#writing-ansys-archives" title="Permalink to this headline">¶</a></h2>
+<p>Unstructured grids generated using VTK can be converted to ANSYS APDL archive files and loaded into any version of ANSYS using <code class="docutils literal notranslate"><span class="pre">pyansys.save_as_archive</span></code>.  The following example using the built-in archive file demonstrates this capability.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="kn">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">import</span> <span class="nn">pyansys</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">UnstructuredGrid</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">hexbeamfile</span><span class="p">)</span>
+<span class="n">script_filename</span> <span class="o">=</span> <span class="s1">&#39;/tmp/grid.cdb&#39;</span>
+<span class="n">pyansys</span><span class="o">.</span><span class="n">save_as_archive</span><span class="p">(</span><span class="n">script_filename</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span>
+
+<span class="c1"># read in archive in ANSYS and generate cell shape quality report</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">cdread</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="n">script_filename</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">shpp</span><span class="p">(</span><span class="s1">&#39;SUMM&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Resulting ANSYS quality report:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------------------------------------------</span>
+           <span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>          <span class="n">SHAPE</span> <span class="n">TESTING</span> <span class="n">SUMMARY</span>           <span class="o">&gt;&gt;&gt;&gt;&gt;&gt;</span>
+           <span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>        <span class="n">FOR</span> <span class="n">ALL</span> <span class="n">SELECTED</span> <span class="n">ELEMENTS</span>         <span class="o">&gt;&gt;&gt;&gt;&gt;&gt;</span>
+<span class="o">------------------------------------------------------------------------------</span>
+                   <span class="o">--------------------------------------</span>
+                   <span class="o">|</span>  <span class="n">Element</span> <span class="n">count</span>        <span class="mi">40</span> <span class="n">SOLID185</span>  <span class="o">|</span>
+                   <span class="o">--------------------------------------</span>
+
+ <span class="n">Test</span>                <span class="n">Number</span> <span class="n">tested</span>  <span class="ne">Warning</span> <span class="n">count</span>  <span class="n">Error</span> <span class="n">count</span>    <span class="n">Warn</span><span class="o">+</span><span class="n">Err</span> <span class="o">%</span>
+ <span class="o">----</span>                <span class="o">-------------</span>  <span class="o">-------------</span>  <span class="o">-----------</span>    <span class="o">----------</span>
+ <span class="n">Aspect</span> <span class="n">Ratio</span>                 <span class="mi">40</span>              <span class="mi">0</span>             <span class="mi">0</span>         <span class="mf">0.00</span> <span class="o">%</span>
+ <span class="n">Parallel</span> <span class="n">Deviation</span>           <span class="mi">40</span>              <span class="mi">0</span>             <span class="mi">0</span>         <span class="mf">0.00</span> <span class="o">%</span>
+ <span class="n">Maximum</span> <span class="n">Angle</span>                <span class="mi">40</span>              <span class="mi">0</span>             <span class="mi">0</span>         <span class="mf">0.00</span> <span class="o">%</span>
+ <span class="n">Jacobian</span> <span class="n">Ratio</span>               <span class="mi">40</span>              <span class="mi">0</span>             <span class="mi">0</span>         <span class="mf">0.00</span> <span class="o">%</span>
+ <span class="n">Warping</span> <span class="n">Factor</span>               <span class="mi">40</span>              <span class="mi">0</span>             <span class="mi">0</span>         <span class="mf">0.00</span> <span class="o">%</span>
+
+ <span class="n">Any</span>                          <span class="mi">40</span>              <span class="mi">0</span>             <span class="mi">0</span>         <span class="mf">0.00</span> <span class="o">%</span>
+<span class="o">------------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+<div class="section" id="supported-elements">
+<h3>Supported Elements<a class="headerlink" href="#supported-elements" title="Permalink to this headline">¶</a></h3>
+<p>At the moment, only solid elements are supported by the <code class="docutils literal notranslate"><span class="pre">save_as_archive</span></code> function, to include:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_TETRA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_TETRA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_PYRAMID</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_PYRAMID</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_WEDGE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_WEDGE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_HEXAHEDRON</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_HEXAHEDRON</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>Linear element types will be written as SOLID185, quadratic elements will be written as SOLID186, except for quadratic tetrahedrals, which will be written as SOLID187.</p>
+</div>
+</div>
+<div class="section" id="module-pyansys.archive">
+<span id="write-functions"></span><h2>Write Functions<a class="headerlink" href="#module-pyansys.archive" title="Permalink to this headline">¶</a></h2>
+<p>Module to read ANSYS ASCII block formatted CDB files</p>
+<dl class="class">
+<dt id="pyansys.archive.Archive">
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">Archive</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">read_parameters=False</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a blocked ANSYS archive file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – Filename of block formatted cdb file</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pyansys.archive.Archive.parse_vtk">
+<code class="sig-name descname">parse_vtk</code><span class="sig-paren">(</span><em class="sig-param">force_linear=False</em>, <em class="sig-param">allowable_types=None</em>, <em class="sig-param">null_unallowed=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.parse_vtk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses raw data into to VTK format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>force_linear</strong> (<em>bool</em><em>, </em><em>optional</em>) – This parser creates quadratic elements if available.  Set
+this to True to always create linear elements.  Defaults
+to False.</p></li>
+<li><p><strong>allowable_types</strong> (<em>list</em><em>, </em><em>optional</em>) – <p>Allowable element types.  Defaults to all valid element
+types in <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pyansys.elements.valid_types</span></code></p>
+<p>See help(pyansys.elements) for available element types.</p>
+</p></li>
+<li><p><strong>null_unallowed</strong> (<em>bool</em><em>, </em><em>optional</em>) – Elements types not matching element types will be stored
+as empty (null) elements.  Useful for debug or tracking
+element numbers.  Default False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>grid</strong> – VTK unstructured grid from archive file.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>vtk.vtkUnstructuredGrid</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="pyansys.archive.chunks">
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">chunks</code><span class="sig-paren">(</span><em class="sig-param">l</em>, <em class="sig-param">n</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.chunks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yield successive n-sized chunks from l</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyansys.archive.save_as_archive">
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">save_as_archive</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">grid</em>, <em class="sig-param">mtype_start=1</em>, <em class="sig-param">etype_start=1</em>, <em class="sig-param">real_constant_start=1</em>, <em class="sig-param">mode='w'</em>, <em class="sig-param">nblock=True</em>, <em class="sig-param">enum_start=1</em>, <em class="sig-param">nnum_start=1</em>, <em class="sig-param">include_etype_header=True</em>, <em class="sig-param">reset_etype=False</em>, <em class="sig-param">allow_missing=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.save_as_archive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes FEM as an ANSYS APDL archive file.  This function
+supports the following element types:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_TETRA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_TETRA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_PYRAMID</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_PYRAMID</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_WEDGE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_WEDGE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_HEXAHEDRON</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_HEXAHEDRON</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>Will automatically renumber nodes and elements if the FEM does not
+contain ANSYS node or element numbers.  Node numbers are stored as
+a point array “ansys_node_num”, and cell numbers are stored as
+cell array “ansys_elem_num”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Filename to write archive file.</p></li>
+<li><p><strong>grid</strong> (<em>vtk.UnstructuredGrid</em>) – VTK UnstructuredGrid to convert to an APDL archive file.</p></li>
+<li><p><strong>mtype_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Material number to assign to elements.  Can be set manually by
+adding the cell array “mtype” to the unstructured grid.</p></li>
+<li><p><strong>etype_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element type number.  Can be manually set by adding
+the cell array “ansys_etype” to the unstructured grid.</p></li>
+<li><p><strong>real_constant_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting real constant to assign to unset cells.  Can be
+manually set by adding the cell array “ansys_real_constant” to
+the unstructured grid.</p></li>
+<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>optional</em>) – File mode.  See help(open)</p></li>
+<li><p><strong>nblock</strong> (<em>bool</em><em>, </em><em>optional</em>) – Write node block when writing archive file.</p></li>
+<li><p><strong>enum_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element number to assign to unset cells.  Can be
+manually set by adding the cell array “ansys_elem_num” to the
+unstructured grid.</p></li>
+<li><p><strong>nnum_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element number to assign to unset points.  Can be
+manually set by adding the point array “ansys_node_num” to the
+unstructured grid.</p></li>
+<li><p><strong>include_etype_header</strong> (<em>bool</em><em>, </em><em>optional</em>) – For each element type, includes element type command
+(e.g. “ET, 1, 186”) in the archive file.</p></li>
+<li><p><strong>reset_etype</strong> (<em>bool</em><em>, </em><em>optional</em>) – Resets element type.  Element types will automatically be
+determined by the shape of the element (i.e. quadradic
+tetrahedrals will be saved as SOLID187, linear hexahedrals as
+SOLID185).  Default True.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyansys.archive.write_cmblock">
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_cmblock</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">items</em>, <em class="sig-param">comp_name</em>, <em class="sig-param">comp_type</em>, <em class="sig-param">digit_width=10</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_cmblock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes a component block, CMBLOCK, to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em><em> or </em><em>file handle</em>) – File to write CMBLOCK component to</p></li>
+<li><p><strong>items</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – Element or node numbers to write.</p></li>
+<li><p><strong>comp_name</strong> (<em>str</em>) – Name of the component</p></li>
+<li><p><strong>comp_type</strong> (<em>str</em>) – Component type to write.  Should be either ‘element’ or ‘node’.</p></li>
+<li><p><strong>digit_width</strong> (<em>int</em><em>, </em><em>optional</em>) – Default 10</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyansys.archive.write_nblock">
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_nblock</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">node_id</em>, <em class="sig-param">pos</em>, <em class="sig-param">angles=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_nblock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes nodes and node angles to file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em><em> or </em><em>file handle</em>) – Filename to write node block to.</p></li>
+<li><p><strong>node_id</strong> (<em>np.ndarray</em>) – ANSYS node numbers.</p></li>
+<li><p><strong>pos</strong> (<em>np.ndarray</em>) – Node coordinates.</p></li>
+<li><p><strong>angles</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Writes the node angles for each node when included.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="loading_results.html" class="btn btn-neutral float-right" title="Working with a ANSYS Result File (rst)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ansys_examples.html" class="btn btn-neutral float-left" title="ANSYS APDL Interactive Control Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Alex Kaszynski
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Working with a ANSYS Full File (full) &mdash; pyansys 0.39.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Working with a ANSYS Element Matrix File (.emat)" href="loading_emat.html" />
+    <link rel="prev" title="Archive and Result File Examples" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> pyansys
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.39.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">APDL Python Scripting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ansys_control.html">ANSYS APDL Interactive Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ansys_functions.html">ANSYS Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apdl_conversion.html">APDL Conversion Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">File IO and Visualization</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ansys_write_archive.html">Reading and Writing ANSYS Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result File (rst)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Working with a ANSYS Full File (full)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reading-a-full-file">Reading a Full File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plotting-a-mode-shape">Plotting a Mode Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fullfile-object-methods">FullFile Object Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Result Visulization Gallery</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pyansys</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Working with a ANSYS Full File (full)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/loading_km.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="working-with-a-ansys-full-file-full">
+<h1>Working with a ANSYS Full File (full)<a class="headerlink" href="#working-with-a-ansys-full-file-full" title="Permalink to this headline">¶</a></h1>
+<p>The ANSYS full file is a FORTRAN formatted binary file containing the mass and stiffness from an ANSYS analysis.  Using pyansys it can be loaded into memory as either a sparse or full matrix.</p>
+<div class="section" id="reading-a-full-file">
+<h2>Reading a Full File<a class="headerlink" href="#reading-a-full-file" title="Permalink to this headline">¶</a></h2>
+<p>This example reads in the mass and stiffness matrices associated with the above example.  <code class="docutils literal notranslate"><span class="pre">load_km</span></code> sorts degrees of freedom such that the nodes are ordered from minimum to maximum, and each degree of freedom (i.e. X, Y, Z), are sorted within each node.  The matrices <code class="docutils literal notranslate"><span class="pre">k</span></code> and <code class="docutils literal notranslate"><span class="pre">m</span></code> are sparse by default, but if <code class="docutils literal notranslate"><span class="pre">scipy</span></code> is not installed, or if the optional parameter <code class="docutils literal notranslate"><span class="pre">as_sparse=False</span></code> then they will be full numpy arrays.</p>
+<p>By default <code class="docutils literal notranslate"><span class="pre">load_km</span></code> outputs the upper triangle of both matrices.  The constrained nodes of the analysis can be identified by accessing <code class="docutils literal notranslate"><span class="pre">fobj.const</span></code> where the constrained degrees of freedom are True and all others are False.  This corresponds to the degrees of reference in <code class="docutils literal notranslate"><span class="pre">dof_ref</span></code>.</p>
+<p>By default dof_ref is unsorted.  To sort these values, set <code class="docutils literal notranslate"><span class="pre">sort==True</span></code>.  It is enabled for this example to allow for plotting of the values later on.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load pyansys</span>
+<span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="c1"># Create result reader object and read in full file</span>
+<span class="n">full</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">fullfile</span><span class="p">)</span>
+<span class="n">dof_ref</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">full</span><span class="o">.</span><span class="n">load_km</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>ANSYS only stores the upper triangular matrix in the full file.  To make the full matrix:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">+=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">m</span> <span class="o">+=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+<p>If you have <code class="docutils literal notranslate"><span class="pre">scipy</span></code> installed, you can solve solve for the natural frequencies and mode shapes of a system.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">linalg</span>
+
+<span class="c1"># condition the k matrix</span>
+<span class="c1"># to avoid getting the &quot;Factor is exactly singular&quot; error</span>
+<span class="n">k</span> <span class="o">+=</span> <span class="n">sparse</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mf">1E20</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">k</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Solve</span>
+<span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">eigsh</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">M</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># System natural frequencies</span>
+<span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">w</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;First four natural frequencies&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:.3f}</span><span class="s1"> Hz&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+<span class="n">First</span> <span class="n">four</span> <span class="n">natural</span> <span class="n">frequencies</span>
+<span class="mf">1283.200</span> <span class="n">Hz</span>
+<span class="mf">1283.200</span> <span class="n">Hz</span>
+
+<span class="mf">5781.975</span> <span class="n">Hz</span>
+<span class="mf">6919.399</span> <span class="n">Hz</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plotting-a-mode-shape">
+<h2>Plotting a Mode Shape<a class="headerlink" href="#plotting-a-mode-shape" title="Permalink to this headline">¶</a></h2>
+<p>You can also plot the mode shape of this finite element model.  Since the constrained degrees of freedom have been removed from the solution, you have to account for these when displaying the displacement.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="kn">as</span> <span class="nn">pv</span>
+
+<span class="c1"># Get the 4th mode shape</span>
+<span class="n">full_mode_shape</span> <span class="o">=</span> <span class="n">v</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="c1"># x, y, z displacement for each node</span>
+
+<span class="c1"># reshape and compute the normalized displacement</span>
+<span class="n">disp</span> <span class="o">=</span> <span class="n">full_mode_shape</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="n">disp</span><span class="o">*</span><span class="n">disp</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="n">n</span> <span class="o">/=</span> <span class="n">n</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="c1"># normalize</span>
+
+<span class="c1"># load an archive file and create a vtk unstructured grid</span>
+<span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">()</span>
+
+<span class="c1"># plot the normalized displacement</span>
+<span class="c1"># grid.plot(scalars=n)</span>
+
+<span class="c1"># Fancy plot the displacement</span>
+<span class="n">plobj</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+
+<span class="c1"># add the nominal mesh</span>
+<span class="n">plobj</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;wireframe&#39;</span><span class="p">)</span>
+
+<span class="c1"># copy the mesh and displace it</span>
+<span class="n">new_grid</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">new_grid</span><span class="o">.</span><span class="n">points</span> <span class="o">+=</span> <span class="n">disp</span><span class="o">/</span><span class="mi">80</span>
+<span class="n">plobj</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">new_grid</span><span class="p">,</span> <span class="n">scalars</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">stitle</span><span class="o">=</span><span class="s1">&#39;Normalized</span><span class="se">\n</span><span class="s1">Displacement&#39;</span><span class="p">,</span>
+              <span class="n">flipscalars</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">plobj</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s1">&#39;Cantliver Beam 4th Mode Shape at {:.4f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
+               <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plobj</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/solved_km.png" src="_images/solved_km.png" />
+<p>This example is built into <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> and can be run from  <code class="docutils literal notranslate"><span class="pre">examples.solve_km()</span></code>.</p>
+</div>
+<div class="section" id="fullfile-object-methods">
+<h2>FullFile Object Methods<a class="headerlink" href="#fullfile-object-methods" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyansys.full.FullFile">
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.full.</code><code class="sig-name descname">FullFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.full.FullFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores the results of an ANSYS full file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Filename of the full file to read.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">full</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pyansys.full.FullFile.load_km">
+<code class="sig-name descname">load_km</code><span class="sig-paren">(</span><em class="sig-param">as_sparse=True</em>, <em class="sig-param">sort=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.full.FullFile.load_km" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load and construct mass and stiffness matrices from an
+ANSYS full file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>as_sparse</strong> (<em>bool</em><em>, </em><em>optional</em>) – Outputs the mass and stiffness matrices as scipy csc
+sparse arrays when True by default.</p></li>
+<li><p><strong>sort</strong> (<em>bool</em><em>, </em><em>optional</em>) – Rearranges the k and m matrices such that the rows
+correspond to to the sorted rows and columns in dor_ref.
+Also sorts dor_ref.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>dof_ref</strong> (<em>(n x 2) np.int32 array</em>) – This array contains the node and degree corresponding to
+each row and column in the mass and stiffness matrices.
+In a 3 DOF analysis the dof intergers will correspond to:
+0 - x
+1 - y
+2 - z
+Sort these values by node number and DOF by enabling the
+sort parameter.</p></li>
+<li><p><strong>k</strong> (<em>(n x n) np.float or scipy.csc array</em>) – Stiffness array</p></li>
+<li><p><strong>m</strong> (<em>(n x n) np.float or scipy.csc array</em>) – Mass array</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Constrained entries are removed from the mass and stiffness
+matrices.</p>
+<p>Constrained DOF can be accessed with self.const, which returns
+the node number and DOF constrained in ANSYS.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="loading_emat.html" class="btn btn-neutral float-right" title="Working with a ANSYS Element Matrix File (.emat)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="examples.html" class="btn btn-neutral float-left" title="Archive and Result File Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Alex Kaszynski
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
