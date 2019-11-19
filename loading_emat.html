@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Element Matrix File (*.emat) &mdash; pyansys 0.38.1 documentation</title>
+  <title>Working with a ANSYS Element Matrix File (.emat) &mdash; pyansys 0.39.4 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.38.1
+                0.39.4
               </div>
             
           
@@ -89,7 +89,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ansys_control.html">ANSYS APDL Interactive Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ansys_functions.html#available-commands">Available Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apdl_conversion.html">APDL Conversion Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
 </ul>
@@ -99,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result File (rst)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Working with a ANSYS Element Matrix File (*.emat)</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Working with a ANSYS Element Matrix File (.emat)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#example">Example</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#applied-force">Applied Force</a></li>
 </ul>
@@ -153,7 +152,7 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Working with a ANSYS Element Matrix File (*.emat)</li>
+      <li>Working with a ANSYS Element Matrix File (.emat)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -173,7 +172,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="working-with-a-ansys-element-matrix-file-emat">
-<h1>Working with a ANSYS Element Matrix File (<a href="#id1"><span class="problematic" id="id2">*</span></a>.emat)<a class="headerlink" href="#working-with-a-ansys-element-matrix-file-emat" title="Permalink to this headline">¶</a></h1>
+<h1>Working with a ANSYS Element Matrix File (.emat)<a class="headerlink" href="#working-with-a-ansys-element-matrix-file-emat" title="Permalink to this headline">¶</a></h1>
 <p>The ANSYS element matrix file is a FORTRAN formatted binary file containing the following for each element.</p>
 <blockquote>
 <div><ul class="simple">
@@ -210,7 +209,7 @@
 <h2>EmatFile Object Methods<a class="headerlink" href="#ematfile-object-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pyansys.emat.EmatFile">
-<em class="property">class </em><code class="descclassname">pyansys.emat.</code><code class="descname">EmatFile</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.emat.</code><code class="sig-name descname">EmatFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enables pythonic access for an ANSYS element matrix file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -222,38 +221,32 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">emat_file</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.emat&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="attribute">
+<dl class="method">
 <dt id="pyansys.emat.EmatFile.eeqv">
-<code class="descname">eeqv</code><a class="headerlink" href="#pyansys.emat.EmatFile.eeqv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element equivalence table.  This table equates the number used
-for storage to the actual element number.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyansys.emat.EmatFile.element_equivalence_table">
-<code class="descname">element_equivalence_table</code><a class="headerlink" href="#pyansys.emat.EmatFile.element_equivalence_table" title="Permalink to this definition">¶</a></dt>
-<dd><p>Element equivalence table</p>
+<em class="property">property </em><code class="sig-name descname">eeqv</code><a class="headerlink" href="#pyansys.emat.EmatFile.eeqv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Element equivalence table.  This table equates the number
+used for storage to the actual element number.</p>
+<p class="rubric">Notes</p>
 <p>The ANSYS program stores all element data in the numerical
 order that the SOLUTION processor solves the elements.  This
-table equates the order number used to the actual element
-number.</p>
+table equates the order number used to the actual element.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pyansys.emat.EmatFile.element_matrices_index_table">
-<code class="descname">element_matrices_index_table</code><a class="headerlink" href="#pyansys.emat.EmatFile.element_matrices_index_table" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">element_matrices_index_table</code><a class="headerlink" href="#pyansys.emat.EmatFile.element_matrices_index_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return element matrices index table</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pyansys.emat.EmatFile.enum">
-<code class="descname">enum</code><a class="headerlink" href="#pyansys.emat.EmatFile.enum" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">enum</code><a class="headerlink" href="#pyansys.emat.EmatFile.enum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sorted ANSYS element numbers</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.emat.EmatFile.global_applied_force">
-<code class="descname">global_applied_force</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.global_applied_force" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">global_applied_force</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.global_applied_force" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the applied force for each node.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -266,40 +259,40 @@ sorted to correspond with the sorted global nodes array.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pyansys.emat.EmatFile.n_dof">
-<code class="descname">n_dof</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_dof" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">n_dof</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_dof" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of dofs per node</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pyansys.emat.EmatFile.n_elements">
-<code class="descname">n_elements</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_elements" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">n_elements</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_elements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of elements in the file</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pyansys.emat.EmatFile.n_nodes">
-<code class="descname">n_nodes</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_nodes" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">n_nodes</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_nodes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of nodes in the file</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pyansys.emat.EmatFile.neqv">
-<code class="descname">neqv</code><a class="headerlink" href="#pyansys.emat.EmatFile.neqv" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">neqv</code><a class="headerlink" href="#pyansys.emat.EmatFile.neqv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nodal equivalence table. This table equates the number used
 for storage to the actual node number.</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pyansys.emat.EmatFile.nnum">
-<code class="descname">nnum</code><a class="headerlink" href="#pyansys.emat.EmatFile.nnum" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">nnum</code><a class="headerlink" href="#pyansys.emat.EmatFile.nnum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sorted ANSYS node numbers</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.emat.EmatFile.read_element">
-<code class="descname">read_element</code><span class="sig-paren">(</span><em>index</em>, <em>stress=True</em>, <em>mass=True</em>, <em>damping=True</em>, <em>stress_stiff=True</em>, <em>applied_force=True</em>, <em>newton_raphson=True</em>, <em>imaginary_load=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_element</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">stress=True</em>, <em class="sig-param">mass=True</em>, <em class="sig-param">damping=True</em>, <em class="sig-param">stress_stiff=True</em>, <em class="sig-param">applied_force=True</em>, <em class="sig-param">newton_raphson=True</em>, <em class="sig-param">imaginary_load=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read element by index</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -351,7 +344,7 @@ reference number given by <code class="docutils literal notranslate"><span class
 
 <dl class="method">
 <dt id="pyansys.emat.EmatFile.read_element_matrix_header">
-<code class="descname">read_element_matrix_header</code><span class="sig-paren">(</span><em>f_index</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_element_matrix_header" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_element_matrix_header</code><span class="sig-paren">(</span><em class="sig-param">f_index</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_element_matrix_header" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read element matrix header</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -389,7 +382,7 @@ lower triangular form.</p>
 
 <dl class="method">
 <dt id="pyansys.emat.EmatFile.read_header">
-<code class="descname">read_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_header" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">read_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_header" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read standard emat file header</p>
 </dd></dl>
 

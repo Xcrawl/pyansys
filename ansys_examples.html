@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ANSYS APDL Interactive Control Examples &mdash; pyansys 0.38.1 documentation</title>
+  <title>ANSYS APDL Interactive Control Examples &mdash; pyansys 0.39.4 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.38.1
+                0.39.4
               </div>
             
           
@@ -89,7 +89,6 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="ansys_control.html">ANSYS APDL Interactive Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ansys_functions.html#available-commands">Available Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apdl_conversion.html">APDL Conversion Examples</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ANSYS APDL Interactive Control Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#torsional-load-on-a-bar-using-surf154-elements">Torsional Load on a Bar using SURF154 Elements</a><ul>
@@ -108,7 +107,7 @@
 <li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result File (rst)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (*.emat)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">Result Visulization Gallery</a></li>
 </ul>
 
@@ -210,7 +209,7 @@ PRESSURE = FORCE/(H_TIP*2*PI*RADIUS)
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="c1"># start ANSYS in the current working directory with default jobname &quot;file&quot;</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">interactive_plotting</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">interactive_plotting</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c1"># define cylinder and mesh parameters</span>
 <span class="n">torque</span> <span class="o">=</span> <span class="mi">100</span>
@@ -279,56 +278,56 @@ finish
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define higher-order SOLID186</span>
 <span class="c1"># Define surface effect elements SURF154 to apply torque</span>
 <span class="c1"># as a tangential pressure</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Prep7</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">186</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Et</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">154</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">R</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">R</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">186</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">154</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Aluminum properties (or something)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Mp</span><span class="p">(</span><span class="s1">&#39;ex&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">10e6</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Mp</span><span class="p">(</span><span class="s1">&#39;nuxy&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Mp</span><span class="p">(</span><span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">386.1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Mp</span><span class="p">(</span><span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;ex&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">10e6</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;nuxy&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">386.1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># Simple cylinder</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Cylind</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mi">90</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="mi">90</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">cylind</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mi">90</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="mi">90</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
 
-<span class="n">ansys</span><span class="o">.</span><span class="n">Nummrg</span><span class="p">(</span><span class="s1">&#39;kp&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">nummrg</span><span class="p">(</span><span class="s1">&#39;kp&#39;</span><span class="p">)</span>
 
 <span class="c1"># non-interactive volume plot (optional)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Show</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="s1">&#39;grph&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">View</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Vplot</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">menu</span><span class="p">(</span><span class="s1">&#39;grph&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">vplot</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># mesh cylinder</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Lsel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Lsel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Lsel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="n">h_tip</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Lesize</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">elemsize</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Mshape</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Mshkey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Esize</span><span class="p">(</span><span class="n">elemsize</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Allsel</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Vsweep</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Csys</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Asel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="n">h_tip</span> <span class="o">+</span> <span class="mf">0.0001</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Asel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Local</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Csys</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Aatt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Amesh</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Finish</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="n">h_tip</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">lesize</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">elemsize</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">mshape</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">mshkey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><span class="n">elemsize</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">allsel</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">vsweep</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">asel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="n">h_tip</span> <span class="o">+</span> <span class="mf">0.0001</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">asel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">local</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">aatt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">amesh</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
 
 <span class="c1"># plot elements and wait one second (optional)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Eplot</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">eplot</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-center" id="id1">
+<div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="_images/cylinder_eplot.png"><img alt="_images/cylinder_eplot.png" src="_images/cylinder_eplot.png" style="width: 300pt;" /></a>
 <p class="caption"><span class="caption-text">Element plot from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
@@ -367,25 +366,25 @@ SAVE
 </div>
 <p>Corresponding <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> script:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># new solution</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Slashsolu</span><span class="p">()</span>  <span class="c1"># Using Slash instead of / due to duplicate SOLU command</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>  <span class="c1"># Using Slash instead of / due to duplicate SOLU command</span>
 <span class="c1"># ansys(&#39;/solu&#39;)  # could also use this line</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Antype</span><span class="p">(</span><span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Eqslv</span><span class="p">(</span><span class="s1">&#39;pcg&#39;</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">eqslv</span><span class="p">(</span><span class="s1">&#39;pcg&#39;</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)</span>
 
 <span class="c1"># Apply tangential pressure</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Esel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Sfe</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;pres&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">pressure</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">esel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">sfe</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;pres&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">pressure</span><span class="p">)</span>
 
 <span class="c1"># Constrain bottom of cylinder/rod</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Asel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Nsla</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">asel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">nsla</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="n">ansys</span><span class="o">.</span><span class="n">D</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Allsel</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Psf</span><span class="p">(</span><span class="s1">&#39;pres&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Pbc</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Exit</span><span class="p">()</span>  <span class="c1"># Finishes, saves, and exits</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">psf</span><span class="p">(</span><span class="s1">&#39;pres&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">pbc</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>  <span class="c1"># Finishes, saves, and exits</span>
 </pre></div>
 </div>
 <p>Access and plot the results within python using pyansys:</p>
@@ -399,7 +398,7 @@ SAVE
 <span class="n">nodenum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># plot interactively</span>
-<span class="n">result</span><span class="o">.</span><span class="n">PlotNodalResult</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>
 <span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Sx&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>
 <span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SEQV&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>
 
@@ -408,25 +407,25 @@ SAVE
         <span class="p">(</span><span class="mf">0.35955395443745797</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4198191001571547</span><span class="p">,</span> <span class="mf">10.346158032932495</span><span class="p">),</span>
         <span class="p">(</span><span class="o">-</span><span class="mf">0.10547549888485548</span><span class="p">,</span> <span class="mf">0.9200673323892437</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.377294345312956</span><span class="p">)]</span>
 
-<span class="n">result</span><span class="o">.</span><span class="n">PlotNodalResult</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span>
-                       <span class="n">screenshot</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;cylinder_disp.png&#39;</span><span class="p">))</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span>
+                           <span class="n">screenshot</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;cylinder_disp.png&#39;</span><span class="p">))</span>
 
 <span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Sx&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span>
-                       <span class="n">screenshot</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;cylinder_sx.png&#39;</span><span class="p">))</span>
+                         <span class="n">screenshot</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;cylinder_sx.png&#39;</span><span class="p">))</span>
 
-<span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SEQV&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span>
-                                <span class="n">screenshot</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;cylinder_vonmises.png&#39;</span><span class="p">))</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SEQV&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+                                   <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span> <span class="n">screenshot</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;cylinder_vonmises.png&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="figure align-center" id="id2">
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="_images/cylinder_disp.png"><img alt="_images/cylinder_disp.png" src="_images/cylinder_disp.png" style="width: 300pt;" /></a>
 <p class="caption"><span class="caption-text">Non-interactive Screenshot of Displacement from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center" id="id3">
+<div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="_images/cylinder_sx.png"><img alt="_images/cylinder_sx.png" src="_images/cylinder_sx.png" style="width: 300pt;" /></a>
 <p class="caption"><span class="caption-text">Non-interactive Screenshot of X Stress from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center" id="id4">
+<div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="_images/cylinder_vonmises.png"><img alt="_images/cylinder_vonmises.png" src="_images/cylinder_vonmises.png" style="width: 300pt;" /></a>
 <p class="caption"><span class="caption-text">Non-interactive Screenshot of von Mises Stress from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
@@ -576,10 +575,10 @@ FINISH
 <span class="c1"># Open the result file and plot the displacement of time step 3</span>
 <span class="n">resultfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="n">resultfile</span><span class="p">)</span>
-<span class="n">result</span><span class="o">.</span><span class="n">PlotNodalResult</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-center" id="id5">
+<div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="_images/spot_disp.png"><img alt="_images/spot_disp.png" src="_images/spot_disp.png" style="width: 300pt;" /></a>
 <p class="caption"><span class="caption-text">Spot Weld: Displacement</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
@@ -592,7 +591,7 @@ FINISH
 <span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Sz&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-center" id="id6">
+<div class="figure align-default" id="id6">
 <a class="reference internal image-reference" href="_images/spot_sz.png"><img alt="_images/spot_sz.png" src="_images/spot_sz.png" style="width: 300pt;" /></a>
 <p class="caption"><span class="caption-text">Spot Weld: Z Stress</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
@@ -601,7 +600,7 @@ FINISH
 <span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SEQV&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-center" id="id7">
+<div class="figure align-default" id="id7">
 <a class="reference internal image-reference" href="_images/spot_seqv.png"><img alt="_images/spot_seqv.png" src="_images/spot_seqv.png" style="width: 300pt;" /></a>
 <p class="caption"><span class="caption-text">Spot Weld: von Mises Stress</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reading and Writing ANSYS Archives &mdash; pyansys 0.38.1 documentation</title>
+  <title>Reading and Writing ANSYS Archives &mdash; pyansys 0.39.4 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.38.1
+                0.39.4
               </div>
             
           
@@ -89,7 +89,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ansys_control.html">ANSYS APDL Interactive Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ansys_functions.html#available-commands">Available Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apdl_conversion.html">APDL Conversion Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
 </ul>
@@ -107,7 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result File (rst)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (*.emat)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">Result Visulization Gallery</a></li>
 </ul>
 
@@ -218,9 +217,9 @@
 
 <span class="c1"># read in archive in ANSYS and generate cell shape quality report</span>
 <span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Cdread</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="n">script_filename</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Prep7</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Shpp</span><span class="p">(</span><span class="s1">&#39;SUMM&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">cdread</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="n">script_filename</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">shpp</span><span class="p">(</span><span class="s1">&#39;SUMM&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Resulting ANSYS quality report:</p>
@@ -267,7 +266,7 @@
 <p>Module to read ANSYS ASCII block formatted CDB files</p>
 <dl class="class">
 <dt id="pyansys.archive.Archive">
-<em class="property">class </em><code class="descclassname">pyansys.archive.</code><code class="descname">Archive</code><span class="sig-paren">(</span><em>filename</em>, <em>read_parameters=False</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">Archive</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">read_parameters=False</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read a blocked ANSYS archive file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -275,14 +274,8 @@
 </dd>
 </dl>
 <dl class="method">
-<dt id="pyansys.archive.Archive.check_raw">
-<code class="descname">check_raw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.check_raw" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if raw data can be converted into an unstructured grid</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pyansys.archive.Archive.parse_vtk">
-<code class="descname">parse_vtk</code><span class="sig-paren">(</span><em>force_linear=False</em>, <em>allowable_types=None</em>, <em>null_unallowed=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.parse_vtk" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_vtk</code><span class="sig-paren">(</span><em class="sig-param">force_linear=False</em>, <em class="sig-param">allowable_types=None</em>, <em class="sig-param">null_unallowed=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.parse_vtk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parses raw data into to VTK format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -312,13 +305,13 @@ element numbers.  Default False.</p></li>
 
 <dl class="function">
 <dt id="pyansys.archive.chunks">
-<code class="descclassname">pyansys.archive.</code><code class="descname">chunks</code><span class="sig-paren">(</span><em>l</em>, <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.chunks" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">chunks</code><span class="sig-paren">(</span><em class="sig-param">l</em>, <em class="sig-param">n</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.chunks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Yield successive n-sized chunks from l</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="pyansys.archive.save_as_archive">
-<code class="descclassname">pyansys.archive.</code><code class="descname">save_as_archive</code><span class="sig-paren">(</span><em>filename</em>, <em>grid</em>, <em>mtype_start=1</em>, <em>etype_start=1</em>, <em>real_constant_start=1</em>, <em>mode='w'</em>, <em>nblock=True</em>, <em>enum_start=1</em>, <em>nnum_start=1</em>, <em>include_etype_header=True</em>, <em>line_ending=None</em>, <em>reset_etype=False</em>, <em>allow_missing=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.save_as_archive" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">save_as_archive</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">grid</em>, <em class="sig-param">mtype_start=1</em>, <em class="sig-param">etype_start=1</em>, <em class="sig-param">real_constant_start=1</em>, <em class="sig-param">mode='w'</em>, <em class="sig-param">nblock=True</em>, <em class="sig-param">enum_start=1</em>, <em class="sig-param">nnum_start=1</em>, <em class="sig-param">include_etype_header=True</em>, <em class="sig-param">reset_etype=False</em>, <em class="sig-param">allow_missing=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.save_as_archive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes FEM as an ANSYS APDL archive file.  This function
 supports the following element types:</p>
 <blockquote>
@@ -359,7 +352,6 @@ manually set by adding the point array “ansys_node_num” to the
 unstructured grid.</p></li>
 <li><p><strong>include_etype_header</strong> (<em>bool</em><em>, </em><em>optional</em>) – For each element type, includes element type command
 (e.g. “ET, 1, 186”) in the archive file.</p></li>
-<li><p><strong>line_ending</strong> (<em>str</em><em>, </em><em>optional</em>) – Defaults to windows line ending.</p></li>
 <li><p><strong>reset_etype</strong> (<em>bool</em><em>, </em><em>optional</em>) – Resets element type.  Element types will automatically be
 determined by the shape of the element (i.e. quadradic
 tetrahedrals will be saved as SOLID187, linear hexahedrals as
@@ -370,14 +362,8 @@ SOLID185).  Default True.</p></li>
 </dd></dl>
 
 <dl class="function">
-<dt id="pyansys.archive.unique_rows">
-<code class="descclassname">pyansys.archive.</code><code class="descname">unique_rows</code><span class="sig-paren">(</span><em>a</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.unique_rows" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns unique rows of a and indices of those rows</p>
-</dd></dl>
-
-<dl class="function">
 <dt id="pyansys.archive.write_cmblock">
-<code class="descclassname">pyansys.archive.</code><code class="descname">write_cmblock</code><span class="sig-paren">(</span><em>filename</em>, <em>items</em>, <em>comp_name</em>, <em>comp_type</em>, <em>digit_width=10</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_cmblock" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_cmblock</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">items</em>, <em class="sig-param">comp_name</em>, <em class="sig-param">comp_type</em>, <em class="sig-param">digit_width=10</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_cmblock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes a component block, CMBLOCK, to a file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -394,7 +380,7 @@ SOLID185).  Default True.</p></li>
 
 <dl class="function">
 <dt id="pyansys.archive.write_nblock">
-<code class="descclassname">pyansys.archive.</code><code class="descname">write_nblock</code><span class="sig-paren">(</span><em>filename</em>, <em>node_id</em>, <em>pos</em>, <em>angles=None</em>, <em>line_ending=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_nblock" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_nblock</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">node_id</em>, <em class="sig-param">pos</em>, <em class="sig-param">angles=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_nblock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes nodes and node angles to file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -403,7 +389,6 @@ SOLID185).  Default True.</p></li>
 <li><p><strong>node_id</strong> (<em>np.ndarray</em>) – ANSYS node numbers.</p></li>
 <li><p><strong>pos</strong> (<em>np.ndarray</em>) – Node coordinates.</p></li>
 <li><p><strong>angles</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Writes the node angles for each node when included.</p></li>
-<li><p><strong>line_ending</strong> (<em>str</em><em>, </em><em>optional</em>) – Line ending.  Defaults to operating system line ending.</p></li>
 </ul>
 </dd>
 </dl>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Thermal Analysis &mdash; pyansys 0.38.1 documentation</title>
+  <title>Thermal Analysis &mdash; pyansys 0.39.4 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.38.1
+                0.39.4
               </div>
             
           
@@ -89,7 +89,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../ansys_control.html">ANSYS APDL Interactive Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ansys_functions.html#available-commands">Available Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../apdl_conversion.html">APDL Conversion Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
 </ul>
@@ -99,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../loading_results.html">Working with a ANSYS Result File (rst)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../loading_km.html">Working with a ANSYS Full File (full)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (*.emat)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Result Visulization Gallery</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html#loading-and-visualizing-result-files">Loading and Visualizing Result Files</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="load_shaft_result.html">Shaft Modal Analysis</a></li>
@@ -198,6 +197,10 @@
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_load_thermal_result_001.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_thermal_result_001.png" />
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(4.256762018493109, 2.258665575329393, 2.3586655753293932), (1.9980964431637156, 2.7755575615628914e-17, 0.10000000000000002), (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
 <p>Plot with contours</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Disable lighting and set number of colors to 10 to make an MAPDL-like plot</span>
 <span class="n">vm33</span><span class="o">.</span><span class="n">plot_nodal_thermal_strain</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_colors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
@@ -206,13 +209,17 @@
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_load_thermal_result_002.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_load_thermal_result_002.png" />
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.813 seconds)</p>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>[(4.256762018493109, 2.258665575329393, 2.3586655753293932), (1.9980964431637156, 2.7755575615628914e-17, 0.10000000000000002), (0.0, 0.0, 1.0)]
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  1.567 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-00-read-binary-load-thermal-result-py">
 <div class="sphx-glr-download docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/9fce7d694639901c3a67ad28de82f45d/load_thermal_result.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">load_thermal_result.py</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../_downloads/edf9892c3cec4368a3db41f2bc859eab/load_thermal_result.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">load_thermal_result.py</span></code></a></p>
 </div>
 <div class="sphx-glr-download docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/bb5521d11de83fab793252fd5005b51a/load_thermal_result.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">load_thermal_result.ipynb</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../_downloads/648c11c1df0269b9cbc267b06922ec08/load_thermal_result.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">load_thermal_result.ipynb</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>

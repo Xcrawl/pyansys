@@ -27,6 +27,7 @@ Visualize a shell static analysis
 
 
 
+
 Print the pontoon result
 
 
@@ -54,6 +55,7 @@ Print the pontoon result
 
 
 
+
 Plot the nodal displacement
 
 
@@ -69,6 +71,15 @@ Plot the nodal displacement
 .. image:: /examples/00-read_binary/images/sphx_glr_pontoon_001.png
     :class: sphx-glr-single-img
 
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    [(155.96910868165338, 109.9154768183639, 117.91039846874918), (46.053758658436294, 0.0001267951468042483, 7.995048445532074), (0.0, 0.0, 1.0)]
 
 
 
@@ -93,6 +104,8 @@ print the available result types
     elastic strains
     thermal strains
 
+    ['ENS', 'EEL', 'ETH']
+
 
 
 Plot the shell elements
@@ -108,6 +121,15 @@ Plot the shell elements
 .. image:: /examples/00-read_binary/images/sphx_glr_pontoon_002.png
     :class: sphx-glr-single-img
 
+
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    [(150.0152852510816, 105.0152852510816, 108.01528525108166), (45.000000000000014, 8.881784197001252e-16, 3.000000000000005), (0.0, 0.0, 1.0)]
 
 
 
@@ -132,6 +154,15 @@ Plot the elastic strain and show exaggerated displacement
     :class: sphx-glr-single-img
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    [(153.24979653815484, 107.65441499812309, 113.47692279060745), (45.59545318886131, 7.164882954224794e-05, 5.822579441313902), (0.0, 0.0, 1.0)]
+
 
 
 Missing solution data will plot as a white mesh
@@ -148,12 +179,21 @@ Missing solution data will plot as a white mesh
     :class: sphx-glr-single-img
 
 
+.. rst-class:: sphx-glr-script-out
+
+ Out:
+
+ .. code-block:: none
+
+
+    [(150.01531580400382, 105.01530985018842, 108.01533827421203), (45.000005954531886, 7.164882021015728e-10, 3.000028424740094), (0.0, 0.0, 1.0)]
+
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.451 seconds)
+   **Total running time of the script:** ( 0 minutes  3.918 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_pontoon.py:

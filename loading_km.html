@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Full File (full) &mdash; pyansys 0.38.1 documentation</title>
+  <title>Working with a ANSYS Full File (full) &mdash; pyansys 0.39.4 documentation</title>
   
 
   
@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Working with a ANSYS Element Matrix File (*.emat)" href="loading_emat.html" />
+    <link rel="next" title="Working with a ANSYS Element Matrix File (.emat)" href="loading_emat.html" />
     <link rel="prev" title="Archive and Result File Examples" href="examples.html" /> 
 </head>
 
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.38.1
+                0.39.4
               </div>
             
           
@@ -89,7 +89,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ansys_control.html">ANSYS APDL Interactive Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ansys_functions.html#available-commands">Available Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apdl_conversion.html">APDL Conversion Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
 </ul>
@@ -104,7 +103,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#fullfile-object-methods">FullFile Object Methods</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (*.emat)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">Result Visulization Gallery</a></li>
 </ul>
 
@@ -264,7 +263,7 @@
 <h2>FullFile Object Methods<a class="headerlink" href="#fullfile-object-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pyansys.full.FullFile">
-<em class="property">class </em><code class="descclassname">pyansys.full.</code><code class="descname">FullFile</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.full.FullFile" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.full.</code><code class="sig-name descname">FullFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.full.FullFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stores the results of an ANSYS full file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -277,7 +276,7 @@
 </div>
 <dl class="method">
 <dt id="pyansys.full.FullFile.load_km">
-<code class="descname">load_km</code><span class="sig-paren">(</span><em>as_sparse=True</em>, <em>sort=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.full.FullFile.load_km" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_km</code><span class="sig-paren">(</span><em class="sig-param">as_sparse=True</em>, <em class="sig-param">sort=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.full.FullFile.load_km" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load and construct mass and stiffness matrices from an
 ANSYS full file.</p>
 <dl class="field-list simple">
@@ -326,7 +325,7 @@ the node number and DOF constrained in ANSYS.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="loading_emat.html" class="btn btn-neutral float-right" title="Working with a ANSYS Element Matrix File (*.emat)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="loading_emat.html" class="btn btn-neutral float-right" title="Working with a ANSYS Element Matrix File (.emat)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="examples.html" class="btn btn-neutral float-left" title="Archive and Result File Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

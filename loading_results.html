@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.38.1 documentation</title>
+  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.39.4 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.38.1
+                0.39.4
               </div>
             
           
@@ -89,7 +89,6 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ansys_control.html">ANSYS APDL Interactive Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ansys_functions.html#available-commands">Available Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apdl_conversion.html">APDL Conversion Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
 </ul>
@@ -115,7 +114,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (*.emat)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">Result Visulization Gallery</a></li>
 </ul>
 
@@ -269,10 +268,98 @@ accessing:</p>
 </pre></div>
 </div>
 <p>See the doc string for <code class="docutils literal notranslate"><span class="pre">parse_coordinate_system</span></code> for more details regarding the contents of the coordinate systems stored in the result file.</p>
+<dl class="function">
+<dt id="pyansys.rst.parse_coordinate_system">
+<code class="sig-prename descclassname">pyansys.rst.</code><code class="sig-name descname">parse_coordinate_system</code><span class="sig-paren">(</span><em class="sig-param">f</em>, <em class="sig-param">geometry_header</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.parse_coordinate_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads in coordinate system information from a binary result file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<em>file object</em>) – Open binary result file.</p></li>
+<li><p><strong>dict</strong> (<em>geometry_header</em><em>,</em>) – Dictionary containing pointers to geometry items in the ansys
+result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>c_systems</strong> – Dictionary containing one entry for each defined coordinate
+system.  If no non-standard coordinate systems have been
+defined, there will be only one None.  First coordinate system
+is assumed to be global cartesian.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>euler angles : [THXY, THYZ, THZX]</p>
+<ul class="simple">
+<li><p>First rotation about local Z (positive X toward Y).</p></li>
+<li><p>Second rotation about local X (positive Y toward Z).</p></li>
+<li><p>Third rotation about local Y (positive Z toward X).</p></li>
+</ul>
+<p>PAR1
+Used for elliptical, spheroidal, or toroidal systems. If KCS = 1
+or 2, PAR1 is the ratio of the ellipse Y-axis radius to X-axis
+radius (defaults to 1.0 (circle)). If KCS = 3, PAR1 is the major
+radius of the torus.</p>
+<p>PAR2
+Used for spheroidal systems. If KCS = 2, PAR2 = ratio of ellipse
+Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
+<dl class="simple">
+<dt>Coordinate system type:</dt><dd><ul class="simple">
+<li><p>0: Cartesian</p></li>
+<li><p>1: Cylindrical (circular or elliptical)</p></li>
+<li><p>2: Spherical (or spheroidal)</p></li>
+<li><p>3: Toroidal</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 </div>
 <div class="section" id="accessing-solution-results">
 <h2>Accessing Solution Results<a class="headerlink" href="#accessing-solution-results" title="Permalink to this headline">¶</a></h2>
+<p>You can obtain detailed information using <code class="docutils literal notranslate"><span class="pre">solution_info</span></code> for each result:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># return a dictionary of solution info for the first result</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">solution_info</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">info</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This yields:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">timfrq</span> <span class="mf">1.0</span>
+<span class="n">lfacto</span> <span class="mf">1.0</span>
+<span class="n">lfactn</span> <span class="mf">1.0</span>
+<span class="n">cptime</span> <span class="mf">50.9189941460218</span>
+<span class="n">tref</span> <span class="mf">0.0</span>
+<span class="n">tunif</span> <span class="mf">0.0</span>
+<span class="n">tbulk</span> <span class="mf">82.0</span>
+<span class="n">volbase</span> <span class="mf">0.0</span>
+<span class="n">tstep</span> <span class="mf">0.0</span>
+<span class="n">__unused</span> <span class="mf">0.0</span>
+<span class="n">accel_x</span> <span class="mf">0.0</span>
+<span class="n">accel_y</span> <span class="mf">0.0</span>
+<span class="n">accel_z</span> <span class="mf">0.0</span>
+<span class="n">omega_v_x</span> <span class="mf">0.0</span>
+<span class="n">omega_v_y</span> <span class="mf">0.0</span>
+<span class="n">omega_v_z</span> <span class="mi">100</span>
+<span class="n">omega_a_x</span> <span class="mf">0.0</span>
+<span class="n">omega_a_y</span> <span class="mf">0.0</span>
+<span class="n">omega_a_z</span> <span class="mf">0.0</span>
+<span class="n">omegacg_v_x</span> <span class="mf">0.0</span>
+<span class="n">omegacg_v_y</span> <span class="mf">0.0</span>
+<span class="n">omegacg_v_z</span> <span class="mf">0.0</span>
+<span class="n">omegacg_a_x</span> <span class="mf">0.0</span>
+<span class="n">omegacg_a_y</span> <span class="mf">0.0</span>
+<span class="n">omegacg_a_z</span> <span class="mf">0.0</span>
+<span class="n">cgcent</span> <span class="mf">0.0</span>
+<span class="n">fatjack</span> <span class="mf">0.0</span>
+<span class="n">dval1</span> <span class="mf">0.0</span>
+<span class="n">pCnvVal</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
 <p>The DOF solution for an analysis for each node in the analysis can be obtained using the code block below.  These results correspond to the node numbers in the result file.  This array is sized by the number of nodes by the number of degrees of freedom.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return an array of results (nnod x dof)</span>
 <span class="n">nnum</span><span class="p">,</span> <span class="n">disp</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># uses 0 based indexing</span>
@@ -476,7 +563,7 @@ accessing:</p>
 <h2>ResultFile Object Methods<a class="headerlink" href="#resultfile-object-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pyansys.rst.ResultFile">
-<em class="property">class </em><code class="descclassname">pyansys.rst.</code><code class="descname">ResultFile</code><span class="sig-paren">(</span><em>filename</em>, <em>ignore_cyclic=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.rst.</code><code class="sig-name descname">ResultFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">ignore_cyclic=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads a binary ANSYS result file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -488,7 +575,7 @@ accessing:</p>
 </dl>
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.animate_nodal_solution">
-<code class="descname">animate_nodal_solution</code><span class="sig-paren">(</span><em>rnum</em>, <em>comp='norm'</em>, <em>node_components=None</em>, <em>sel_type_all=True</em>, <em>add_text=True</em>, <em>max_disp=0.1</em>, <em>nangles=100</em>, <em>movie_filename=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">animate_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">add_text=True</em>, <em class="sig-param">max_disp=0.1</em>, <em class="sig-param">nangles=100</em>, <em class="sig-param">movie_filename=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Animate nodal solution.  Assumes nodal solution is a
 displacement array from a modal solution.</p>
 <dl class="simple">
@@ -512,21 +599,21 @@ A single loop of the mode will be recorded.</p>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pyansys.rst.ResultFile.available_results">
-<code class="descname">available_results</code><a class="headerlink" href="#pyansys.rst.ResultFile.available_results" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">available_results</code><a class="headerlink" href="#pyansys.rst.ResultFile.available_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints available element result types and returns those keys</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.cs_4x4">
-<code class="descname">cs_4x4</code><span class="sig-paren">(</span><em>cs_cord</em>, <em>as_vtk_matrix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.cs_4x4" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">cs_4x4</code><span class="sig-paren">(</span><em class="sig-param">cs_cord</em>, <em class="sig-param">as_vtk_matrix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.cs_4x4" title="Permalink to this definition">¶</a></dt>
 <dd><p>return a 4x4 transformation array for a given coordinate system</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.element_solution_data">
-<code class="descname">element_solution_data</code><span class="sig-paren">(</span><em>rnum</em>, <em>datatype</em>, <em>sort=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.element_solution_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">element_solution_data</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">datatype</em>, <em class="sig-param">sort=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.element_solution_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrives element solution data.  Similar to ETABLE.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -589,14 +676,8 @@ position not used</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyansys.rst.ResultFile.element_solution_header">
-<code class="descname">element_solution_header</code><span class="sig-paren">(</span><em>rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.element_solution_header" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get element solution header information</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pyansys.rst.ResultFile.element_stress">
-<code class="descname">element_stress</code><span class="sig-paren">(</span><em>rnum</em>, <em>principal=False</em>, <em>in_element_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.element_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">element_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">principal=False</em>, <em class="sig-param">in_element_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.element_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Equivalent ANSYS command: PRESOL, S</p>
 <p>Retrives the element component stresses.</p>
 <dl class="field-list simple">
@@ -631,7 +712,7 @@ the bottom layer is reported.</p>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.nodal_elastic_strain">
-<code class="descname">nodal_elastic_strain</code><span class="sig-paren">(</span><em>rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_elastic_strain" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_elastic_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_elastic_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nodal component elastic strains.  This record contains
 strains in the order X, Y, Z, XY, YZ, XZ, EQV.</p>
 <p>Elastic strains can be can be nodal values extrapolated from
@@ -655,7 +736,7 @@ X, Y, Z, XY, YZ, XZ, EEL.</p></li>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.nodal_plastic_strain">
-<code class="descname">nodal_plastic_strain</code><span class="sig-paren">(</span><em>rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_plastic_strain" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_plastic_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_plastic_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nodal component plastic strains.  This record contains
 strains in the order X, Y, Z, XY, YZ, XZ, EQV.</p>
 <p>Plastic strains are always values at the integration points
@@ -678,18 +759,20 @@ X, Y, Z, XY, YZ, XZ, EEL.</p></li>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.nodal_solution">
-<code class="descname">nodal_solution</code><span class="sig-paren">(</span><em>rnum</em>, <em>in_nodal_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_solution" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the DOF solution for each node in the global cartesian
-coordinate system or nodal coordinate system.</p>
+<code class="sig-name descname">nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">in_nodal_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the DOF solution for each node in the global
+cartesian coordinate system or nodal coordinate system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a list containing
-(step, substep) of the requested result.</p></li>
-<li><p><strong>sort</strong> (<em>bool</em><em>, </em><em>optional</em>) – Resorts the results so that the results correspond to the sorted
-node numbering (self.nnum) (default).  If left unsorted, results
-correspond to the nodal equivalence array self.resultheader[‘neqv’]</p></li>
-<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, returns results in the nodal coordinate system.  Default False.</p></li>
+<li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p></li>
+<li><p><strong>sort</strong> (<em>bool</em><em>, </em><em>optional</em>) – Resorts the results so that the results correspond to the
+sorted node numbering (self.nnum) (default).  If left
+unsorted, results correspond to the nodal equivalence
+array self.resultheader[‘neqv’]</p></li>
+<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, returns results in the nodal coordinate system.
+Default False.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -704,7 +787,7 @@ correspond to the nodal equivalence array self.resultheader[‘neqv’]</p></li>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.nodal_stress">
-<code class="descname">nodal_stress</code><span class="sig-paren">(</span><em>rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the component stresses for each node in the
 solution.</p>
 <p>The order of the results corresponds to the sorted node
@@ -734,7 +817,7 @@ Equivalent ANSYS command: PRNSOL, S</p>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.nodal_thermal_strain">
-<code class="descname">nodal_thermal_strain</code><span class="sig-paren">(</span><em>rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_thermal_strain" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_thermal_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_thermal_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nodal component plastic strains.  This record contains
 strains in the order X, Y, Z, XY, YZ, XZ, EQV, and eswell
 (element swelling strain).  Plastic strains are always values
@@ -755,21 +838,47 @@ X, Y, Z, XY, YZ, XZ, EQV, ESWELL</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
+<dt id="pyansys.rst.ResultFile.nodal_time_history">
+<code class="sig-name descname">nodal_time_history</code><span class="sig-paren">(</span><em class="sig-param">solution_type='NSL'</em>, <em class="sig-param">in_nodal_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_time_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the DOF solution for each node in the global
+cartesian coordinate system or nodal coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>solution_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify, whether nodal displacements (‘NSL’), nodal
+velocities (‘VEL’) or nodal accelerations (‘ACC’) will be
+read.</p></li>
+<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, returns results in the nodal coordinate system.
+Default False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>int np.ndarray</em>) – Node numbers associated with the results.</p></li>
+<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Result is <code class="docutils literal notranslate"><span class="pre">self.nsets</span> <span class="pre">x</span> <span class="pre">nnod</span> <span class="pre">x</span> <span class="pre">Sumdof</span></code>, or number of time steps
+by number of nodes by degrees of freedom</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyansys.rst.ResultFile.node_components">
-<code class="descname">node_components</code><a class="headerlink" href="#pyansys.rst.ResultFile.node_components" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">node_components</code><a class="headerlink" href="#pyansys.rst.ResultFile.node_components" title="Permalink to this definition">¶</a></dt>
 <dd><p>dictionary of ansys node components</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.parse_step_substep">
-<code class="descname">parse_step_substep</code><span class="sig-paren">(</span><em>user_input</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.parse_step_substep" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_step_substep</code><span class="sig-paren">(</span><em class="sig-param">user_input</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.parse_step_substep" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts (step, substep) to a cumulative index</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.plot">
-<code class="descname">plot</code><span class="sig-paren">(</span><em>node_components=None</em>, <em>sel_type_all=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot result geometry</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -793,7 +902,7 @@ containing all nodes of the component.  Default True.</p></li>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_elastic_strain">
-<code class="descname">plot_nodal_elastic_strain</code><span class="sig-paren">(</span><em>rnum</em>, <em>comp</em>, <em>stitle='Nodal Elastic Strain'</em>, <em>show_displacement=False</em>, <em>displacement_factor=1</em>, <em>node_components=None</em>, <em>sel_type_all=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_elastic_strain" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_elastic_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp</em>, <em class="sig-param">stitle='Nodal Elastic Strain'</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_elastic_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot nodal component elastic strains.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -828,7 +937,7 @@ Plot thermal strain for a static pontoon model
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_plastic_strain">
-<code class="descname">plot_nodal_plastic_strain</code><span class="sig-paren">(</span><em>rnum</em>, <em>comp</em>, <em>stitle='Nodal Plastic Strain'</em>, <em>show_displacement=False</em>, <em>displacement_factor=1</em>, <em>node_components=None</em>, <em>sel_type_all=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_plastic_strain" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_plastic_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp</em>, <em class="sig-param">stitle='Nodal Plastic Strain'</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_plastic_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot nodal component plastic strains.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -857,7 +966,7 @@ containing all nodes of the component.  Default True.</p></li>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_solution">
-<code class="descname">plot_nodal_solution</code><span class="sig-paren">(</span><em>rnum</em>, <em>comp='norm'</em>, <em>show_displacement=False</em>, <em>max_disp=0.1</em>, <em>node_components=None</em>, <em>sel_type_all=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">max_disp=0.1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a nodal result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -887,7 +996,7 @@ containing all nodes of the component.  Default True.</p></li>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_stress">
-<code class="descname">plot_nodal_stress</code><span class="sig-paren">(</span><em>rnum</em>, <em>comp</em>, <em>show_displacement=False</em>, <em>displacement_factor=1</em>, <em>node_components=None</em>, <em>sel_type_all=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the stresses at each node in the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -921,7 +1030,7 @@ containing all nodes of the component.  Default True.</p></li>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_thermal_strain">
-<code class="descname">plot_nodal_thermal_strain</code><span class="sig-paren">(</span><em>rnum</em>, <em>comp</em>, <em>stitle='Nodal Thermal Strain'</em>, <em>show_displacement=False</em>, <em>displacement_factor=1</em>, <em>node_components=None</em>, <em>sel_type_all=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_thermal_strain" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_thermal_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp</em>, <em class="sig-param">stitle='Nodal Thermal Strain'</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_thermal_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot nodal component plastic strains.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -956,7 +1065,7 @@ containing all nodes of the component.  Default True.</p></li>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.plot_principal_nodal_stress">
-<code class="descname">plot_principal_nodal_stress</code><span class="sig-paren">(</span><em>rnum</em>, <em>stype=None</em>, <em>node_components=None</em>, <em>sel_type_all=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype=None</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot the principal stress at each node in the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -988,7 +1097,7 @@ containing all nodes of the component.  Default True.</p></li>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.principal_nodal_stress">
-<code class="descname">principal_nodal_stress</code><span class="sig-paren">(</span><em>rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the principal component stresses for each node in the
 solution.</p>
 <dl class="field-list simple">
@@ -1015,13 +1124,13 @@ equivalent stress.</p>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.principle_stress_for_plotting">
-<code class="descname">principle_stress_for_plotting</code><span class="sig-paren">(</span><em>rnum</em>, <em>stype</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.principle_stress_for_plotting" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">principle_stress_for_plotting</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.principle_stress_for_plotting" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns stress used to plot</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.save_as_vtk">
-<code class="descname">save_as_vtk</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.save_as_vtk" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save_as_vtk</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.save_as_vtk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Appends all results to an unstructured grid and writes it to
 disk.</p>
 <p>The file extension will select the type of writer to use.
@@ -1042,26 +1151,86 @@ Binary can only be selected for the legacy writer.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="pyansys.rst.ResultFile.solution_data_info">
+<code class="sig-name descname">solution_data_info</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.solution_data_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an informative dictionary of solution data for a
+result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>header</strong> – Integer solution data header data.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.rst.ResultFile.solution_info">
+<code class="sig-name descname">solution_info</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.solution_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an informative dictionary of solution data for a
+result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>header</strong> – Double precision solution header data.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The keys of the solution header is described below:</p>
+<dl class="simple">
+<dt>timfrq - Time value (or frequency value, for a modal or</dt><dd><p>harmonic analysis)</p>
+</dd>
+<dt>lfacto  - the “old” load factor (used in ramping a load</dt><dd><p>between old and new values)</p>
+</dd>
+</dl>
+<p>lfactn  - the “new” load factor
+cptime  - elapsed cpu time (in seconds)
+tref    - the reference temperature
+tunif   - the uniform temperature
+tbulk   - Bulk temp for FLOTRAN film coefs.
+VolBase - Initial total volume for VOF
+tstep   - Time Step size for FLOTRAN analysis
+0.0     - position not used
+accel   - linear acceleration terms
+omega   - angular velocity (first 3 terms) and angular acceleration (second 3 terms)
+omegacg - angular velocity (first 3 terms) and angular</p>
+<blockquote>
+<div><p>acceleration (second 3 terms) these velocity/acceleration
+terms are computed about the center of gravity</p>
+</div></blockquote>
+<p>cgcent  - (x,y,z) location of center of gravity
+fatjack - FATJACK ocean wave data (wave height and period)
+dval1   - if pmeth=0: FATJACK ocean wave direction</p>
+<blockquote>
+<div><p>if pmeth=1: p-method convergence values</p>
+</div></blockquote>
+<p>pCnvVal - p-method convergence values</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyansys.rst.ResultFile.store_geometry">
-<code class="descname">store_geometry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.store_geometry" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">store_geometry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.store_geometry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stores the geometry from the result file</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.text_result_table">
-<code class="descname">text_result_table</code><span class="sig-paren">(</span><em>rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.text_result_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">text_result_table</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.text_result_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a text result table for plotting</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pyansys.rst.ResultFile.version">
-<code class="descname">version</code><a class="headerlink" href="#pyansys.rst.ResultFile.version" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">version</code><a class="headerlink" href="#pyansys.rst.ResultFile.version" title="Permalink to this definition">¶</a></dt>
 <dd><p>The version of ANSYS used to generate this result file</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.write_tables">
-<code class="descname">write_tables</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.write_tables" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">write_tables</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.write_tables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write binary tables to ASCII.  Assumes int32</p>
 </dd></dl>
 
@@ -1069,11 +1238,11 @@ Binary can only be selected for the legacy writer.</p>
 
 <dl class="class">
 <dt id="pyansys.cyclic_reader.CyclicResult">
-<em class="property">class </em><code class="descclassname">pyansys.cyclic_reader.</code><code class="descname">CyclicResult</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.cyclic_reader.</code><code class="sig-name descname">CyclicResult</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds cyclic functionality to the result reader in pyansys</p>
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.animate_nodal_solution">
-<code class="descname">animate_nodal_solution</code><span class="sig-paren">(</span><em>rnum</em>, <em>comp='norm'</em>, <em>max_disp=0.1</em>, <em>nangles=180</em>, <em>show_phase=True</em>, <em>show_result_info=True</em>, <em>interpolate_before_map=True</em>, <em>cpos=None</em>, <em>movie_filename=None</em>, <em>off_screen=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">animate_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">max_disp=0.1</em>, <em class="sig-param">nangles=180</em>, <em class="sig-param">show_phase=True</em>, <em class="sig-param">show_result_info=True</em>, <em class="sig-param">interpolate_before_map=True</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">movie_filename=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Animate nodal solution.  Assumes nodal solution is a
 displacement array from a modal solution.</p>
 <dl class="simple">
@@ -1111,31 +1280,31 @@ movie non-interactively.</p>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.cs_4x4">
-<code class="descname">cs_4x4</code><span class="sig-paren">(</span><em>cs_cord</em>, <em>as_vtk_matrix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.cs_4x4" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">cs_4x4</code><span class="sig-paren">(</span><em class="sig-param">cs_cord</em>, <em class="sig-param">as_vtk_matrix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.cs_4x4" title="Permalink to this definition">¶</a></dt>
 <dd><p>return a 4x4 transformation array for a given coordinate system</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.expand_cyclic_modal">
-<code class="descname">expand_cyclic_modal</code><span class="sig-paren">(</span><em>result</em>, <em>result_r</em>, <em>hindex</em>, <em>phase</em>, <em>as_complex</em>, <em>full_rotor</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.expand_cyclic_modal" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">expand_cyclic_modal</code><span class="sig-paren">(</span><em class="sig-param">result</em>, <em class="sig-param">result_r</em>, <em class="sig-param">hindex</em>, <em class="sig-param">phase</em>, <em class="sig-param">as_complex</em>, <em class="sig-param">full_rotor</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.expand_cyclic_modal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Combines repeated results from ANSYS</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.expand_cyclic_modal_stress">
-<code class="descname">expand_cyclic_modal_stress</code><span class="sig-paren">(</span><em>result</em>, <em>result_r</em>, <em>hindex</em>, <em>phase</em>, <em>as_complex</em>, <em>full_rotor</em>, <em>scale=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.expand_cyclic_modal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">expand_cyclic_modal_stress</code><span class="sig-paren">(</span><em class="sig-param">result</em>, <em class="sig-param">result_r</em>, <em class="sig-param">hindex</em>, <em class="sig-param">phase</em>, <em class="sig-param">as_complex</em>, <em class="sig-param">full_rotor</em>, <em class="sig-param">scale=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.expand_cyclic_modal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Combines repeated results from ANSYS</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.expand_cyclic_static">
-<code class="descname">expand_cyclic_static</code><span class="sig-paren">(</span><em>result</em>, <em>tensor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.expand_cyclic_static" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">expand_cyclic_static</code><span class="sig-paren">(</span><em class="sig-param">result</em>, <em class="sig-param">tensor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.expand_cyclic_static" title="Permalink to this definition">¶</a></dt>
 <dd><p>expands cyclic static results</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.harmonic_index_to_cumulative">
-<code class="descname">harmonic_index_to_cumulative</code><span class="sig-paren">(</span><em>hindex</em>, <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.harmonic_index_to_cumulative" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">harmonic_index_to_cumulative</code><span class="sig-paren">(</span><em class="sig-param">hindex</em>, <em class="sig-param">mode</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.harmonic_index_to_cumulative" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a harmonic index and a 0 index mode number to a cumulative result
 index.</p>
 <p>Harmonic indices are stored as positive and negative pairs for modes other
@@ -1158,15 +1327,15 @@ harmonic index.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.mode_table">
-<code class="descname">mode_table</code><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.mode_table" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">mode_table</code><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.mode_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>unique modes for cyclic results</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.nodal_solution">
-<code class="descname">nodal_solution</code><span class="sig-paren">(</span><em>rnum</em>, <em>phase=0</em>, <em>full_rotor=False</em>, <em>as_complex=False</em>, <em>in_nodal_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">full_rotor=False</em>, <em class="sig-param">as_complex=False</em>, <em class="sig-param">in_nodal_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the DOF solution for each node in the global
 cartesian coordinate system.</p>
 <dl class="field-list simple">
@@ -1204,7 +1373,7 @@ information as the duplicate sector.</p>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.nodal_stress">
-<code class="descname">nodal_stress</code><span class="sig-paren">(</span><em>rnum</em>, <em>phase=0</em>, <em>as_complex=False</em>, <em>full_rotor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">as_complex=False</em>, <em class="sig-param">full_rotor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Equivalent ANSYS command: PRNSOL, S</p>
 <p>Retrieves the component stresses for each node in the
 solution.</p>
@@ -1244,7 +1413,7 @@ result is the result object.</p></li>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot">
-<code class="descname">plot</code><span class="sig-paren">(</span><em>color='w'</em>, <em>show_edges=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param">color='w'</em>, <em class="sig-param">show_edges=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot the full rotor geometry.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1296,7 +1465,7 @@ image.</p>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_nodal_solution">
-<code class="descname">plot_nodal_solution</code><span class="sig-paren">(</span><em>rnum</em>, <em>comp='norm'</em>, <em>label=''</em>, <em>cmap=None</em>, <em>flip_scalars=None</em>, <em>cpos=None</em>, <em>screenshot=None</em>, <em>off_screen=None</em>, <em>full_rotor=True</em>, <em>phase=0</em>, <em>node_components=None</em>, <em>sel_type_all=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">label=''</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a nodal result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1336,7 +1505,7 @@ components to plot.  For example:
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_nodal_stress">
-<code class="descname">plot_nodal_stress</code><span class="sig-paren">(</span><em>rnum</em>, <em>stype</em>, <em>label=''</em>, <em>cmap=None</em>, <em>flip_scalars=None</em>, <em>cpos=None</em>, <em>screenshot=None</em>, <em>off_screen=None</em>, <em>full_rotor=True</em>, <em>phase=0</em>, <em>node_components=None</em>, <em>sel_type_all=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype</em>, <em class="sig-param">label=''</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a nodal result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1375,7 +1544,7 @@ containing all nodes of the component.  Default True.</p></li>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_point_scalars">
-<code class="descname">plot_point_scalars</code><span class="sig-paren">(</span><em>scalars</em>, <em>rnum=None</em>, <em>stitle=''</em>, <em>cmap=None</em>, <em>flip_scalars=None</em>, <em>screenshot=None</em>, <em>cpos=None</em>, <em>off_screen=None</em>, <em>grid=None</em>, <em>add_text=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_point_scalars" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_point_scalars</code><span class="sig-paren">(</span><em class="sig-param">scalars</em>, <em class="sig-param">rnum=None</em>, <em class="sig-param">stitle=''</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">grid=None</em>, <em class="sig-param">add_text=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_point_scalars" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot point scalars on active mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1409,7 +1578,7 @@ instead.</p></li>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_principal_nodal_stress">
-<code class="descname">plot_principal_nodal_stress</code><span class="sig-paren">(</span><em>rnum</em>, <em>stype</em>, <em>cmap=None</em>, <em>flip_scalars=None</em>, <em>cpos=None</em>, <em>screenshot=None</em>, <em>off_screen=None</em>, <em>full_rotor=True</em>, <em>phase=0</em>, <em>node_components=None</em>, <em>sel_type_all=True</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot the principal stress at each node in the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1455,7 +1624,7 @@ containing all nodes of the component.  Default True.</p></li>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.principal_nodal_stress">
-<code class="descname">principal_nodal_stress</code><span class="sig-paren">(</span><em>rnum</em>, <em>phase=0</em>, <em>as_complex=False</em>, <em>full_rotor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">as_complex=False</em>, <em class="sig-param">full_rotor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns principal nodal stress for a cumulative result</p>
 </dd></dl>
 

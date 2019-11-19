@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ANSYS APDL Interactive Control &mdash; pyansys 0.38.1 documentation</title>
+  <title>ANSYS APDL Interactive Control &mdash; pyansys 0.39.4 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.38.1
+                0.39.4
               </div>
             
           
@@ -111,7 +111,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_functions.html">ANSYS Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ansys_functions.html#available-commands">Available Commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="apdl_conversion.html">APDL Conversion Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ansys_examples.html">ANSYS APDL Interactive Control Examples</a></li>
 </ul>
@@ -121,7 +120,7 @@
 <li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result File (rst)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples.html">Archive and Result File Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loading_km.html">Working with a ANSYS Full File (full)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (*.emat)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading_emat.html">Working with a ANSYS Element Matrix File (.emat)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">Result Visulization Gallery</a></li>
 </ul>
 
@@ -196,7 +195,7 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">ANSYS</span></code> control module within <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> creates an instance of an interactive Shell of <code class="docutils literal notranslate"><span class="pre">ANSYS</span></code> in the background and sends commands to that shell.  Errors and warnings are processed Pythonically letting the user develop a script real-time without worrying about if it will function correctly when deployed in batch mode.</p>
 <p>To run, <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> needs to know the location of the ANSYS binary.  When running for the first time, <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> will request the location of the ANSYS executable.  You can test your installation <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> and set it up by running the following in python:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
-<span class="n">examples</span><span class="o">.</span><span class="n">CylinderANSYS</span><span class="p">()</span>
+<span class="n">examples</span><span class="o">.</span><span class="n">ansys_cylinder_demo</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Python will automatically attempt to detect your ANSYS binary based on environmental variables.  If it is unable to find a copy of ANSYS, you will be prompted for the location of the ANSYS executable.  Here is a sample input for Linux and Windows:</p>
@@ -214,33 +213,33 @@
 </div>
 <div class="section" id="running-ansys-from-pyansys">
 <h3>Running ANSYS from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code><a class="headerlink" href="#running-ansys-from-pyansys" title="Permalink to this headline">¶</a></h3>
-<p>ANSYS can be started from python using the <code class="docutils literal notranslate"><span class="pre">pyansys.ANSYS</span></code> class.  This starts in a temporary directory by default.  You can change this to your current directory with:</p>
+<p>ANSYS can be started from python using the <code class="docutils literal notranslate"><span class="pre">pyansys.Mapdl</span></code> class.  This starts in a temporary directory by default.  You can change this to your current directory with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>ANSYS is now active and you can send commands to it as if it was just a python class.</p>
+<p>ANSYS is now active and you can send commands to it as if it was just a Python object.</p>
 </div>
 <div class="section" id="using-ansys-from-pyansys">
 <h3>Using ANSYS from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code><a class="headerlink" href="#using-ansys-from-pyansys" title="Permalink to this headline">¶</a></h3>
 <p>For example, if we wanted to create a surface using keypoints we could run:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;/PREP7&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;K, 1, 0, 0, 0&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;K, 2, 1, 0, 0&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;K, 3, 1, 1, 0&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;K, 4, 0, 1, 0&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;L, 1, 2&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;L, 2, 3&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;L, 3, 4&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;L, 4, 1&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;AL, 1, 2, 3, 4&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;/PREP7&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;K, 1, 0, 0, 0&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;K, 2, 1, 0, 0&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;K, 3, 1, 1, 0&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;K, 4, 0, 1, 0&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;L, 1, 2&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;L, 2, 3&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;L, 3, 4&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;L, 4, 1&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;AL, 1, 2, 3, 4&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>ANSYS interactively returns the result of each command and it is stored to the logging module.  Errors are caught immediately.  For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="o">&gt;&gt;&gt;</span> <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;AL, 1, 2, 3&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="o">&gt;&gt;&gt;</span> <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;AL, 1, 2, 3&#39;</span><span class="p">)</span>
 
 <span class="ne">Exception</span><span class="p">:</span>
 <span class="n">AL</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
@@ -254,26 +253,26 @@
 <span class="nb">set</span> <span class="k">for</span> <span class="n">AL</span> <span class="n">command</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>This means that exceptions will be caught immediately.  This means that you can write your ANSYS scripts in python, run them interactively and then as a batch without worrying if the script will run correctly if you had instead outputted it to a script file.</p>
+<p>This Exception was be caught immediately.  This means that you can write your ANSYS scripts in python, run them interactively and then as a batch without worrying if the script will run correctly if you had instead outputted it to a script file.</p>
 </div>
 <div class="section" id="calling-ansys-pythonically">
 <h3>Calling ANSYS Pythonically<a class="headerlink" href="#calling-ansys-pythonically" title="Permalink to this headline">¶</a></h3>
-<p>One advantage of writing scripts using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> is the ability to call ANSYS commands as python functions from the <code class="docutils literal notranslate"><span class="pre">ANSYS</span></code> class.  For example, instead of sending commands to ANSYS as in the area creation example, we can instead run:</p>
+<p>One advantage of writing scripts using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> is the ability to call ANSYS commands as python functions from the <code class="docutils literal notranslate"><span class="pre">Mapdl</span></code> class.  For example, instead of sending commands to ANSYS as in the area creation example, we can instead run:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># clear existing geometry</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Finish</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Clear</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
 <span class="c1"># create a square area using keypoints</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Prep7</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Al</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">al</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This approach has some obvious advantages, chiefly that it’s a bit easier to script as <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> takes care of the string formatting for you.  For example, inputting points from a numpy array:</p>
@@ -282,15 +281,15 @@
 <span class="c1"># make 10 random keypoints in ANSYS</span>
 <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Additionally, each function with the ANSYS class has help associated within it.  For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
 
 <span class="go">Help on method K in module pyansys.ansys:</span>
 
-<span class="go">K(npt=&#39;&#39;, x=&#39;&#39;, y=&#39;&#39;, z=&#39;&#39;) method of pyansys.ansys.ANSYS instance</span>
+<span class="go">k(npt=&#39;&#39;, x=&#39;&#39;, y=&#39;&#39;, z=&#39;&#39;) method of pyansys.mapdl.Mapdl instance</span>
 <span class="go">    APDL Command: K</span>
 
 <span class="go">    Defines a keypoint.</span>
@@ -384,59 +383,59 @@ Translates to:
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Script generated by pyansys version 0.30.1&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/COM,ANSYS MEDIA REL. 150 (11/8/2013) REF. VERIF. MANUAL: REL. 150&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/VERIFY,VM1&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/PREP7&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/TITLE, VM1, STATICALLY INDETERMINATE REACTION FORCE ANALYSIS&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;C***      STR. OF MATL., TIMOSHENKO, PART 1, 3RD ED., PAGE 26, PROB.10&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Antype</span><span class="p">(</span><span class="s2">&quot;STATIC&quot;</span><span class="p">)</span>  <span class="c1">#STATIC ANALYSIS</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;LINK180&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Sectype</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;LINK&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Secdata</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">#CROSS SECTIONAL AREA (ARBITRARY) = 1</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Mp</span><span class="p">(</span><span class="s2">&quot;EX&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">30E6</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">N</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">N</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">N</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">N</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">E</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1">#DEFINE ELEMENTS</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Egen</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">D</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1">#BOUNDARY CONDITIONS AND LOADING</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">F</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;FY&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">500</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">F</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;FY&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Finish</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/SOLU&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Outpr</span><span class="p">(</span><span class="s2">&quot;BASIC&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Outpr</span><span class="p">(</span><span class="s2">&quot;NLOAD&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Finish</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/POST1&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Fsum</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,REAC_1,FSUM,,ITEM,FY&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Fsum</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,REAC_2,FSUM,,ITEM,FY&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*DIM,LABEL,CHAR,2&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*DIM,VALUE,,2,3&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;LABEL(1) = &#39;R1, lb&#39;,&#39;R2, lb &#39;&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*VFILL,VALUE(1,1),DATA,900.0,600.0&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*VFILL,VALUE(1,2),DATA,ABS(REAC_1),ABS(REAC_2)&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*VFILL,VALUE(1,3),DATA,ABS(REAC_1 / 900) ,ABS( REAC_2 / 600)&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/OUT,vm1,vrt&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/COM&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/COM,------------------- VM1 RESULTS COMPARISON ---------------------&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/COM,&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/COM,         |   TARGET   |   Mechanical APDL   |   RATIO&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/COM,&quot;</span><span class="p">)</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">mapdl</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/COM,ANSYS MEDIA REL. 150 (11/8/2013) REF. VERIF. MANUAL: REL. 150&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/VERIFY,VM1&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/PREP7&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/TITLE, VM1, STATICALLY INDETERMINATE REACTION FORCE ANALYSIS&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;C***      STR. OF MATL., TIMOSHENKO, PART 1, 3RD ED., PAGE 26, PROB.10&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s2">&quot;STATIC&quot;</span><span class="p">)</span>  <span class="c1">#STATIC ANALYSIS</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;LINK180&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">sectype</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;LINK&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">secdata</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1">#CROSS SECTIONAL AREA (ARBITRARY) = 1</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s2">&quot;EX&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">30E6</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">n</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">e</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1">#DEFINE ELEMENTS</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">egen</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1">#BOUNDARY CONDITIONS AND LOADING</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;FY&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;FY&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/SOLU&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">outpr</span><span class="p">(</span><span class="s2">&quot;BASIC&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">outpr</span><span class="p">(</span><span class="s2">&quot;NLOAD&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/POST1&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">fsum</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,REAC_1,FSUM,,ITEM,FY&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">fsum</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,REAC_2,FSUM,,ITEM,FY&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*DIM,LABEL,CHAR,2&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*DIM,VALUE,,2,3&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;LABEL(1) = &#39;R1, lb&#39;,&#39;R2, lb &#39;&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*VFILL,VALUE(1,1),DATA,900.0,600.0&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*VFILL,VALUE(1,2),DATA,ABS(REAC_1),ABS(REAC_2)&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*VFILL,VALUE(1,3),DATA,ABS(REAC_1 / 900) ,ABS( REAC_2 / 600)&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/OUT,vm1,vrt&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/COM&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/COM,------------------- VM1 RESULTS COMPARISON ---------------------&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/COM,&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/COM,         |   TARGET   |   Mechanical APDL   |   RATIO&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/COM,&quot;</span><span class="p">)</span>
 <span class="k">with</span> <span class="n">ansys</span><span class="o">.</span><span class="n">non_interactive</span><span class="p">:</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*VWRITE,LABEL(1),VALUE(1,1),VALUE(1,2),VALUE(1,3)&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;(1X,A8,&#39;   &#39;,F10.1,&#39;  &#39;,F10.1,&#39;   &#39;,1F5.3)&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/COM,----------------------------------------------------------------&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/OUT&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Finish</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*LIST,vm1,vrt&quot;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Exit</span><span class="p">()</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*VWRITE,LABEL(1),VALUE(1,1),VALUE(1,2),VALUE(1,3)&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;(1X,A8,&#39;   &#39;,F10.1,&#39;  &#39;,F10.1,&#39;   &#39;,1F5.3)&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/COM,----------------------------------------------------------------&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/OUT&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*LIST,vm1,vrt&quot;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Some of the commands with <code class="docutils literal notranslate"><span class="pre">/</span></code> are not directly translated to functions and are instead run as commands.  Also, please note that the <code class="docutils literal notranslate"><span class="pre">*VWRITE</span></code> command requires a command immediately following it.  This normally locks CORBA, so it’s implemented in the background as an input file using <code class="docutils literal notranslate"><span class="pre">ansys.non_interactive</span></code>.  See the following Caveats and Notes section for more details.</p>
@@ -445,7 +444,7 @@ Translates to:
 <div class="section" id="retreiving-parameters">
 <h2>Retreiving Parameters<a class="headerlink" href="#retreiving-parameters" title="Permalink to this headline">¶</a></h2>
 <p>APDL parameters can be retrieved using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> using the <code class="docutils literal notranslate"><span class="pre">load_parameters</span></code> method.  For example, after using the <code class="docutils literal notranslate"><span class="pre">*GET</span></code> command:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="s1">&#39;DEF_Y&#39;</span><span class="p">,</span> <span class="s1">&#39;NODE&#39;</span> <span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span> <span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DEF_Y&#39;</span><span class="p">,</span> <span class="s1">&#39;NODE&#39;</span> <span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span> <span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">load_parameters</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -467,24 +466,24 @@ Translates to:
 <h2>Caveats and Notes<a class="headerlink" href="#caveats-and-notes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="command-naming-conventions-and-rules">
 <h3>Command Naming Conventions and Rules<a class="headerlink" href="#command-naming-conventions-and-rules" title="Permalink to this headline">¶</a></h3>
-<p>When calling ANSYS commands as functions, each command has been translated from its original ANSYS all CAPS format.  For example, <code class="docutils literal notranslate"><span class="pre">ESEL</span></code> is now <code class="docutils literal notranslate"><span class="pre">Esel</span></code>.  Additionally, ANSYS commands containing a <code class="docutils literal notranslate"><span class="pre">/</span></code> or <code class="docutils literal notranslate"><span class="pre">*</span></code> have had those characters removed, unless this causes a conflict with an existing name.  Most notable is <code class="docutils literal notranslate"><span class="pre">/SOLU</span></code> which would conflict with <code class="docutils literal notranslate"><span class="pre">SOLU</span></code>.  Therefore, the <code class="docutils literal notranslate"><span class="pre">/SOLU</span></code> has been renamed to <code class="docutils literal notranslate"><span class="pre">Slashsolu</span></code> to differentiate it from <code class="docutils literal notranslate"><span class="pre">Solu</span></code>.  Out of the 1500 ANSYS commands, about 15 start with <code class="docutils literal notranslate"><span class="pre">Slash</span></code> and 8 with <code class="docutils literal notranslate"><span class="pre">Star</span></code>.  Check the <code class="docutils literal notranslate"><span class="pre">ANSYS</span> <span class="pre">Object</span> <span class="pre">Methods</span></code> reference below when necessary.</p>
+<p>When calling ANSYS commands as functions, each command has been translated from its original ANSYS all CAPS format to a PEP8 compatible format.  For example, <code class="docutils literal notranslate"><span class="pre">ESEL</span></code> is now <code class="docutils literal notranslate"><span class="pre">esel</span></code>.  Additionally, ANSYS commands containing a <code class="docutils literal notranslate"><span class="pre">/</span></code> or <code class="docutils literal notranslate"><span class="pre">*</span></code> have had those characters removed, unless this causes a conflict with an existing name.  Most notable is <code class="docutils literal notranslate"><span class="pre">/SOLU</span></code> which would conflict with <code class="docutils literal notranslate"><span class="pre">SOLU</span></code>.  Therefore, the <code class="docutils literal notranslate"><span class="pre">/SOLU</span></code> has been renamed to <code class="docutils literal notranslate"><span class="pre">slashsolu</span></code> to differentiate it from <code class="docutils literal notranslate"><span class="pre">solu</span></code>.  Out of the 1500 ANSYS commands, about 15 start with <code class="docutils literal notranslate"><span class="pre">slash</span></code> and 8 with <code class="docutils literal notranslate"><span class="pre">star</span></code>.  Check the <code class="docutils literal notranslate"><span class="pre">ANSYS</span> <span class="pre">Object</span> <span class="pre">Methods</span></code> reference below when necessary.</p>
 <p>ANSYS commands that normally have an empty space, such as <code class="docutils literal notranslate"><span class="pre">ESEL,</span> <span class="pre">S,</span> <span class="pre">TYPE,</span> <span class="pre">,</span> <span class="pre">1</span></code> should include an empty string when called by Python:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">Esel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">esel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>or these commands can be called using parameters:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">Esel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">esel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>None of these restrictions apply to commands run with <code class="docutils literal notranslate"><span class="pre">Run</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s1">&#39;/SOLU&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+<p>None of these restrictions apply to commands run with <code class="docutils literal notranslate"><span class="pre">run</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;/SOLU&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Some commands can only be run non-interactively in a script.  <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> gets around this restriction by writing the commands to a temporary input file and then reading the input file.  To run a group of commands that must be run non-interactively, set the <code class="docutils literal notranslate"><span class="pre">ANSYS</span></code> object to run a series of commands as an input file by using <code class="docutils literal notranslate"><span class="pre">non_interactive</span></code> as in this example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ansys</span><span class="o">.</span><span class="n">non_interactive</span><span class="p">:</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*VWRITE,LABEL(1),VALUE(1,1),VALUE(1,2),VALUE(1,3)&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;(1X,A8,&#39;   &#39;,F10.1,&#39;  &#39;,F10.1,&#39;   &#39;,1F5.3)&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*VWRITE,LABEL(1),VALUE(1,1),VALUE(1,2),VALUE(1,3)&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;(1X,A8,&#39;   &#39;,F10.1,&#39;  &#39;,F10.1,&#39;   &#39;,1F5.3)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Also note that macros created within pyansys (rather than loaded from a file) do not appear to run correctly.  For example, the macro <code class="docutils literal notranslate"><span class="pre">DISP</span></code> created using the <code class="docutils literal notranslate"><span class="pre">*CREATE</span></code> command within APDL:</p>
@@ -506,11 +505,11 @@ SOLVE
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">DISP</span><span class="p">(</span><span class="n">ARG1</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG2</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG3</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG4</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG5</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG6</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
          <span class="n">ARG7</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG8</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG9</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG10</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG11</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG12</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
          <span class="n">ARG13</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG14</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG15</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG16</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG17</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ARG18</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Nsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1">#SELECT NODES AT Z = 10 TO APPLY DISPLACEMENT</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">D</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;UZ&quot;</span><span class="p">,</span> <span class="n">ARG1</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Nsel</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;/OUT,SCRATCH&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;LOC&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1">#SELECT NODES AT Z = 10 TO APPLY DISPLACEMENT</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">,</span> <span class="s2">&quot;UZ&quot;</span><span class="p">,</span> <span class="n">ARG1</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">nsel</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/OUT,SCRATCH&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 
 
 <span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mo">032</span><span class="p">)</span>
@@ -546,55 +545,55 @@ SOLVE
 </div>
 <p>Should be implemented as:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ansys</span><span class="o">.</span><span class="n">non_interactive</span><span class="p">:</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*IF,ARG1,EQ,0,THEN&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG4,NX,ARG2     &quot;</span><span class="p">)</span>  <span class="c1"># RETRIEVE COORDINATE LOCATIONS OF BOTH NODES</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG5,NY,ARG2&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG6,NZ,ARG2&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG7,NX,ARG3&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG8,NY,ARG3&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG9,NZ,ARG3&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*ELSE&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG4,KX,ARG2     &quot;</span><span class="p">)</span>  <span class="c1"># RETRIEVE COORDINATE LOCATIONS OF BOTH KEYPOINTS</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG5,KY,ARG2&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG6,KZ,ARG2&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG7,KX,ARG3&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG8,KY,ARG3&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG9,KZ,ARG3&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*ENDIF&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*IF,ARG1,EQ,0,THEN&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG4,NX,ARG2     &quot;</span><span class="p">)</span>  <span class="c1"># RETRIEVE COORDINATE LOCATIONS OF BOTH NODES</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG5,NY,ARG2&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG6,NZ,ARG2&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG7,NX,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG8,NY,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG9,NZ,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*ELSE&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG4,KX,ARG2     &quot;</span><span class="p">)</span>  <span class="c1"># RETRIEVE COORDINATE LOCATIONS OF BOTH KEYPOINTS</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG5,KY,ARG2&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG6,KZ,ARG2&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG7,KX,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG8,KY,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG9,KZ,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*ENDIF&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Or pythonically as:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ANSYS parameters can be obtained using load_parameters</span>
 <span class="k">if</span> <span class="n">ARG1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG4,NX,ARG2     &quot;</span><span class="p">)</span>  <span class="c1"># RETRIEVE COORDINATE LOCATIONS OF BOTH NODES</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG5,NY,ARG2&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG6,NZ,ARG2&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG7,NX,ARG3&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG8,NY,ARG3&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG9,NZ,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG4,NX,ARG2     &quot;</span><span class="p">)</span>  <span class="c1"># RETRIEVE COORDINATE LOCATIONS OF BOTH NODES</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG5,NY,ARG2&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG6,NZ,ARG2&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG7,NX,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG8,NY,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG9,NZ,ARG3&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG4,KX,ARG2     &quot;</span><span class="p">)</span>  <span class="c1"># RETRIEVE COORDINATE LOCATIONS OF BOTH KEYPOINTS</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG5,KY,ARG2&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG6,KZ,ARG2&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG7,KX,ARG3&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG8,KY,ARG3&quot;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG9,KZ,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG4,KX,ARG2     &quot;</span><span class="p">)</span>  <span class="c1"># RETRIEVE COORDINATE LOCATIONS OF BOTH KEYPOINTS</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG5,KY,ARG2&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG6,KZ,ARG2&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG7,KX,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG8,KY,ARG3&quot;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*GET,ARG9,KZ,ARG3&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>APDL loops using <code class="docutils literal notranslate"><span class="pre">*DO</span></code> or <code class="docutils literal notranslate"><span class="pre">*DOWHILE</span></code> should also be implemetned using <code class="docutils literal notranslate"><span class="pre">ansys.non_interactive</span></code> or pythonically.</p>
 </div>
 <div class="section" id="warnings-and-errors">
 <h3>Warnings and Errors<a class="headerlink" href="#warnings-and-errors" title="Permalink to this headline">¶</a></h3>
-<p>Errors should be handled pythonically.  For example:</p>
+<p>Errors are handled pythonically.  For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="c1"># do something else with ANSYS</span>
 </pre></div>
 </div>
 <p>Commands that are ignored within ANSYS are flagged as errors.  This is different than ANSYS’s default behavior where commands that are ignored are treated as warnings.  For example, in <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> running a command in the wrong session raises an error:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ansys</span><span class="o">.</span><span class="n">Finish</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ansys</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">()</span>
 
 <span class="go">Exception:</span>
 <span class="go">K, , , ,</span>
@@ -606,7 +605,7 @@ SOLVE
 </div>
 <p>You can change this behavior so ignored commands can be logged as warnings not raised as an exception by setting:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">allow_ignore</span> <span class="o">=</span> <span class="bp">True</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">()</span>  <span class="c1"># error ignored</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">()</span>  <span class="c1"># error ignored</span>
 </pre></div>
 </div>
 </div>
@@ -617,18 +616,18 @@ SOLVE
 </div>
 <div class="section" id="apdl-command-logging">
 <h2>APDL Command Logging<a class="headerlink" href="#apdl-command-logging" title="Permalink to this headline">¶</a></h2>
-<p>While <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> is designed to make it easier to control an APDL session by calling it using Python, it may be necessary to call ANSYS again using an input file generated from a pyansys script.  This is automatically enabled with the <code class="docutils literal notranslate"><span class="pre">log_apdl=True</span></code> parameter.  Enabling this parameter will cause <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> to write each command run from an <code class="docutils literal notranslate"><span class="pre">ansys</span></code> object into a log file named <code class="docutils literal notranslate"><span class="pre">&quot;log.inp&quot;</span></code> in the ANSYS working directory of the active <code class="docutils literal notranslate"><span class="pre">ansys</span></code> object.  For example</p>
+<p>While <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> is designed to make it easier to control an APDL session by calling it using Python, it may be necessary to call ANSYS again using an input file generated from a pyansys script.  This is automatically enabled with the <code class="docutils literal notranslate"><span class="pre">log_apdl='apdl.log'</span></code> parameter.  Enabling this parameter will cause <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> to write each command run from a <code class="docutils literal notranslate"><span class="pre">Mapdl</span></code> object into a log file named <code class="docutils literal notranslate"><span class="pre">&quot;apdl.log&quot;</span></code> in the ANSYS working directory of the active <code class="docutils literal notranslate"><span class="pre">ansys</span></code> object.  For example</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">(</span><span class="n">log_apdl</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Prep7</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">log_apdl</span><span class="o">=</span><span class="s1">&#39;apdl.log&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Will write the following to <code class="docutils literal notranslate"><span class="pre">&quot;log.inp&quot;</span></code>:</p>
+<p>Will write the following to <code class="docutils literal notranslate"><span class="pre">&quot;apdl.log&quot;</span></code></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! APDL script generated using pyansys 0.30.1
 /PREP7,
 K,1,0,0,0
@@ -645,64 +644,63 @@ K,4,0,1,0
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="c1"># run ansys with interactive plotting enabled</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">(</span><span class="n">interactive_plotting</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">interactive_plotting</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
 <span class="c1"># create a square area using keypoints</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Prep7</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Al</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">al</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 
 <span class="c1"># sets the view to &quot;isometric&quot;</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">View</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Pnum</span><span class="p">(</span><span class="s1">&#39;kp&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># enable keypoint numbering</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Pnum</span><span class="p">(</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># enable line numbering</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">pnum</span><span class="p">(</span><span class="s1">&#39;kp&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># enable keypoint numbering</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">pnum</span><span class="p">(</span><span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># enable line numbering</span>
 
 <span class="c1"># each of these will create a matplotlib figure and pause execution</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Aplot</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Lplot</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Kplot</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">aplot</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">lplot</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">kplot</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="figure align-center" id="id5">
+<div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="_images/aplot.png"><img alt="_images/aplot.png" src="_images/aplot.png" style="width: 300pt;" /></a>
-<p class="caption"><span class="caption-text">Area Plot from ANSYS using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Area Plot from ANSYS using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="interactive-breakpoint">
 <h2>Interactive Breakpoint<a class="headerlink" href="#interactive-breakpoint" title="Permalink to this headline">¶</a></h2>
-<p>In most circumstances it is not possible, especially when generating geometry, to go without opening up the APDL GUI.  Identifying geometry items can’t be done easy using inline plotting, so <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> has a <code class="docutils literal notranslate"><span class="pre">open_gui</span></code> method that allows you to seamlessly open up the GUI without loosing work or having to restart your session.  For example:</p>
+<p>In most circumstances it is not possible, especially when generating geometry, to go without opening up the APDL GUI.  Identifying geometry items can’t be done easy using inline plotting, so <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> has an <code class="docutils literal notranslate"><span class="pre">open_gui</span></code> method that allows you to seamlessly open up the GUI without loosing work or having to restart your session.  For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="c1"># run ansys with interactive plotting enabled</span>
-<span class="c1"># ansys = pyansys.ANSYS(&#39;/usr/ansys_inc/v182/ansys/bin/ansys182&#39;,</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">(</span><span class="n">interactive_plotting</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">override</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">()</span>
 
 <span class="c1"># create a square area using keypoints</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Prep7</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">K</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">L</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Al</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">al</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 
 <span class="c1"># open up the gui</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">open_gui</span><span class="p">()</span>
 
 <span class="c1"># it resumes where you left off...</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;MESH200&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Amesh</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Eplot</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;MESH200&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">amesh</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">eplot</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This approach avoids the hassle of having to switch back and forth between an interactive session and a scripting session.  Instead, you can have one scripting session and open up a GUI from the scripting session without losing work or progress.  Additionally, none of the changes made in the GUI will affect the script.  You can experiment in the GUI and the script will be left unaffected.</p>
@@ -713,12 +711,12 @@ K,4,0,1,0
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
-<span class="k">def</span> <span class="nf">CylinderBatch</span><span class="p">(</span><span class="n">elemsize</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">cylinder_batch</span><span class="p">(</span><span class="n">elemsize</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Report the maximum von Mises stress of a Cantilever supported cylinder&quot;&quot;&quot;</span>
 
     <span class="c1"># clear</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Finish</span><span class="p">()</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Clear</span><span class="p">()</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 
     <span class="c1"># cylinder parameters</span>
     <span class="n">radius</span> <span class="o">=</span> <span class="mi">2</span>
@@ -727,66 +725,66 @@ K,4,0,1,0
     <span class="n">force</span> <span class="o">=</span> <span class="mi">100</span><span class="o">/</span><span class="n">radius</span>
     <span class="n">pressure</span> <span class="o">=</span> <span class="n">force</span><span class="o">/</span><span class="p">(</span><span class="n">h_tip</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">radius</span><span class="p">)</span>
 
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Prep7</span><span class="p">()</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">186</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Et</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">154</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">R</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">R</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">186</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">et</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">154</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">r</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># Aluminum properties (or something)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Mp</span><span class="p">(</span><span class="s1">&#39;ex&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">10e6</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Mp</span><span class="p">(</span><span class="s1">&#39;nuxy&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Mp</span><span class="p">(</span><span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">386.1</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Mp</span><span class="p">(</span><span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;ex&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">10e6</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;nuxy&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.1</span><span class="o">/</span><span class="mf">386.1</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">mp</span><span class="p">(</span><span class="s1">&#39;dens&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># Simple cylinder</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
-        <span class="n">ansys</span><span class="o">.</span><span class="n">Cylind</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mi">90</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="mi">90</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">ansys</span><span class="o">.</span><span class="n">cylind</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="mi">90</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="mi">90</span><span class="o">*</span><span class="n">i</span><span class="p">)</span>
 
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Nummrg</span><span class="p">(</span><span class="s1">&#39;kp&#39;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">nummrg</span><span class="p">(</span><span class="s1">&#39;kp&#39;</span><span class="p">)</span>
 
     <span class="c1"># mesh cylinder</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Lsel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Lsel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Lsel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="n">h_tip</span><span class="p">)</span>
-    <span class="c1"># ansys.Lesize(&#39;all&#39;, elemsize*2)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Mshape</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Mshkey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Esize</span><span class="p">(</span><span class="n">elemsize</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Allsel</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Vsweep</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Csys</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Asel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="n">h_tip</span> <span class="o">+</span> <span class="mf">0.0001</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Asel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Local</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Csys</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Aatt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Amesh</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Finish</span><span class="p">()</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">lsel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="n">h_tip</span><span class="p">)</span>
+    <span class="c1"># ansys.lesize(&#39;all&#39;, elemsize*2)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">mshape</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">mshkey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">esize</span><span class="p">(</span><span class="n">elemsize</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">allsel</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">vsweep</span><span class="p">(</span><span class="s1">&#39;ALL&#39;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">asel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">height</span> <span class="o">-</span> <span class="n">h_tip</span> <span class="o">+</span> <span class="mf">0.0001</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">asel</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">radius</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">local</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">csys</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">aatt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">amesh</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
 
     <span class="k">if</span> <span class="n">plot</span><span class="p">:</span>
-        <span class="n">ansys</span><span class="o">.</span><span class="n">View</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">ansys</span><span class="o">.</span><span class="n">Eplot</span><span class="p">()</span>
+        <span class="n">ansys</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">ansys</span><span class="o">.</span><span class="n">eplot</span><span class="p">()</span>
 
     <span class="c1"># new solution</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Slashsolu</span><span class="p">()</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Antype</span><span class="p">(</span><span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Eqslv</span><span class="p">(</span><span class="s1">&#39;pcg&#39;</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">eqslv</span><span class="p">(</span><span class="s1">&#39;pcg&#39;</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)</span>
 
     <span class="c1"># Apply tangential pressure</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Esel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Sfe</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;pres&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">pressure</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">esel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">sfe</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;pres&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">pressure</span><span class="p">)</span>
 
     <span class="c1"># Constrain bottom of cylinder/rod</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Asel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Nsla</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">asel</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;loc&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">nsla</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-    <span class="n">ansys</span><span class="o">.</span><span class="n">D</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Allsel</span><span class="p">()</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Psf</span><span class="p">(</span><span class="s1">&#39;pres&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Pbc</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
-    <span class="n">ansys</span><span class="o">.</span><span class="n">Finish</span><span class="p">()</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">d</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">allsel</span><span class="p">()</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">psf</span><span class="p">(</span><span class="s1">&#39;pres&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">pbc</span><span class="p">(</span><span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">ansys</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
 
     <span class="c1"># access results using ANSYS object</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">ansys</span><span class="o">.</span><span class="n">result</span>
@@ -807,18 +805,18 @@ K,4,0,1,0
 
 
 <span class="c1"># initialize ANSYS</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
 
 <span class="n">result_summ</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">elemsize</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
     <span class="c1"># run the batch and report the results</span>
-    <span class="n">nnode</span><span class="p">,</span> <span class="n">maxstress</span> <span class="o">=</span> <span class="n">CylinderBatch</span><span class="p">(</span><span class="n">elemsize</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">nnode</span><span class="p">,</span> <span class="n">maxstress</span> <span class="o">=</span> <span class="n">cylinder_batch</span><span class="p">(</span><span class="n">elemsize</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
     <span class="n">result_summ</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">nnode</span><span class="p">,</span> <span class="n">maxstress</span><span class="p">])</span>
     <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Element size </span><span class="si">%f</span><span class="s1">: </span><span class="si">%6d</span><span class="s1"> nodes and maximum vom Mises stress </span><span class="si">%f</span><span class="s1">&#39;</span>
           <span class="o">%</span> <span class="p">(</span><span class="n">elemsize</span><span class="p">,</span> <span class="n">nnode</span><span class="p">,</span> <span class="n">maxstress</span><span class="p">))</span>
 
 <span class="c1"># Exit ANSYS</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">Exit</span><span class="p">()</span>
+<span class="n">ansys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This is the result from the script:</p>
@@ -843,8 +841,8 @@ K,4,0,1,0
 <div class="section" id="ansys-object-methods">
 <h2>ANSYS Object Methods<a class="headerlink" href="#ansys-object-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="pyansys.ANSYS">
-<em class="property">class </em><code class="descclassname">pyansys.</code><code class="descname">ANSYS</code><span class="sig-paren">(</span><em>exec_file=None</em>, <em>run_location=None</em>, <em>jobname='file'</em>, <em>nproc=2</em>, <em>override=False</em>, <em>loglevel='INFO'</em>, <em>additional_switches=''</em>, <em>start_timeout=120</em>, <em>interactive_plotting=False</em>, <em>log_broadcast=False</em>, <em>check_version=True</em>, <em>prefer_pexpect=True</em>, <em>log_apdl='w'</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.Mapdl">
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.</code><code class="sig-name descname">Mapdl</code><span class="sig-paren">(</span><em class="sig-param">exec_file=None</em>, <em class="sig-param">run_location=None</em>, <em class="sig-param">jobname='file'</em>, <em class="sig-param">nproc=2</em>, <em class="sig-param">override=False</em>, <em class="sig-param">loglevel='INFO'</em>, <em class="sig-param">additional_switches=''</em>, <em class="sig-param">start_timeout=120</em>, <em class="sig-param">interactive_plotting=False</em>, <em class="sig-param">log_broadcast=False</em>, <em class="sig-param">check_version=True</em>, <em class="sig-param">prefer_pexpect=True</em>, <em class="sig-param">log_apdl='w'</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl" title="Permalink to this definition">¶</a></dt>
 <dd><p>This class opens ANSYS in the background and allows commands to be
 passed to a persistent session.</p>
 <dl class="field-list simple">
@@ -854,9 +852,9 @@ passed to a persistent session.</p>
 location when left at the default None.</p></li>
 <li><p><strong>run_location</strong> (<em>str</em><em>, </em><em>optional</em>) – ANSYS working directory.  Defaults to a temporary working
 directory.</p></li>
-<li><p><strong>jobname</strong> (<em>str</em><em>, </em><em>optional</em>) – ANSYS jobname.  Defaults to ‘file’.</p></li>
+<li><p><strong>jobname</strong> (<em>str</em><em>, </em><em>optional</em>) – ANSYS jobname.  Defaults to <code class="docutils literal notranslate"><span class="pre">'file'</span></code>.</p></li>
 <li><p><strong>nproc</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of processors.  Defaults to 2.</p></li>
-<li><p><strong>override</strong> (<em>bool</em><em>, </em><em>optional</em>) – Attempts to delete the <a href="#id1"><span class="problematic" id="id2">*</span></a>.lock file at the run_location.
+<li><p><strong>override</strong> (<em>bool</em><em>, </em><em>optional</em>) – Attempts to delete the lock file at the run_location.
 Useful when a prior ANSYS session has exited prematurely and
 the lock file has not been deleted.</p></li>
 <li><p><strong>wait</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, waits until ANSYS has been initialized before
@@ -884,9 +882,8 @@ and visible at log level ‘INFO’.</p></li>
 <li><p><strong>prefer_pexpect</strong> (<em>bool</em><em>, </em><em>optional</em>) – When enabled, will avoid using ansys APDL in CORBA server mode
 and will spawn a process and control it using pexpect.
 Default False.</p></li>
-<li><p><strong>log_apdl</strong> (<em>str</em><em>, </em><em>optional</em>) – Opens an APDL log file named “log.inp” in the current ANSYS
-working directory.  Default ‘w’.  Set to ‘a’ to append to
-an existing log.</p></li>
+<li><p><strong>log_apdl</strong> (<em>str</em><em>, </em><em>optional</em>) – Opens an APDL log file in the current ANSYS working directory.
+Default ‘w’.  Set to ‘a’ to append to an existing log.</p></li>
 </ul>
 </dd>
 </dl>
@@ -896,20 +893,169 @@ an existing log.</p></li>
 </pre></div>
 </div>
 <dl class="method">
-<dt id="pyansys.ANSYS.EnableInteractivePlotting">
-<code class="descname">EnableInteractivePlotting</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.EnableInteractivePlotting" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.Mapdl.add_file_handler">
+<code class="sig-name descname">add_file_handler</code><span class="sig-paren">(</span><em class="sig-param">filepath</em>, <em class="sig-param">append</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.add_file_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a file handler to the log</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.close_apdl_log">
+<code class="sig-name descname">close_apdl_log</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.close_apdl_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes APDL log</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.display_plot">
+<code class="sig-name descname">display_plot</code><span class="sig-paren">(</span><em class="sig-param">text</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.display_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if plot exists based on command output</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.enable_interactive_plotting">
+<code class="sig-name descname">enable_interactive_plotting</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.enable_interactive_plotting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enables interactive plotting.  Requires matplotlib</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyansys.ANSYS.Exit">
-<code class="descname">Exit</code><span class="sig-paren">(</span><em>close_log=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.Exit" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.Mapdl.exit">
+<code class="sig-name descname">exit</code><span class="sig-paren">(</span><em class="sig-param">close_log=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.exit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exit ANSYS process without attempting to kill the process.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyansys.ANSYS.Run">
-<code class="descname">Run</code><span class="sig-paren">(</span><em>command</em>, <em>write_to_log=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.Run" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.Mapdl.get_float">
+<code class="sig-name descname">get_float</code><span class="sig-paren">(</span><em class="sig-param">entity=''</em>, <em class="sig-param">entnum=''</em>, <em class="sig-param">item1=''</em>, <em class="sig-param">it1num=''</em>, <em class="sig-param">item2=''</em>, <em class="sig-param">it2num=''</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.get_float" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to get the value of a float-parameter from APDL
+Take note, that internally an apdl parameter __floatparameter__ is
+created/overwritten.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.jobname">
+<em class="property">property </em><code class="sig-name descname">jobname</code><a class="headerlink" href="#pyansys.Mapdl.jobname" title="Permalink to this definition">¶</a></dt>
+<dd><p>MAPDL job name</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.kill">
+<code class="sig-name descname">kill</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.kill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Forces ANSYS process to end and removes lock file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.load_parameters">
+<code class="sig-name descname">load_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.load_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads and returns all current parameters</p>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parameters</span><span class="p">,</span> <span class="n">arrays</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">load_parameters</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+<span class="go">{&#39;ANSINTER_&#39;: 2.0,</span>
+<span class="go">&#39;CID&#39;: 3.0,</span>
+<span class="go">&#39;TID&#39;: 4.0,</span>
+<span class="go">&#39;_ASMDIAG&#39;: 5.363415510271,</span>
+<span class="go">&#39;_MAXELEMNUM&#39;: 26357.0,</span>
+<span class="go">&#39;_MAXELEMTYPE&#39;: 7.0,</span>
+<span class="go">&#39;_MAXNODENUM&#39;: 40908.0,</span>
+<span class="go">&#39;_MAXREALCONST&#39;: 1.0}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.open_apdl_log">
+<code class="sig-name descname">open_apdl_log</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">mode='w'</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.open_apdl_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts writing all APDL commands to an ANSYS input</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Filename of the log</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.open_corba">
+<code class="sig-name descname">open_corba</code><span class="sig-paren">(</span><em class="sig-param">nproc</em>, <em class="sig-param">timeout</em>, <em class="sig-param">additional_switches</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.open_corba" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open a connection to ANSYS via a CORBA interface</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.open_gui">
+<code class="sig-name descname">open_gui</code><span class="sig-paren">(</span><em class="sig-param">include_result=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.open_gui" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves existing database and opens up APDL GUI</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>include_result</strong> (<em>bool</em><em>, </em><em>optional</em>) – Allow the result file to be post processed in the GUI.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.open_process">
+<code class="sig-name descname">open_process</code><span class="sig-paren">(</span><em class="sig-param">nproc</em>, <em class="sig-param">timeout</em>, <em class="sig-param">additional_switches</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.open_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opens an ANSYS process using pexpect</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.processor">
+<em class="property">property </em><code class="sig-name descname">processor</code><a class="headerlink" href="#pyansys.Mapdl.processor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current processor</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.read_float_from_inline_function">
+<code class="sig-name descname">read_float_from_inline_function</code><span class="sig-paren">(</span><em class="sig-param">function_str</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.read_float_from_inline_function" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use a APDL inline function to get a float value from ANSYS.
+Take note, that internally an APDL parameter __floatparameter__ is
+created/overwritten.
+.. rubric:: Example</p>
+<p>inline_function = “node({},{},{})”.format(x, y, z)
+node = apdl.read_float_from_inline_function(inline_function)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>function_str</strong> (<em>str</em>) – String containing an inline function as used in APDL..</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value returned by inline function..</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.read_float_parameter">
+<code class="sig-name descname">read_float_parameter</code><span class="sig-paren">(</span><em class="sig-param">parameter_name</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.read_float_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read out the value of a ANSYS parameter to use in python.
+Can raise TypeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parameter_name</strong> (<em>str</em>) – Name of the parameter inside ANSYS.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Value of ANSYS parameter.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.result">
+<em class="property">property </em><code class="sig-name descname">result</code><a class="headerlink" href="#pyansys.Mapdl.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a binary interface to the result file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.results">
+<em class="property">property </em><code class="sig-name descname">results</code><a class="headerlink" href="#pyansys.Mapdl.results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a binary interface to the result file</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.Mapdl.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param">command</em>, <em class="sig-param">write_to_log=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs APDL command(s)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -931,134 +1077,36 @@ not write command to log even through APDL command logging is enabled.</p></li>
 </dl>
 <p class="rubric">Notes</p>
 <p>When two or more commands need to be run non-interactively
-(i.e. <a href="#id3"><span class="problematic" id="id4">*</span></a>VWRITE) then use</p>
+(i.e. <code class="docutils literal notranslate"><span class="pre">*VWRITE</span></code>) then use</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">ansys</span><span class="o">.</span><span class="n">non_interactive</span><span class="p">:</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;*VWRITE,LABEL(1),VALUE(1,1),VALUE(1,2),VALUE(1,3)&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="n">ansys</span><span class="o">.</span><span class="n">Run</span><span class="p">(</span><span class="s2">&quot;(1X,A8,&#39;   &#39;,F10.1,&#39;  &#39;,F10.1,&#39;   &#39;,1F5.3)&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;*VWRITE,LABEL(1),VALUE(1,1),VALUE(1,2),VALUE(1,3)&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;(1X,A8,&#39;   &#39;,F10.1,&#39;  &#39;,F10.1,&#39;   &#39;,1F5.3)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyansys.ANSYS.add_file_handler">
-<code class="descname">add_file_handler</code><span class="sig-paren">(</span><em>filepath</em>, <em>append</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.add_file_handler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a file handler to the log</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.ANSYS.close_apdl_log">
-<code class="descname">close_apdl_log</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.close_apdl_log" title="Permalink to this definition">¶</a></dt>
-<dd><p>Closes APDL log</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.ANSYS.display_plot">
-<code class="descname">display_plot</code><span class="sig-paren">(</span><em>text</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.display_plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if plot exists based on command output</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyansys.ANSYS.jobname">
-<code class="descname">jobname</code><a class="headerlink" href="#pyansys.ANSYS.jobname" title="Permalink to this definition">¶</a></dt>
-<dd><p>MAPDL job name</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.ANSYS.kill">
-<code class="descname">kill</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.kill" title="Permalink to this definition">¶</a></dt>
-<dd><p>Forces ANSYS process to end and removes lock file</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.ANSYS.open_apdl_log">
-<code class="descname">open_apdl_log</code><span class="sig-paren">(</span><em>filename</em>, <em>mode='w'</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.open_apdl_log" title="Permalink to this definition">¶</a></dt>
-<dd><p>Starts writing all APDL commands to an ANSYS input</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Filename of the log</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.ANSYS.open_corba">
-<code class="descname">open_corba</code><span class="sig-paren">(</span><em>nproc</em>, <em>timeout</em>, <em>additional_switches</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.open_corba" title="Permalink to this definition">¶</a></dt>
-<dd><p>Open a connection to ANSYS via a CORBA interface</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.ANSYS.open_gui">
-<code class="descname">open_gui</code><span class="sig-paren">(</span><em>include_result=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.open_gui" title="Permalink to this definition">¶</a></dt>
-<dd><p>Saves existing database and opens up APDL GUI</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>include_result</strong> (<em>bool</em><em>, </em><em>optional</em>) – Allow the result file to be post processed in the GUI.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.ANSYS.open_process">
-<code class="descname">open_process</code><span class="sig-paren">(</span><em>nproc</em>, <em>timeout</em>, <em>additional_switches</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.open_process" title="Permalink to this definition">¶</a></dt>
-<dd><p>Opens an ANSYS process using pexpect</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyansys.ANSYS.processor">
-<code class="descname">processor</code><a class="headerlink" href="#pyansys.ANSYS.processor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the current processor</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyansys.ANSYS.result">
-<code class="descname">result</code><a class="headerlink" href="#pyansys.ANSYS.result" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a binary interface to the result file</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="pyansys.ANSYS.results">
-<code class="descname">results</code><a class="headerlink" href="#pyansys.ANSYS.results" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a binary interface to the result file</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.ANSYS.run_corba_command">
-<code class="descname">run_corba_command</code><span class="sig-paren">(</span><em>command</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.run_corba_command" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.Mapdl.run_corba_command">
+<code class="sig-name descname">run_corba_command</code><span class="sig-paren">(</span><em class="sig-param">command</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.run_corba_command" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends a command to the mapdl server</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyansys.ANSYS.run_process_command">
-<code class="descname">run_process_command</code><span class="sig-paren">(</span><em>command</em>, <em>return_response=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.run_process_command" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.Mapdl.run_process_command">
+<code class="sig-name descname">run_process_command</code><span class="sig-paren">(</span><em class="sig-param">command</em>, <em class="sig-param">return_response=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.run_process_command" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sends command and returns ANSYS’s response</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyansys.ANSYS.set_log_level">
-<code class="descname">set_log_level</code><span class="sig-paren">(</span><em>loglevel</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.set_log_level" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.Mapdl.set_log_level">
+<code class="sig-name descname">set_log_level</code><span class="sig-paren">(</span><em class="sig-param">loglevel</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.set_log_level" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets log level</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyansys.ANSYS.start_broadcast_logger">
-<code class="descname">start_broadcast_logger</code><span class="sig-paren">(</span><em>update_rate=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.start_broadcast_logger" title="Permalink to this definition">¶</a></dt>
+<dt id="pyansys.Mapdl.start_broadcast_logger">
+<code class="sig-name descname">start_broadcast_logger</code><span class="sig-paren">(</span><em class="sig-param">update_rate=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.start_broadcast_logger" title="Permalink to this definition">¶</a></dt>
 <dd><p>separate logger using broadcast_file</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.ANSYS.store_processor">
-<code class="descname">store_processor</code><span class="sig-paren">(</span><em>command</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.ANSYS.store_processor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if a command is changing the processor and store it if so</p>
-<p># ready_items = [b’BEGIN:’,
-#        b’PREP7:’,
-#        b’SOLU_LS[0-9]+:’,
-#        b’POST1:’,
-#        b’POST26:’,
-#        b’RUNSTAT:’,
-#        b’AUX2:’,
-#        b’AUX3:’,
-#        b’AUX12:’,
-#        b’AUX15:’,</p>
 </dd></dl>
 
 </dd></dl>
