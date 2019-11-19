@@ -176,7 +176,7 @@
   <div class="section" id="ansys-apdl-interactive-control-examples">
 <h1>ANSYS APDL Interactive Control Examples<a class="headerlink" href="#ansys-apdl-interactive-control-examples" title="Permalink to this headline">¶</a></h1>
 <p>These examples are used to demonstrate how to convert an existing ANSYS APDL script to a python <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> script.  You could also simply use the built-in <code class="docutils literal notranslate"><span class="pre">convert_script</span></code> function within pyansys:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="n">inputfile</span> <span class="o">=</span> <span class="s1">&#39;ansys_inputfile.inp&#39;</span>
 <span class="n">pyscript</span> <span class="o">=</span> <span class="s1">&#39;pyscript.py&#39;</span>
@@ -189,7 +189,7 @@
 <div class="section" id="script-initialization">
 <h3>Script Initialization<a class="headerlink" href="#script-initialization" title="Permalink to this headline">¶</a></h3>
 <p>Beginning of ANSYS script:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!----------------------------------------
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>!----------------------------------------
 ! Input torque applied (moment)
 ! Input radius, height, element size...
 !----------------------------------------
@@ -204,12 +204,12 @@ PRESSURE = FORCE/(H_TIP*2*PI*RADIUS)
 </pre></div>
 </div>
 <p>Corresponding <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> script including the initialization of pyansys:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="c1"># start ANSYS in the current working directory with default jobname &quot;file&quot;</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">interactive_plotting</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="n">interactive_plotting</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># define cylinder and mesh parameters</span>
 <span class="n">torque</span> <span class="o">=</span> <span class="mi">100</span>
@@ -226,7 +226,7 @@ PRESSURE = FORCE/(H_TIP*2*PI*RADIUS)
 <div class="section" id="model-creation">
 <h3>Model Creation<a class="headerlink" href="#model-creation" title="Permalink to this headline">¶</a></h3>
 <p>APDL Script:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!----------------------------------------
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>!----------------------------------------
 ! Define higher-order SOLID186
 ! Define surface effect elements SURF154
 ! which is used to apply torque
@@ -275,7 +275,7 @@ finish
 </pre></div>
 </div>
 <p>Corresponding <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> script:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define higher-order SOLID186</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define higher-order SOLID186</span>
 <span class="c1"># Define surface effect elements SURF154 to apply torque</span>
 <span class="c1"># as a tangential pressure</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
@@ -327,15 +327,15 @@ finish
 <span class="n">ansys</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-default" id="id1">
+<div class="figure" id="id1">
 <a class="reference internal image-reference" href="_images/cylinder_eplot.png"><img alt="_images/cylinder_eplot.png" src="_images/cylinder_eplot.png" style="width: 300pt;" /></a>
-<p class="caption"><span class="caption-text">Element plot from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Element plot from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></span></p>
 </div>
 </div>
 <div class="section" id="solution">
 <h3>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h3>
 <p>APDL script:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/solu
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>/solu
 antype,static,new
 eqslv,pcg,1e-8
 
@@ -365,7 +365,7 @@ SAVE
 </pre></div>
 </div>
 <p>Corresponding <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> script:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># new solution</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># new solution</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">slashsolu</span><span class="p">()</span>  <span class="c1"># Using Slash instead of / due to duplicate SOLU command</span>
 <span class="c1"># ansys(&#39;/solu&#39;)  # could also use this line</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">antype</span><span class="p">(</span><span class="s1">&#39;static&#39;</span><span class="p">,</span> <span class="s1">&#39;new&#39;</span><span class="p">)</span>
@@ -388,7 +388,7 @@ SAVE
 </pre></div>
 </div>
 <p>Access and plot the results within python using pyansys:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the result file using the path used in ANSYS</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># open the result file using the path used in ANSYS</span>
 <span class="n">resultfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ansys</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="n">resultfile</span><span class="p">)</span>
 
@@ -407,34 +407,34 @@ SAVE
         <span class="p">(</span><span class="mf">0.35955395443745797</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.4198191001571547</span><span class="p">,</span> <span class="mf">10.346158032932495</span><span class="p">),</span>
         <span class="p">(</span><span class="o">-</span><span class="mf">0.10547549888485548</span><span class="p">,</span> <span class="mf">0.9200673323892437</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.377294345312956</span><span class="p">)]</span>
 
-<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span>
                            <span class="n">screenshot</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;cylinder_disp.png&#39;</span><span class="p">))</span>
 
-<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Sx&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Sx&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span>
                          <span class="n">screenshot</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;cylinder_sx.png&#39;</span><span class="p">))</span>
 
-<span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SEQV&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SEQV&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                    <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span> <span class="n">screenshot</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;cylinder_vonmises.png&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="figure align-default" id="id2">
+<div class="figure" id="id2">
 <a class="reference internal image-reference" href="_images/cylinder_disp.png"><img alt="_images/cylinder_disp.png" src="_images/cylinder_disp.png" style="width: 300pt;" /></a>
-<p class="caption"><span class="caption-text">Non-interactive Screenshot of Displacement from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Non-interactive Screenshot of Displacement from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span></p>
 </div>
-<div class="figure align-default" id="id3">
+<div class="figure" id="id3">
 <a class="reference internal image-reference" href="_images/cylinder_sx.png"><img alt="_images/cylinder_sx.png" src="_images/cylinder_sx.png" style="width: 300pt;" /></a>
-<p class="caption"><span class="caption-text">Non-interactive Screenshot of X Stress from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Non-interactive Screenshot of X Stress from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span></p>
 </div>
-<div class="figure align-default" id="id4">
+<div class="figure" id="id4">
 <a class="reference internal image-reference" href="_images/cylinder_vonmises.png"><img alt="_images/cylinder_vonmises.png" src="_images/cylinder_vonmises.png" style="width: 300pt;" /></a>
-<p class="caption"><span class="caption-text">Non-interactive Screenshot of von Mises Stress from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Non-interactive Screenshot of von Mises Stress from <code class="docutils literal notranslate"><span class="pre">pyansys</span></code></span></p>
 </div>
 </div>
 </div>
 <div class="section" id="spotweld-shell181-example">
 <h2>Spotweld SHELL181 Example<a class="headerlink" href="#spotweld-shell181-example" title="Permalink to this headline">¶</a></h2>
 <p>This ANSYS APDL example demonstrates how to model spot welding on three thin sheets of metal.  This example has yet to be translated to a <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> script.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!----------------------------------------
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>!----------------------------------------
 ! Example problem for demonstrating
 ! Spotweld technology
 !----------------------------------------
@@ -570,7 +570,7 @@ FINISH
 </pre></div>
 </div>
 <p>Here’s the Python script using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> to access the results after running the ANSYS analysis.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="c1"># Open the result file and plot the displacement of time step 3</span>
 <span class="n">resultfile</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
@@ -578,12 +578,12 @@ FINISH
 <span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-default" id="id5">
+<div class="figure" id="id5">
 <a class="reference internal image-reference" href="_images/spot_disp.png"><img alt="_images/spot_disp.png" src="_images/spot_disp.png" style="width: 300pt;" /></a>
-<p class="caption"><span class="caption-text">Spot Weld: Displacement</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Spot Weld: Displacement</span></p>
 </div>
 <p>Get the nodal and element component stress at time step 0.  Plot the stress in the Z direction.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nodenum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nodenum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">element_stress</span><span class="p">,</span> <span class="n">elemnum</span><span class="p">,</span> <span class="n">enode</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">element_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># plot the Z direction stress (the stress at the contact element simulating</span>
@@ -591,18 +591,18 @@ FINISH
 <span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Sz&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-default" id="id6">
+<div class="figure" id="id6">
 <a class="reference internal image-reference" href="_images/spot_sz.png"><img alt="_images/spot_sz.png" src="_images/spot_sz.png" style="width: 300pt;" /></a>
-<p class="caption"><span class="caption-text">Spot Weld: Z Stress</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Spot Weld: Z Stress</span></p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the principal nodal stress and plot the von Mises Stress</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the principal nodal stress and plot the von Mises Stress</span>
 <span class="n">nnum</span><span class="p">,</span> <span class="n">pstress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">result</span><span class="o">.</span><span class="n">plot_principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SEQV&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-default" id="id7">
+<div class="figure" id="id7">
 <a class="reference internal image-reference" href="_images/spot_seqv.png"><img alt="_images/spot_seqv.png" src="_images/spot_seqv.png" style="width: 300pt;" /></a>
-<p class="caption"><span class="caption-text">Spot Weld: von Mises Stress</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text">Spot Weld: von Mises Stress</span></p>
 </div>
 </div>
 </div>

@@ -173,12 +173,12 @@
 <p>ANSYS APDL contains over 200 verification files used for ANSYS validation and demonstration.  These validation files are used here to demo the use of the <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> file translator <code class="docutils literal notranslate"><span class="pre">pyansys.convert_script</span></code>.</p>
 <p>Of particular note in the following examples is how most of the commands can be called as a method to the ansys object rather than sending a string as a command.  Additionally, take note that some commands require the <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">ansys.non_interactive:</span></code> directive since some commands require and will break the CORBA server connection.  Also note that APDL macros that use <code class="docutils literal notranslate"><span class="pre">*CREATE</span></code> have been replaced with a python function.  This will make the code easier to debug should it be necessary to insert a break point in the code.</p>
 <p>Ideally, all math and variable setting would take place within Python as much as possible as APDL math is much less transparent and more difficult to debug.  These examples only show an automatic translation of a verification file and not optimized code.  Should it be necessary to pull parameters or arrays from ansys, use the <code class="docutils literal notranslate"><span class="pre">*GET</span></code> command in conjunction with <code class="docutils literal notranslate"><span class="pre">ansys.load_parameters</span></code>.  For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DEF_Y&#39;</span><span class="p">,</span> <span class="s1">&#39;NODE&#39;</span> <span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span> <span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DEF_Y&#39;</span><span class="p">,</span> <span class="s1">&#39;NODE&#39;</span> <span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span> <span class="p">,</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">load_parameters</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>The parameters are now acessable within the <code class="docutils literal notranslate"><span class="pre">ANSYS</span></code> object:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ansys</span><span class="o">.</span><span class="n">parameters</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ansys</span><span class="o">.</span><span class="n">parameters</span>
 <span class="go">{&#39;AAS_MAPD&#39;: 1.0,</span>
 <span class="go"> &#39;DEF_X&#39;: 8.631926066372,</span>
 <span class="go"> &#39;DEF_Y&#39;: 4.532094298033,</span>
@@ -194,7 +194,7 @@
 <h2>VM1 - Statically Indeterminate Reaction Force Analysis<a class="headerlink" href="#vm1-statically-indeterminate-reaction-force-analysis" title="Permalink to this headline">¶</a></h2>
 <p>HTML overview <a class="reference external" href="https://www.sharcnet.ca/Software/Ansys/17.0/en-us/help/ans_vm/Hlp_V_VM1.html">VM1</a></p>
 <p>ANSYS APDL code:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/COM,ANSYS MEDIA REL. 150 (11/8/2013) REF. VERIF. MANUAL: REL. 150
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>/COM,ANSYS MEDIA REL. 150 (11/8/2013) REF. VERIF. MANUAL: REL. 150
 /VERIFY,VM1
 /PREP7
 /TITLE, VM1, STATICALLY INDETERMINATE REACTION FORCE ANALYSIS
@@ -248,12 +248,12 @@ FINISH
 </pre></div>
 </div>
 <p>This verification file was translated using:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="n">pyansys</span><span class="o">.</span><span class="n">convert_script</span><span class="p">(</span><span class="s1">&#39;vm1.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;vm1.py&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Translated code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Script generated by pyansys version 0.30.1&quot;&quot;&quot;</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Script generated by pyansys version 0.30.1&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="s2">&quot;/usr/ansys_inc/v182/ansys/bin/ansys182&quot;</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="s2">&quot;INFO&quot;</span><span class="p">)</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/COM,ANSYS MEDIA REL. 150 (11/8/2013) REF. VERIF. MANUAL: REL. 150&quot;</span><span class="p">)</span>
@@ -311,7 +311,7 @@ FINISH
 </pre></div>
 </div>
 <p>Results from running the converted file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2018</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">20</span> <span class="mi">23</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">35</span><span class="p">,</span><span class="mi">022</span> <span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ansys</span><span class="p">:</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2018</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">20</span> <span class="mi">23</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">35</span><span class="p">,</span><span class="mi">022</span> <span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ansys</span><span class="p">:</span>
 <span class="o">-------------------</span> <span class="n">VM1</span> <span class="n">RESULTS</span> <span class="n">COMPARISON</span> <span class="o">---------------------</span>
 <span class="o">|</span>   <span class="n">TARGET</span>   <span class="o">|</span>   <span class="n">Mechanical</span> <span class="n">APDL</span>   <span class="o">|</span>   <span class="n">RATIO</span>
 <span class="o">/</span><span class="n">INPUT</span> <span class="n">FILE</span><span class="o">=</span>    <span class="n">LINE</span><span class="o">=</span>       <span class="mi">0</span>
@@ -325,7 +325,7 @@ FINISH
 <h2>VM7 - Plastic Compression of a Pipe Assembly<a class="headerlink" href="#vm7-plastic-compression-of-a-pipe-assembly" title="Permalink to this headline">¶</a></h2>
 <p>HTML overview <a class="reference external" href="https://www.sharcnet.ca/Software/Ansys/17.0/en-us/help/ans_vm/Hlp_V_VM7.html">VM7</a></p>
 <p>ANSYS APDL code:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/COM,ANSYS MEDIA REL. 150 (11/8/2013) REF. VERIF. MANUAL: REL. 150
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span>/COM,ANSYS MEDIA REL. 150 (11/8/2013) REF. VERIF. MANUAL: REL. 150
 /VERIFY,VM7
 /PREP7
 /TITLE, VM7, PLASTIC COMPRESSION OF A PIPE ASSEMBLY
@@ -509,12 +509,12 @@ FINISH
 *LIST,vm7,vrt
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="n">pyansys</span><span class="o">.</span><span class="n">convert_script</span><span class="p">(</span><span class="s1">&#39;vm7.dat&#39;</span><span class="p">,</span> <span class="s1">&#39;vm7.py&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Translated code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Script generated by pyansys version 0.30.1&quot;&quot;&quot;</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; Script generated by pyansys version 0.30.1&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="s2">&quot;/usr/ansys_inc/v182/ansys/bin/ansys182&quot;</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/COM,ANSYS MEDIA REL. 150 (11/8/2013) REF. VERIF. MANUAL: REL. 150&quot;</span><span class="p">)</span>
@@ -615,8 +615,8 @@ FINISH
     <span class="n">ansys</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 
 
-<span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mo">032</span><span class="p">)</span>
-<span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mo">05</span><span class="p">)</span>
+<span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mi">032</span><span class="p">)</span>
+<span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mi">05</span><span class="p">)</span>
 <span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;/OUT,&quot;</span><span class="p">)</span>

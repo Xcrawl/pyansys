@@ -177,8 +177,8 @@
 <div class="section" id="reading-ansys-archives">
 <h2>Reading ANSYS Archives<a class="headerlink" href="#reading-ansys-archives" title="Permalink to this headline">¶</a></h2>
 <p>ANSYS archive files containing solid elements (both legacy and modern) can be loaded using Archive and then converted to a vtk object:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
-<span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="kn">from</span> <span class="nn">pyansys</span> <span class="k">import</span> <span class="n">examples</span>
 
 <span class="c1"># Sample *.cdb</span>
 <span class="n">filename</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span>
@@ -188,27 +188,27 @@
 
 <span class="c1"># Print raw data from cdb</span>
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">:</span>
-   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
 
 <span class="c1"># Create a vtk unstructured grid from the raw data and plot it</span>
-<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">(</span><span class="n">force_linear</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">(</span><span class="n">force_linear</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can also optionally read in any stored parameters within the archive file by enabling the <code class="docutils literal notranslate"><span class="pre">read_parameters</span></code> parameter.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="s1">&#39;mesh.cdb&#39;</span><span class="p">)</span>
 
 <span class="c1"># parameters are stored as a dictionary</span>
-<span class="k">print</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="writing-ansys-archives">
 <h2>Writing ANSYS Archives<a class="headerlink" href="#writing-ansys-archives" title="Permalink to this headline">¶</a></h2>
 <p>Unstructured grids generated using VTK can be converted to ANSYS APDL archive files and loaded into any version of ANSYS using <code class="docutils literal notranslate"><span class="pre">pyansys.save_as_archive</span></code>.  The following example using the built-in archive file demonstrates this capability.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="kn">as</span> <span class="nn">pv</span>
-<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="k">import</span> <span class="n">examples</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="n">grid</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">UnstructuredGrid</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">hexbeamfile</span><span class="p">)</span>
@@ -223,7 +223,7 @@
 </pre></div>
 </div>
 <p>Resulting ANSYS quality report:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------------------------------------------</span>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------------------------------------------</span>
            <span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>          <span class="n">SHAPE</span> <span class="n">TESTING</span> <span class="n">SUMMARY</span>           <span class="o">&gt;&gt;&gt;&gt;&gt;&gt;</span>
            <span class="o">&lt;&lt;&lt;&lt;&lt;&lt;</span>        <span class="n">FOR</span> <span class="n">ALL</span> <span class="n">SELECTED</span> <span class="n">ELEMENTS</span>         <span class="o">&gt;&gt;&gt;&gt;&gt;&gt;</span>
 <span class="o">------------------------------------------------------------------------------</span>
@@ -248,14 +248,14 @@
 <p>At the moment, only solid elements are supported by the <code class="docutils literal notranslate"><span class="pre">save_as_archive</span></code> function, to include:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_TETRA</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_TETRA</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_PYRAMID</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_PYRAMID</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_WEDGE</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_WEDGE</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_HEXAHEDRON</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_HEXAHEDRON</span></code></p></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_TETRA</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_TETRA</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_PYRAMID</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_PYRAMID</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_WEDGE</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_WEDGE</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_HEXAHEDRON</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_HEXAHEDRON</span></code></li>
 </ul>
 </div></blockquote>
 <p>Linear element types will be written as SOLID185, quadratic elements will be written as SOLID186, except for quadratic tetrahedrals, which will be written as SOLID187.</p>
@@ -266,132 +266,151 @@
 <p>Module to read ANSYS ASCII block formatted CDB files</p>
 <dl class="class">
 <dt id="pyansys.archive.Archive">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">Archive</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">read_parameters=False</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pyansys.archive.</code><code class="descname">Archive</code><span class="sig-paren">(</span><em>filename</em>, <em>read_parameters=False</em>, <em>verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read a blocked ANSYS archive file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – Filename of block formatted cdb file</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>string</em>) – Filename of block formatted cdb file</td>
+</tr>
+</tbody>
+</table>
 <dl class="method">
 <dt id="pyansys.archive.Archive.parse_vtk">
-<code class="sig-name descname">parse_vtk</code><span class="sig-paren">(</span><em class="sig-param">force_linear=False</em>, <em class="sig-param">allowable_types=None</em>, <em class="sig-param">null_unallowed=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.parse_vtk" title="Permalink to this definition">¶</a></dt>
+<code class="descname">parse_vtk</code><span class="sig-paren">(</span><em>force_linear=False</em>, <em>allowable_types=None</em>, <em>null_unallowed=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.parse_vtk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parses raw data into to VTK format.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>force_linear</strong> (<em>bool</em><em>, </em><em>optional</em>) – This parser creates quadratic elements if available.  Set
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>force_linear</strong> (<em>bool</em><em>, </em><em>optional</em>) – This parser creates quadratic elements if available.  Set
 this to True to always create linear elements.  Defaults
-to False.</p></li>
-<li><p><strong>allowable_types</strong> (<em>list</em><em>, </em><em>optional</em>) – <p>Allowable element types.  Defaults to all valid element
+to False.</li>
+<li><strong>allowable_types</strong> (<em>list</em><em>, </em><em>optional</em>) – <p>Allowable element types.  Defaults to all valid element
 types in <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">pyansys.elements.valid_types</span></code></p>
 <p>See help(pyansys.elements) for available element types.</p>
-</p></li>
-<li><p><strong>null_unallowed</strong> (<em>bool</em><em>, </em><em>optional</em>) – Elements types not matching element types will be stored
+</li>
+<li><strong>null_unallowed</strong> (<em>bool</em><em>, </em><em>optional</em>) – Elements types not matching element types will be stored
 as empty (null) elements.  Useful for debug or tracking
-element numbers.  Default False.</p></li>
+element numbers.  Default False.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>grid</strong> – VTK unstructured grid from archive file.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>vtk.vtkUnstructuredGrid</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>grid</strong> – VTK unstructured grid from archive file.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">vtk.vtkUnstructuredGrid</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="function">
 <dt id="pyansys.archive.chunks">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">chunks</code><span class="sig-paren">(</span><em class="sig-param">l</em>, <em class="sig-param">n</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.chunks" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pyansys.archive.</code><code class="descname">chunks</code><span class="sig-paren">(</span><em>l</em>, <em>n</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.chunks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Yield successive n-sized chunks from l</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="pyansys.archive.save_as_archive">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">save_as_archive</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">grid</em>, <em class="sig-param">mtype_start=1</em>, <em class="sig-param">etype_start=1</em>, <em class="sig-param">real_constant_start=1</em>, <em class="sig-param">mode='w'</em>, <em class="sig-param">nblock=True</em>, <em class="sig-param">enum_start=1</em>, <em class="sig-param">nnum_start=1</em>, <em class="sig-param">include_etype_header=True</em>, <em class="sig-param">reset_etype=False</em>, <em class="sig-param">allow_missing=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.save_as_archive" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pyansys.archive.</code><code class="descname">save_as_archive</code><span class="sig-paren">(</span><em>filename</em>, <em>grid</em>, <em>mtype_start=1</em>, <em>etype_start=1</em>, <em>real_constant_start=1</em>, <em>mode='w'</em>, <em>nblock=True</em>, <em>enum_start=1</em>, <em>nnum_start=1</em>, <em>include_etype_header=True</em>, <em>reset_etype=False</em>, <em>allow_missing=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.save_as_archive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes FEM as an ANSYS APDL archive file.  This function
 supports the following element types:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_TETRA</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_TETRA</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_PYRAMID</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_PYRAMID</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_WEDGE</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_WEDGE</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_HEXAHEDRON</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_HEXAHEDRON</span></code></p></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_TETRA</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_TETRA</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_PYRAMID</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_PYRAMID</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_WEDGE</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_WEDGE</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_HEXAHEDRON</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_HEXAHEDRON</span></code></li>
 </ul>
 </div></blockquote>
 <p>Will automatically renumber nodes and elements if the FEM does not
 contain ANSYS node or element numbers.  Node numbers are stored as
 a point array “ansys_node_num”, and cell numbers are stored as
 cell array “ansys_elem_num”.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>str</em>) – Filename to write archive file.</p></li>
-<li><p><strong>grid</strong> (<em>vtk.UnstructuredGrid</em>) – VTK UnstructuredGrid to convert to an APDL archive file.</p></li>
-<li><p><strong>mtype_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Material number to assign to elements.  Can be set manually by
-adding the cell array “mtype” to the unstructured grid.</p></li>
-<li><p><strong>etype_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element type number.  Can be manually set by adding
-the cell array “ansys_etype” to the unstructured grid.</p></li>
-<li><p><strong>real_constant_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting real constant to assign to unset cells.  Can be
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> (<em>str</em>) – Filename to write archive file.</li>
+<li><strong>grid</strong> (<em>vtk.UnstructuredGrid</em>) – VTK UnstructuredGrid to convert to an APDL archive file.</li>
+<li><strong>mtype_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Material number to assign to elements.  Can be set manually by
+adding the cell array “mtype” to the unstructured grid.</li>
+<li><strong>etype_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element type number.  Can be manually set by adding
+the cell array “ansys_etype” to the unstructured grid.</li>
+<li><strong>real_constant_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting real constant to assign to unset cells.  Can be
 manually set by adding the cell array “ansys_real_constant” to
-the unstructured grid.</p></li>
-<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>optional</em>) – File mode.  See help(open)</p></li>
-<li><p><strong>nblock</strong> (<em>bool</em><em>, </em><em>optional</em>) – Write node block when writing archive file.</p></li>
-<li><p><strong>enum_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element number to assign to unset cells.  Can be
+the unstructured grid.</li>
+<li><strong>mode</strong> (<em>str</em><em>, </em><em>optional</em>) – File mode.  See help(open)</li>
+<li><strong>nblock</strong> (<em>bool</em><em>, </em><em>optional</em>) – Write node block when writing archive file.</li>
+<li><strong>enum_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element number to assign to unset cells.  Can be
 manually set by adding the cell array “ansys_elem_num” to the
-unstructured grid.</p></li>
-<li><p><strong>nnum_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element number to assign to unset points.  Can be
+unstructured grid.</li>
+<li><strong>nnum_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element number to assign to unset points.  Can be
 manually set by adding the point array “ansys_node_num” to the
-unstructured grid.</p></li>
-<li><p><strong>include_etype_header</strong> (<em>bool</em><em>, </em><em>optional</em>) – For each element type, includes element type command
-(e.g. “ET, 1, 186”) in the archive file.</p></li>
-<li><p><strong>reset_etype</strong> (<em>bool</em><em>, </em><em>optional</em>) – Resets element type.  Element types will automatically be
+unstructured grid.</li>
+<li><strong>include_etype_header</strong> (<em>bool</em><em>, </em><em>optional</em>) – For each element type, includes element type command
+(e.g. “ET, 1, 186”) in the archive file.</li>
+<li><strong>reset_etype</strong> (<em>bool</em><em>, </em><em>optional</em>) – Resets element type.  Element types will automatically be
 determined by the shape of the element (i.e. quadradic
 tetrahedrals will be saved as SOLID187, linear hexahedrals as
-SOLID185).  Default True.</p></li>
+SOLID185).  Default True.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="pyansys.archive.write_cmblock">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_cmblock</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">items</em>, <em class="sig-param">comp_name</em>, <em class="sig-param">comp_type</em>, <em class="sig-param">digit_width=10</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_cmblock" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pyansys.archive.</code><code class="descname">write_cmblock</code><span class="sig-paren">(</span><em>filename</em>, <em>items</em>, <em>comp_name</em>, <em>comp_type</em>, <em>digit_width=10</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_cmblock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes a component block, CMBLOCK, to a file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>str</em><em> or </em><em>file handle</em>) – File to write CMBLOCK component to</p></li>
-<li><p><strong>items</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – Element or node numbers to write.</p></li>
-<li><p><strong>comp_name</strong> (<em>str</em>) – Name of the component</p></li>
-<li><p><strong>comp_type</strong> (<em>str</em>) – Component type to write.  Should be either ‘element’ or ‘node’.</p></li>
-<li><p><strong>digit_width</strong> (<em>int</em><em>, </em><em>optional</em>) – Default 10</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> (<em>str</em><em> or </em><em>file handle</em>) – File to write CMBLOCK component to</li>
+<li><strong>items</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – Element or node numbers to write.</li>
+<li><strong>comp_name</strong> (<em>str</em>) – Name of the component</li>
+<li><strong>comp_type</strong> (<em>str</em>) – Component type to write.  Should be either ‘element’ or ‘node’.</li>
+<li><strong>digit_width</strong> (<em>int</em><em>, </em><em>optional</em>) – Default 10</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
 <dt id="pyansys.archive.write_nblock">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_nblock</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">node_id</em>, <em class="sig-param">pos</em>, <em class="sig-param">angles=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_nblock" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">pyansys.archive.</code><code class="descname">write_nblock</code><span class="sig-paren">(</span><em>filename</em>, <em>node_id</em>, <em>pos</em>, <em>angles=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_nblock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes nodes and node angles to file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>str</em><em> or </em><em>file handle</em>) – Filename to write node block to.</p></li>
-<li><p><strong>node_id</strong> (<em>np.ndarray</em>) – ANSYS node numbers.</p></li>
-<li><p><strong>pos</strong> (<em>np.ndarray</em>) – Node coordinates.</p></li>
-<li><p><strong>angles</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Writes the node angles for each node when included.</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filename</strong> (<em>str</em><em> or </em><em>file handle</em>) – Filename to write node block to.</li>
+<li><strong>node_id</strong> (<em>np.ndarray</em>) – ANSYS node numbers.</li>
+<li><strong>pos</strong> (<em>np.ndarray</em>) – Node coordinates.</li>
+<li><strong>angles</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Writes the node angles for each node when included.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

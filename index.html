@@ -165,11 +165,12 @@
             
   <div class="section" id="pyansys-documentation">
 <h1>pyansys Documentation<a class="headerlink" href="#pyansys-documentation" title="Permalink to this headline">¶</a></h1>
-<dl class="simple">
-<dt>This Python module allows you to:</dt><dd><ul class="simple">
-<li><p>Interactively control an instance of ANSYS v17.0 + using Python.</p></li>
-<li><p>Extract data directly from binary ANSYS v14.5+ files and to display or animate them.</p></li>
-<li><p>Rapidly read in binary result <code class="docutils literal notranslate"><span class="pre">(.rst)</span></code>, binary mass and stiffness <code class="docutils literal notranslate"><span class="pre">(.full)</span></code>, and ASCII block archive <code class="docutils literal notranslate"><span class="pre">(.cdb)</span></code>, and element matrix <code class="docutils literal notranslate"><span class="pre">(.emat)</span></code> files.</p></li>
+<dl class="docutils">
+<dt>This Python module allows you to:</dt>
+<dd><ul class="first last simple">
+<li>Interactively control an instance of ANSYS v17.0 + using Python.</li>
+<li>Extract data directly from binary ANSYS v14.5+ files and to display or animate them.</li>
+<li>Rapidly read in binary result <code class="docutils literal notranslate"><span class="pre">(.rst)</span></code>, binary mass and stiffness <code class="docutils literal notranslate"><span class="pre">(.full)</span></code>, and ASCII block archive <code class="docutils literal notranslate"><span class="pre">(.cdb)</span></code>, and element matrix <code class="docutils literal notranslate"><span class="pre">(.emat)</span></code> files.</li>
 </ul>
 </dd>
 </dl>
@@ -190,7 +191,7 @@
 <div class="section" id="interactive-control">
 <h3>Interactive Control<a class="headerlink" href="#interactive-control" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pyansys</span></code> lets you create an instance of ANSYS and send commands to it pythonically:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
@@ -215,10 +216,10 @@
 <div class="section" id="direct-access-to-binary-files">
 <h3>Direct Access to Binary Files<a class="headerlink" href="#direct-access-to-binary-files" title="Permalink to this headline">¶</a></h3>
 <p>Here’s a quick example code block to show how easy it is to load and plots results directly from an ANSYS result file using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;rotor.rst&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">stress</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">stress</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
 <span class="go">array([[-1.2874937e-06,  1.2874934e-06,  5.6843419e-14,  0.0000000e+00,  8.1756007e-06, -8.1756007e-06],</span>
 <span class="go">       [-1.1674185e-04, -1.1674478e-04, -3.0856981e-04, -1.7892545e-06, -2.5823609e-05,  2.5835518e-05],</span>
 <span class="go">       [-5.7354209e-05, -5.5398770e-05, -1.4944717e-04, -1.0580692e-06, -1.7659733e-05, -3.5462126e-06]], dtype=float32)</span>
@@ -239,7 +240,7 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="figure align-default">
+<div class="figure">
 <a class="reference internal image-reference" href="_images/rotor.jpg"><img alt="_images/rotor.jpg" src="_images/rotor.jpg" style="width: 500pt;" /></a>
 </div>
 </div>
@@ -253,12 +254,12 @@
 <p>You can also visit <a class="reference external" href="http://pypi.python.org/pypi/pyansys">PyPi</a> or <a class="reference external" href="https://github.com/akaszynski/pyansys">GitHub</a> to download the source.</p>
 <p>Dependencies:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cython</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pyvista</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pexpect</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">appdirs</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk</span></code></p></li>
+<li><code class="docutils literal notranslate"><span class="pre">numpy</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">cython</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">pyvista</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">pexpect</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">appdirs</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">vtk</span></code></li>
 </ul>
 <p>Dependencies are installed automatically through <code class="docutils literal notranslate"><span class="pre">pip</span></code>, except for Python 2.7 in Windows, which will require some additional work to install <code class="docutils literal notranslate"><span class="pre">VTK</span></code>.  See <a class="reference external" href="https://docs.pyvista.org/getting-started/installation.html">installing pyvista</a> for more information.</p>
 </div>

@@ -176,30 +176,30 @@
 <p>The ANSYS element matrix file is a FORTRAN formatted binary file containing the following for each element.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Stiffness matrix</p></li>
-<li><p>Mass matrix</p></li>
-<li><p>Damping matrix</p></li>
-<li><p>Stress stiffening matrix</p></li>
-<li><p>Complex stiffness matrix</p></li>
-<li><p>Element force vectors</p></li>
+<li>Stiffness matrix</li>
+<li>Mass matrix</li>
+<li>Damping matrix</li>
+<li>Stress stiffening matrix</li>
+<li>Complex stiffness matrix</li>
+<li>Element force vectors</li>
 </ul>
 </div></blockquote>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>Load the element matrix file:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="n">emat_file</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.emat&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Read a single element from the result file:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">element_data</span> <span class="o">=</span> <span class="n">emat_file</span><span class="o">.</span><span class="n">read_element</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">element_data</span> <span class="o">=</span> <span class="n">emat_file</span><span class="o">.</span><span class="n">read_element</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The dictionary <code class="docutils literal notranslate"><span class="pre">element_data</span></code> contains the entries used to construct stiffness, mass, and damping matrices.  If recorded, the dictionary will also applied force vectors.</p>
 <div class="section" id="applied-force">
 <h3>Applied Force<a class="headerlink" href="#applied-force" title="Permalink to this headline">¶</a></h3>
 <p>Read accumulated applied force for all nodes:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">applied_force</span> <span class="o">=</span> <span class="n">emat_file</span><span class="o">.</span><span class="n">global_applied_force</span><span class="p">()</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">applied_force</span> <span class="o">=</span> <span class="n">emat_file</span><span class="o">.</span><span class="n">global_applied_force</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>See <code class="docutils literal notranslate"><span class="pre">emat_file.nnum</span></code> for the sorted nodes this applied force corresponds to.</p>
@@ -209,21 +209,24 @@
 <h2>EmatFile Object Methods<a class="headerlink" href="#ematfile-object-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pyansys.emat.EmatFile">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.emat.</code><code class="sig-name descname">EmatFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">pyansys.emat.</code><code class="descname">EmatFile</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enables pythonic access for an ANSYS element matrix file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – File to open.  Usually ends in .emat</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>str</em>) – File to open.  Usually ends in .emat</td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">emat_file</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.emat&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="method">
+<dl class="attribute">
 <dt id="pyansys.emat.EmatFile.eeqv">
-<em class="property">property </em><code class="sig-name descname">eeqv</code><a class="headerlink" href="#pyansys.emat.EmatFile.eeqv" title="Permalink to this definition">¶</a></dt>
+<code class="descname">eeqv</code><a class="headerlink" href="#pyansys.emat.EmatFile.eeqv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Element equivalence table.  This table equates the number
 used for storage to the actual element number.</p>
 <p class="rubric">Notes</p>
@@ -232,92 +235,96 @@ order that the SOLUTION processor solves the elements.  This
 table equates the order number used to the actual element.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="attribute">
 <dt id="pyansys.emat.EmatFile.element_matrices_index_table">
-<em class="property">property </em><code class="sig-name descname">element_matrices_index_table</code><a class="headerlink" href="#pyansys.emat.EmatFile.element_matrices_index_table" title="Permalink to this definition">¶</a></dt>
+<code class="descname">element_matrices_index_table</code><a class="headerlink" href="#pyansys.emat.EmatFile.element_matrices_index_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return element matrices index table</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="attribute">
 <dt id="pyansys.emat.EmatFile.enum">
-<em class="property">property </em><code class="sig-name descname">enum</code><a class="headerlink" href="#pyansys.emat.EmatFile.enum" title="Permalink to this definition">¶</a></dt>
+<code class="descname">enum</code><a class="headerlink" href="#pyansys.emat.EmatFile.enum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sorted ANSYS element numbers</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.emat.EmatFile.global_applied_force">
-<code class="sig-name descname">global_applied_force</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.global_applied_force" title="Permalink to this definition">¶</a></dt>
+<code class="descname">global_applied_force</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.global_applied_force" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the applied force for each node.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>applied_force</strong> – Applied force with size (n_nodes, n_dof).  Result is
-sorted to correspond with the sorted global nodes array.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>np.ndarray</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><strong>applied_force</strong> – Applied force with size (n_nodes, n_dof).  Result is
+sorted to correspond with the sorted global nodes array.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">np.ndarray</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="method">
+<dl class="attribute">
 <dt id="pyansys.emat.EmatFile.n_dof">
-<em class="property">property </em><code class="sig-name descname">n_dof</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_dof" title="Permalink to this definition">¶</a></dt>
+<code class="descname">n_dof</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_dof" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of dofs per node</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="attribute">
 <dt id="pyansys.emat.EmatFile.n_elements">
-<em class="property">property </em><code class="sig-name descname">n_elements</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_elements" title="Permalink to this definition">¶</a></dt>
+<code class="descname">n_elements</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_elements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of elements in the file</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="attribute">
 <dt id="pyansys.emat.EmatFile.n_nodes">
-<em class="property">property </em><code class="sig-name descname">n_nodes</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_nodes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">n_nodes</code><a class="headerlink" href="#pyansys.emat.EmatFile.n_nodes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of nodes in the file</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="attribute">
 <dt id="pyansys.emat.EmatFile.neqv">
-<em class="property">property </em><code class="sig-name descname">neqv</code><a class="headerlink" href="#pyansys.emat.EmatFile.neqv" title="Permalink to this definition">¶</a></dt>
+<code class="descname">neqv</code><a class="headerlink" href="#pyansys.emat.EmatFile.neqv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nodal equivalence table. This table equates the number used
 for storage to the actual node number.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="attribute">
 <dt id="pyansys.emat.EmatFile.nnum">
-<em class="property">property </em><code class="sig-name descname">nnum</code><a class="headerlink" href="#pyansys.emat.EmatFile.nnum" title="Permalink to this definition">¶</a></dt>
+<code class="descname">nnum</code><a class="headerlink" href="#pyansys.emat.EmatFile.nnum" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sorted ANSYS node numbers</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.emat.EmatFile.read_element">
-<code class="sig-name descname">read_element</code><span class="sig-paren">(</span><em class="sig-param">index</em>, <em class="sig-param">stress=True</em>, <em class="sig-param">mass=True</em>, <em class="sig-param">damping=True</em>, <em class="sig-param">stress_stiff=True</em>, <em class="sig-param">applied_force=True</em>, <em class="sig-param">newton_raphson=True</em>, <em class="sig-param">imaginary_load=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_element" title="Permalink to this definition">¶</a></dt>
+<code class="descname">read_element</code><span class="sig-paren">(</span><em>index</em>, <em>stress=True</em>, <em>mass=True</em>, <em>damping=True</em>, <em>stress_stiff=True</em>, <em>applied_force=True</em>, <em>newton_raphson=True</em>, <em>imaginary_load=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read element by index</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>index</strong> (<em>int</em>) – Element index.  This is not the element number.  Reference
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>index</strong> (<em>int</em>) – Element index.  This is not the element number.  Reference
 the element equivalency table for the actual element
-number.</p></li>
-<li><p><strong>stress</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the stress matrix entries if available.</p></li>
-<li><p><strong>mass</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the mass matrix entries if available.</p></li>
-<li><p><strong>damping</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the damping matrix entries if available.</p></li>
-<li><p><strong>stress_stiff</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the stress stiffening entries if available.</p></li>
-<li><p><strong>newton_raphson</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the newton raphson load entries if available.</p></li>
-<li><p><strong>applied_force</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the applied load vector if available.</p></li>
-<li><p><strong>imaginary_load</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the imaginary load vector if available.</p></li>
+number.</li>
+<li><strong>stress</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the stress matrix entries if available.</li>
+<li><strong>mass</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the mass matrix entries if available.</li>
+<li><strong>damping</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the damping matrix entries if available.</li>
+<li><strong>stress_stiff</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the stress stiffening entries if available.</li>
+<li><strong>newton_raphson</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the newton raphson load entries if available.</li>
+<li><strong>applied_force</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the applied load vector if available.</li>
+<li><strong>imaginary_load</strong> (<em>bool</em><em>, </em><em>optional</em>) – Return the imaginary load vector if available.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>dof_idx</strong> (<em>np.ndarray</em>) – DOF index table. This record specifies the DOF locations
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><strong>dof_idx</strong> (<em>np.ndarray</em>) – DOF index table. This record specifies the DOF locations
 of this element matrix in relation to the global
 matrix. The index is calculated as (N-1)*NUMDOF+DOF, where
 N is the position number of the node in the nodal
 equivalence table and DOF is the DOF reference number
-given above</p></li>
-<li><p><strong>element_data</strong> (<em>dict</em>) – Dictionary containing the following entries for each of
+given above</li>
+<li><strong>element_data</strong> (<em>dict</em>) – Dictionary containing the following entries for each of
 the corresponding inputs when the item is True.
 - ‘stress’ : stress matrix entries
 - ‘mass’ : mass matrix entries
@@ -325,11 +332,13 @@ the corresponding inputs when the item is True.
 - ‘stress_stiff’ : stress stiffening matrix entries
 - ‘newton_raphson’ : newton rapson load vector
 - ‘applied_force’ : applied force vector
-- ‘imaginary_load’ : imaginary load vector</p></li>
+- ‘imaginary_load’ : imaginary load vector</li>
 </ul>
 </p>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Notes</p>
 <p>If the matrix is diagonal, the length of the records will be
 nmrow.  If the matrix is unsymmetric, the length of the
@@ -344,45 +353,48 @@ reference number given by <code class="docutils literal notranslate"><span class
 
 <dl class="method">
 <dt id="pyansys.emat.EmatFile.read_element_matrix_header">
-<code class="sig-name descname">read_element_matrix_header</code><span class="sig-paren">(</span><em class="sig-param">f_index</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_element_matrix_header" title="Permalink to this definition">¶</a></dt>
+<code class="descname">read_element_matrix_header</code><span class="sig-paren">(</span><em>f_index</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_element_matrix_header" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read element matrix header</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>f_indes</strong> (<em>int</em>) – Fortran index to the start of the element matrix header.</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>f_indes</strong> (<em>int</em>) – Fortran index to the start of the element matrix header.</td>
+</tr>
+</tbody>
+</table>
 <p class="rubric">Notes</p>
-<dl class="simple">
-<dt>stkey - stiffness matrix key</dt><dd><p>0 - matrix not present
-1 - matrix present</p>
-</dd>
-<dt>mkey - mass matrix key</dt><dd><p>0 - matirx not present
-1 - matrix present</p>
-</dd>
-<dt>dkey - damping matrix key</dt><dd><p>0 - matrix not present
-1 - matrix present</p>
-</dd>
-<dt>sskey - stress stiffening matrix key</dt><dd><p>0 - matrix not present
-1 - matrix present</p>
-</dd>
-<dt>akey - applied load vector key</dt><dd><p>0 - vector not used
-1 - vector used</p>
-</dd>
-<dt>nrkey - newton-raphson(restoring) load</dt><dd><p>0 - vector not used
-1 - vector used</p>
-</dd>
-<dt>ikey - imaginary load vector key (for complex analyses)</dt><dd><p>0 - vector not used
-1 - vector used</p>
-</dd>
-<dt>nmrow - numbers/columns in matrices.</dt><dd><p>If the number is negative, the matrices will be written in
-lower triangular form.</p>
-</dd>
+<dl class="docutils">
+<dt>stkey - stiffness matrix key</dt>
+<dd>0 - matrix not present
+1 - matrix present</dd>
+<dt>mkey - mass matrix key</dt>
+<dd>0 - matirx not present
+1 - matrix present</dd>
+<dt>dkey - damping matrix key</dt>
+<dd>0 - matrix not present
+1 - matrix present</dd>
+<dt>sskey - stress stiffening matrix key</dt>
+<dd>0 - matrix not present
+1 - matrix present</dd>
+<dt>akey - applied load vector key</dt>
+<dd>0 - vector not used
+1 - vector used</dd>
+<dt>nrkey - newton-raphson(restoring) load</dt>
+<dd>0 - vector not used
+1 - vector used</dd>
+<dt>ikey - imaginary load vector key (for complex analyses)</dt>
+<dd>0 - vector not used
+1 - vector used</dd>
+<dt>nmrow - numbers/columns in matrices.</dt>
+<dd>If the number is negative, the matrices will be written in
+lower triangular form.</dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.emat.EmatFile.read_header">
-<code class="sig-name descname">read_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_header" title="Permalink to this definition">¶</a></dt>
+<code class="descname">read_header</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.emat.EmatFile.read_header" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read standard emat file header</p>
 </dd></dl>
 

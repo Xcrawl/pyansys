@@ -117,13 +117,13 @@ Loading and Visualizing Result Files
 
   .. container:: sphx-glr-download
 
-    :download:`Download all examples in Python source code: examples_python.zip <//home/vsts/work/1/s/docs/examples/examples_python.zip>`
+    :download:`Download all examples in Python source code: examples_python.zip <//home/alex/afrl/python/source/pyansys/docs/examples/examples_python.zip>`
 
 
 
   .. container:: sphx-glr-download
 
-    :download:`Download all examples in Jupyter notebooks: examples_jupyter.zip <//home/vsts/work/1/s/docs/examples/examples_jupyter.zip>`
+    :download:`Download all examples in Jupyter notebooks: examples_jupyter.zip <//home/alex/afrl/python/source/pyansys/docs/examples/examples_jupyter.zip>`
 
 
 .. only:: html

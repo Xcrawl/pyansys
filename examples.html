@@ -184,8 +184,8 @@
 <div class="section" id="loading-and-plotting-an-ansys-archive-file">
 <h2>Loading and Plotting an ANSYS Archive File<a class="headerlink" href="#loading-and-plotting-an-ansys-archive-file" title="Permalink to this headline">¶</a></h2>
 <p id="examples-ref">ANSYS archive files containing solid elements (both legacy and modern) can be loaded using Archive and then converted to a vtk object.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
-<span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="kn">from</span> <span class="nn">pyansys</span> <span class="k">import</span> <span class="n">examples</span>
 
 <span class="c1"># Sample *.cdb</span>
 <span class="n">filename</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span>
@@ -195,11 +195,11 @@
 
 <span class="c1"># Print raw data from cdb</span>
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">:</span>
-   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
 
 <span class="c1"># Create a vtk unstructured grid from the raw data and plot it</span>
-<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">(</span><span class="n">force_linear</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">(</span><span class="n">force_linear</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># save this as a vtk xml file</span>
 <span class="n">grid</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;hex.vtu&#39;</span><span class="p">)</span>
@@ -207,8 +207,8 @@
 </div>
 <img alt="_images/hexbeam.png" src="_images/hexbeam.png" />
 <p>You can then load this vtk file using <code class="docutils literal notranslate"><span class="pre">pyvista</span></code> or another program that uses VTK.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load this from vtk</span>
-<span class="kn">import</span> <span class="nn">pyvista</span> <span class="kn">as</span> <span class="nn">pv</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load this from vtk</span>
+<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">UnstructuredGrid</span><span class="p">(</span><span class="s1">&#39;hex.vtk&#39;</span><span class="p">)</span>
 <span class="n">grid</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
@@ -219,9 +219,9 @@
 <div class="section" id="loading-the-result-file">
 <h3>Loading the Result File<a class="headerlink" href="#loading-the-result-file" title="Permalink to this headline">¶</a></h3>
 <p>This example reads in binary results from a modal analysis of a beam from ANSYS.  This section of code does not rely on <code class="docutils literal notranslate"><span class="pre">VTK</span></code> and can be used with only numpy installed.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the reader from pyansys</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the reader from pyansys</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
-<span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">from</span> <span class="nn">pyansys</span> <span class="k">import</span> <span class="n">examples</span>
 
 <span class="c1"># Sample result file</span>
 <span class="n">rstfile</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">rstfile</span>
@@ -233,7 +233,7 @@
 <span class="n">freqs</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">time_values</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">freqs</span><span class="p">)</span>
 <span class="go">[ 7366.49503969  7366.49503969 11504.89523664 17285.70459456</span>
 <span class="go">  17285.70459457 20137.19299035]</span>
 
@@ -242,7 +242,7 @@
 <span class="go">nnum, disp = result.nodal_solution(0)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">disp</span><span class="p">)</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">disp</span><span class="p">)</span>
 <span class="go">[[ 2.89623914e+01 -2.82480489e+01 -3.09226692e-01]</span>
 <span class="go"> [ 2.89489249e+01 -2.82342416e+01  2.47536161e+01]</span>
 <span class="go"> [ 2.89177130e+01 -2.82745126e+01  6.05151053e+00]</span>
@@ -256,46 +256,46 @@
 <div class="section" id="plotting-nodal-results">
 <h3>Plotting Nodal Results<a class="headerlink" href="#plotting-nodal-results" title="Permalink to this headline">¶</a></h3>
 <p>As the geometry of the model is contained within the result file, you can plot the result without having to load any additional geometry.  Below, displacement for the first mode of the modal analysis beam is plotted using <code class="docutils literal notranslate"><span class="pre">VTK</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the displacement of Mode 0 in the x direction</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the displacement of Mode 0 in the x direction</span>
 <span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/hexbeam_disp.png" src="_images/hexbeam_disp.png" />
 <p>Results can be plotted non-interactively and screenshots saved by setting up the camera and saving the result.  This can help with the visualization and post-processing of a batch result.</p>
 <p>First, get the camera position from an interactive plot:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cpos</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cpos</span><span class="p">)</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cpos</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cpos</span><span class="p">)</span>
 <span class="go">[(5.2722879880979345, 4.308737919176047, 10.467694436036483),</span>
 <span class="go"> (0.5, 0.5, 2.5),</span>
 <span class="go"> (-0.2565529433509593, 0.9227952809887077, -0.28745339908049733)]</span>
 </pre></div>
 </div>
 <p>Then generate the plot:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span>
                          <span class="n">screenshot</span><span class="o">=</span><span class="s1">&#39;hexbeam_disp.png&#39;</span><span class="p">,</span>
-                         <span class="n">window_size</span><span class="o">=</span><span class="p">[</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">],</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                         <span class="n">window_size</span><span class="o">=</span><span class="p">[</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">],</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Stress can be plotted as well using the below code.  The nodal stress is computed in the same manner that ANSYS uses by to determine the stress at each node by averaging the stress evaluated at that node for all attached elements.  For now, only component stresses can be displayed.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display node averaged stress in x direction for result 6</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display node averaged stress in x direction for result 6</span>
 <span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Sx&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/beam_stress.png" src="_images/beam_stress.png" />
 <p>Nodal stress can also be generated non-interactively with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Sx&#39;</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span> <span class="n">screenshot</span><span class="o">=</span><span class="n">beam_stress</span><span class="o">.</span><span class="n">png</span><span class="p">,</span>
-                         <span class="n">window_size</span><span class="o">=</span><span class="p">[</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">],</span> <span class="n">interactive</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;Sx&#39;</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">,</span> <span class="n">screenshot</span><span class="o">=</span><span class="n">beam_stress</span><span class="o">.</span><span class="n">png</span><span class="p">,</span>
+                         <span class="n">window_size</span><span class="o">=</span><span class="p">[</span><span class="mi">800</span><span class="p">,</span> <span class="mi">600</span><span class="p">],</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="animating-a-modal-solution">
 <h3>Animating a Modal Solution<a class="headerlink" href="#animating-a-modal-solution" title="Permalink to this headline">¶</a></h3>
 <p>Mode shapes from a modal analsyis can be animated using <code class="docutils literal notranslate"><span class="pre">animate_nodal_solution</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If you wish to save the animation to a file, specify the movie_filename and animate it with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">movie_filename</span><span class="o">=</span><span class="s1">&#39;/tmp/movie.mp4&#39;</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">)</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">movie_filename</span><span class="o">=</span><span class="s1">&#39;/tmp/movie.mp4&#39;</span><span class="p">,</span> <span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/beam_mode_shape.gif" src="_images/beam_mode_shape.gif" />
@@ -307,21 +307,21 @@
 <div class="section" id="plot-cell-quality">
 <h3>Plot Cell Quality<a class="headerlink" href="#plot-cell-quality" title="Permalink to this headline">¶</a></h3>
 <p>This built-in example displays the minimum scaled jacobian of each element of a tetrahedral beam:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyansys</span> <span class="k">import</span> <span class="n">examples</span>
 <span class="n">examples</span><span class="o">.</span><span class="n">show_cell_qual</span><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="_images/cellqual.png" src="_images/cellqual.png" />
 <p>This is the source code for the example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="c1"># load archive file and parse for subsequent FEM queries</span>
-<span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">from</span> <span class="nn">pyansys</span> <span class="k">import</span> <span class="n">examples</span>
 <span class="c1"># archive = pyansys.Archive(examples.hexarchivefile)</span>
 <span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">tetarchivefile</span><span class="p">)</span>
 
 <span class="c1"># create vtk object</span>
-<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">(</span><span class="n">force_linear</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">(</span><span class="n">force_linear</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># get cell quality</span>
 <span class="n">qual</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">quality</span>
@@ -334,14 +334,14 @@
 <div class="section" id="plot-nodal-stress">
 <h3>Plot Nodal Stress<a class="headerlink" href="#plot-nodal-stress" title="Permalink to this headline">¶</a></h3>
 <p>This built in example plots the x component stress from a hexahedral beam.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyansys</span> <span class="k">import</span> <span class="n">examples</span>
 <span class="n">examples</span><span class="o">.</span><span class="n">show_stress</span><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="_images/beam_stress.png" src="_images/beam_stress.png" />
 <p>This is the source code for the example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
-<span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="code python highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="kn">from</span> <span class="nn">pyansys</span> <span class="k">import</span> <span class="n">examples</span>
 <span class="n">filename</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">rstfile</span>
 
 <span class="c1"># Create rsult object</span>
