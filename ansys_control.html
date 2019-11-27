@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ANSYS APDL Interactive Control &mdash; pyansys 0.39.5 documentation</title>
+  <title>ANSYS APDL Interactive Control &mdash; pyansys 0.39.6 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.39.5
+                0.39.6
               </div>
             
           
@@ -276,7 +276,7 @@
 </pre></div>
 </div>
 <p>This approach has some obvious advantages, chiefly that it’s a bit easier to script as <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> takes care of the string formatting for you.  For example, inputting points from a numpy array:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># make 10 random keypoints in ANSYS</span>
 <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -512,13 +512,13 @@ SOLVE
     <span class="n">ansys</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 
 
-<span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mo">032</span><span class="p">)</span>
-<span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mo">05</span><span class="p">)</span>
+<span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mi">032</span><span class="p">)</span>
+<span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mi">05</span><span class="p">)</span>
 <span class="n">DISP</span><span class="p">(</span><span class="o">-.</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>If you have an existing input file with a macro, it can be converted using the <code class="docutils literal notranslate"><span class="pre">convert_script</span></code> function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pyansys</span><span class="o">.</span><span class="n">convert_script</span><span class="p">(</span><span class="n">apdl_inputfile</span><span class="p">,</span> <span class="n">pyscript</span><span class="p">,</span> <span class="n">macros_as_functions</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pyansys</span><span class="o">.</span><span class="n">convert_script</span><span class="p">(</span><span class="n">apdl_inputfile</span><span class="p">,</span> <span class="n">pyscript</span><span class="p">,</span> <span class="n">macros_as_functions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>See the <code class="docutils literal notranslate"><span class="pre">vm7.dat</span></code> example in the APDL Conversion Examples page.</p>
@@ -604,7 +604,7 @@ SOLVE
 </pre></div>
 </div>
 <p>You can change this behavior so ignored commands can be logged as warnings not raised as an exception by setting:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">allow_ignore</span> <span class="o">=</span> <span class="bp">True</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ansys</span><span class="o">.</span><span class="n">allow_ignore</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">()</span>  <span class="c1"># error ignored</span>
 </pre></div>
 </div>
@@ -644,7 +644,7 @@ K,4,0,1,0
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="c1"># run ansys with interactive plotting enabled</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">interactive_plotting</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">interactive_plotting</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># create a square area using keypoints</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
@@ -708,10 +708,10 @@ K,4,0,1,0
 <div class="section" id="running-a-batch">
 <h2>Running a Batch<a class="headerlink" href="#running-a-batch" title="Permalink to this headline">¶</a></h2>
 <p>Instead of running an ANSYS batch by calling ANSYS with an input file, you can instead define a function that runs ansys.  This example runs a mesh convergence study based on the maximum stress of a cylinder with torsional loading.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
-<span class="k">def</span> <span class="nf">cylinder_batch</span><span class="p">(</span><span class="n">elemsize</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">cylinder_batch</span><span class="p">(</span><span class="n">elemsize</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Report the maximum von Mises stress of a Cantilever supported cylinder&quot;&quot;&quot;</span>
 
     <span class="c1"># clear</span>
@@ -805,14 +805,14 @@ K,4,0,1,0
 
 
 <span class="c1"># initialize ANSYS</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loglevel</span><span class="o">=</span><span class="s1">&#39;error&#39;</span><span class="p">)</span>
 
 <span class="n">result_summ</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">elemsize</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
     <span class="c1"># run the batch and report the results</span>
-    <span class="n">nnode</span><span class="p">,</span> <span class="n">maxstress</span> <span class="o">=</span> <span class="n">cylinder_batch</span><span class="p">(</span><span class="n">elemsize</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">nnode</span><span class="p">,</span> <span class="n">maxstress</span> <span class="o">=</span> <span class="n">cylinder_batch</span><span class="p">(</span><span class="n">elemsize</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">result_summ</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">nnode</span><span class="p">,</span> <span class="n">maxstress</span><span class="p">])</span>
-    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Element size </span><span class="si">%f</span><span class="s1">: </span><span class="si">%6d</span><span class="s1"> nodes and maximum vom Mises stress </span><span class="si">%f</span><span class="s1">&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Element size </span><span class="si">%f</span><span class="s1">: </span><span class="si">%6d</span><span class="s1"> nodes and maximum vom Mises stress </span><span class="si">%f</span><span class="s1">&#39;</span>
           <span class="o">%</span> <span class="p">(</span><span class="n">elemsize</span><span class="p">,</span> <span class="n">nnode</span><span class="p">,</span> <span class="n">maxstress</span><span class="p">))</span>
 
 <span class="c1"># Exit ANSYS</span>

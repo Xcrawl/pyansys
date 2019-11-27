@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reading and Writing ANSYS Archives &mdash; pyansys 0.39.5 documentation</title>
+  <title>Reading and Writing ANSYS Archives &mdash; pyansys 0.39.6 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.39.5
+                0.39.6
               </div>
             
           
@@ -188,11 +188,11 @@
 
 <span class="c1"># Print raw data from cdb</span>
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">:</span>
-   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
 
 <span class="c1"># Create a vtk unstructured grid from the raw data and plot it</span>
-<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">(</span><span class="n">force_linear</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">(</span><span class="n">force_linear</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can also optionally read in any stored parameters within the archive file by enabling the <code class="docutils literal notranslate"><span class="pre">read_parameters</span></code> parameter.</p>
@@ -200,14 +200,14 @@
 <span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="s1">&#39;mesh.cdb&#39;</span><span class="p">)</span>
 
 <span class="c1"># parameters are stored as a dictionary</span>
-<span class="k">print</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="writing-ansys-archives">
 <h2>Writing ANSYS Archives<a class="headerlink" href="#writing-ansys-archives" title="Permalink to this headline">¶</a></h2>
 <p>Unstructured grids generated using VTK can be converted to ANSYS APDL archive files and loaded into any version of ANSYS using <code class="docutils literal notranslate"><span class="pre">pyansys.save_as_archive</span></code>.  The following example using the built-in archive file demonstrates this capability.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="kn">as</span> <span class="nn">pv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 

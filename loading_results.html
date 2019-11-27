@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.39.5 documentation</title>
+  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.39.6 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.39.5
+                0.39.6
               </div>
             
           
@@ -268,54 +268,6 @@ accessing:</p>
 </pre></div>
 </div>
 <p>See the doc string for <code class="docutils literal notranslate"><span class="pre">parse_coordinate_system</span></code> for more details regarding the contents of the coordinate systems stored in the result file.</p>
-<dl class="function">
-<dt id="pyansys.rst.parse_coordinate_system">
-<code class="sig-prename descclassname">pyansys.rst.</code><code class="sig-name descname">parse_coordinate_system</code><span class="sig-paren">(</span><em class="sig-param">f</em>, <em class="sig-param">geometry_header</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.parse_coordinate_system" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reads in coordinate system information from a binary result file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>f</strong> (<em>file object</em>) – Open binary result file.</p></li>
-<li><p><strong>dict</strong> (<em>geometry_header</em><em>,</em>) – Dictionary containing pointers to geometry items in the ansys
-result.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>c_systems</strong> – Dictionary containing one entry for each defined coordinate
-system.  If no non-standard coordinate systems have been
-defined, there will be only one None.  First coordinate system
-is assumed to be global cartesian.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>euler angles : [THXY, THYZ, THZX]</p>
-<ul class="simple">
-<li><p>First rotation about local Z (positive X toward Y).</p></li>
-<li><p>Second rotation about local X (positive Y toward Z).</p></li>
-<li><p>Third rotation about local Y (positive Z toward X).</p></li>
-</ul>
-<p>PAR1
-Used for elliptical, spheroidal, or toroidal systems. If KCS = 1
-or 2, PAR1 is the ratio of the ellipse Y-axis radius to X-axis
-radius (defaults to 1.0 (circle)). If KCS = 3, PAR1 is the major
-radius of the torus.</p>
-<p>PAR2
-Used for spheroidal systems. If KCS = 2, PAR2 = ratio of ellipse
-Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
-<dl class="simple">
-<dt>Coordinate system type:</dt><dd><ul class="simple">
-<li><p>0: Cartesian</p></li>
-<li><p>1: Cylindrical (circular or elliptical)</p></li>
-<li><p>2: Spherical (or spheroidal)</p></li>
-<li><p>3: Toroidal</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
 </div>
 </div>
 <div class="section" id="accessing-solution-results">
@@ -325,7 +277,7 @@ Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
 <span class="n">info</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">solution_info</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">info</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">info</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>This yields:</p>
@@ -437,7 +389,7 @@ Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
 <div class="section" id="accessing-element-solution-data">
 <h3>Accessing Element Solution Data<a class="headerlink" href="#accessing-element-solution-data" title="Permalink to this headline">¶</a></h3>
 <p>Individual element results for the entire solution can be accessed using the <code class="docutils literal notranslate"><span class="pre">element_solution_data</span></code> method.  For example, to get the volume of each element:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;./file.rst&#39;</span><span class="p">)</span>
@@ -473,7 +425,7 @@ Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
 </pre></div>
 </div>
 <p>You can reference the load step table and harmonic index tables by printing the result header dictionary keys <code class="docutils literal notranslate"><span class="pre">'ls_table'</span></code> and <code class="docutils literal notranslate"><span class="pre">'hindex'</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">resultheader</span><span class="p">[</span><span class="s1">&#39;ls_table&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">resultheader</span><span class="p">[</span><span class="s1">&#39;ls_table&#39;</span><span class="p">])</span>
 <span class="go"># load step, sub step, cumulative index</span>
 <span class="go">array([[ 1,  1,  1],</span>
 <span class="go">       [ 1,  2,  2],</span>
@@ -482,7 +434,7 @@ Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
 <span class="go">       [ 1,  5,  5],</span>
 <span class="go">       [ 2,  1,  6],</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">resultheader</span><span class="p">[</span><span class="s1">&#39;hindex&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">resultheader</span><span class="p">[</span><span class="s1">&#39;hindex&#39;</span><span class="p">])</span>
 <span class="go">array([0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4,</span>
 <span class="go">       4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7], dtype=int32)</span>
 </pre></div>
@@ -513,20 +465,20 @@ Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
 </div>
 <p>Results from a cyclic analysis require additional post processing to be interperted correctly.  Mode shapes are stored within the result file as unprocessed parts of the real and imaginary parts of a modal solution.  <code class="docutils literal notranslate"><span class="pre">pyansys</span></code> combines these values into a single complex array and then returns the real result of that array.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">ms</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_solution</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># mode shape of result 11</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">ms</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ms</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
 <span class="go">[[ 44.700, 45.953, 38.717]</span>
 <span class="go"> [ 42.339, 48.516, 52.475]</span>
 <span class="go"> [ 36.000, 33.121, 39.044]]</span>
 </pre></div>
 </div>
 <p>Sometimes it is necessary to determine the maximum displacement of a mode.  To do so, return the complex solution with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nnum</span><span class="p">,</span> <span class="n">ms</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">as_complex</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">nnum</span><span class="p">,</span> <span class="n">ms</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">as_complex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">ms</span><span class="o">*</span><span class="n">ms</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanargmax</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span>
 <span class="n">ang</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">ms</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># rotate the solution by the angle of the maximum nodal response</span>
-<span class="n">ms</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ang</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ang</span><span class="p">)</span>
+<span class="n">ms</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">ang</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ang</span><span class="p">)</span>
 
 <span class="c1"># get only the real response</span>
 <span class="n">ms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">ms</span><span class="p">)</span>
@@ -537,7 +489,7 @@ Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
 <p>The results of a single sector can be displayed as well using the <code class="docutils literal notranslate"><span class="pre">plot_nodal_solution</span></code></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the result from the first mode of the 2nd harmonic index</span>
 <span class="n">rnum</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">harmonic_index_to_cumulative</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="n">rnum</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="n">rnum</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="_images/rotor.jpg" src="_images/rotor.jpg" />
@@ -563,16 +515,22 @@ Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
 <h2>ResultFile Object Methods<a class="headerlink" href="#resultfile-object-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pyansys.rst.ResultFile">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.rst.</code><code class="sig-name descname">ResultFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">ignore_cyclic=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.rst.</code><code class="sig-name descname">ResultFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">ignore_cyclic=False</em>, <em class="sig-param">read_geometry=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads a binary ANSYS result file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – Filename of the ANSYS binary result file.</p></li>
 <li><p><strong>ignore_cyclic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Ignores any cyclic properties.</p></li>
+<li><p><strong>read_geometry</strong> (<em>bool</em><em>, </em><em>optional</em>) – Debug parameter.</p></li>
 </ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.animate_nodal_solution">
 <code class="sig-name descname">animate_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">add_text=True</em>, <em class="sig-param">max_disp=0.1</em>, <em class="sig-param">nangles=100</em>, <em class="sig-param">movie_filename=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
@@ -652,10 +610,11 @@ A single loop of the mode will be recorded.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>element_data</strong> – List with one data item for each element.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>enum</strong> (<em>np.ndarray</em>) – Element numbers.</p></li>
+<li><p><strong>element_data</strong> (<em>list</em>) – List with one data item for each element.</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -678,8 +637,8 @@ position not used</p>
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.element_stress">
 <code class="sig-name descname">element_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">principal=False</em>, <em class="sig-param">in_element_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.element_stress" title="Permalink to this definition">¶</a></dt>
-<dd><p>Equivalent ANSYS command: PRESOL, S</p>
-<p>Retrives the element component stresses.</p>
+<dd><p>Retrives the element component stresses.</p>
+<p>Equivalent ANSYS command: PRESOL, S</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -732,6 +691,13 @@ X, Y, Z, XY, YZ, XZ, EEL.</p></li>
 </p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Load the nodal elastic strain for the first solution.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">elastic_strain</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_elastic_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -755,6 +721,13 @@ X, Y, Z, XY, YZ, XZ, EEL.</p></li>
 </p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Load the nodal plastic strain for the first solution.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">plastic_strain</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_plastic_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -767,10 +740,6 @@ cartesian coordinate system or nodal coordinate system.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
 list containing (step, substep) of the requested result.</p></li>
-<li><p><strong>sort</strong> (<em>bool</em><em>, </em><em>optional</em>) – Resorts the results so that the results correspond to the
-sorted node numbering (self.nnum) (default).  If left
-unsorted, results correspond to the nodal equivalence
-array self.resultheader[‘neqv’]</p></li>
 <li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, returns results in the nodal coordinate system.
 Default False.</p></li>
 </ul>
@@ -778,11 +747,21 @@ Default False.</p></li>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>nnum</strong> (<em>int np.ndarray</em>) – Node numbers associated with the results.</p></li>
-<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Result is (nnod x numdof), or number of nodes by degrees of freedom</p></li>
+<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Result is (<code class="docutils literal notranslate"><span class="pre">nnod</span></code> x <code class="docutils literal notranslate"><span class="pre">sumdof</span></code>), or number of nodes by degrees
+of freedom which includes <code class="docutils literal notranslate"><span class="pre">numdof</span></code> and <code class="docutils literal notranslate"><span class="pre">nfldof</span></code>.</p></li>
 </ul>
 </p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Some solution results may not include all node numbers.  This
+is reflected in the <code class="docutils literal notranslate"><span class="pre">result</span></code> and <code class="docutils literal notranslate"><span class="pre">nnum</span></code> arrays.</p>
 </dd></dl>
 
 <dl class="method">
@@ -792,10 +771,10 @@ Default False.</p></li>
 solution.</p>
 <p>The order of the results corresponds to the sorted node
 numbering.</p>
-<p>This algorithm, like ANSYS, computes the nodal stress by
-averaging the stress for each element at each node.  Due to
-the discontinuities across elements, stresses will vary based
-on the element they are evaluated from.</p>
+<p>Computes the nodal stress by averaging the stress for each
+element at each node.  Due to the discontinuities across
+elements, stresses will vary based on the element they are
+evaluated from.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
@@ -803,13 +782,19 @@ list containing (step, substep) of the requested result.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p><strong>nodenum</strong> (<em>numpy.ndarray</em>) – Node numbers of the result.</p></li>
+<li><p><strong>nnum</strong> (<em>numpy.ndarray</em>) – Node numbers of the result.</p></li>
 <li><p><strong>stress</strong> (<em>numpy.ndarray</em>) – Stresses at X, Y, Z, XY, YZ, and XZ Sxz averaged at each corner
 node.</p></li>
 </ul>
 </p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
 <p class="rubric">Notes</p>
 <p>Nodes without a stress value will be NAN.
 Equivalent ANSYS command: PRNSOL, S</p>
@@ -836,6 +821,13 @@ X, Y, Z, XY, YZ, XZ, EQV, ESWELL</p></li>
 </p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Load the nodal thermal strain for the first solution</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">thermal_strain</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_thermal_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -856,8 +848,8 @@ Default False.</p></li>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>nnum</strong> (<em>int np.ndarray</em>) – Node numbers associated with the results.</p></li>
-<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Result is <code class="docutils literal notranslate"><span class="pre">self.nsets</span> <span class="pre">x</span> <span class="pre">nnod</span> <span class="pre">x</span> <span class="pre">Sumdof</span></code>, or number of time steps
-by number of nodes by degrees of freedom</p></li>
+<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Result is <code class="docutils literal notranslate"><span class="pre">self.nsets</span> <span class="pre">x</span> <span class="pre">nnod</span> <span class="pre">x</span> <span class="pre">Sumdof</span></code>, or number of
+time steps by number of nodes by degrees of freedom.</p></li>
 </ul>
 </p>
 </dd>
@@ -868,6 +860,55 @@ by number of nodes by degrees of freedom</p></li>
 <dt id="pyansys.rst.ResultFile.node_components">
 <em class="property">property </em><code class="sig-name descname">node_components</code><a class="headerlink" href="#pyansys.rst.ResultFile.node_components" title="Permalink to this definition">¶</a></dt>
 <dd><p>dictionary of ansys node components</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.rst.ResultFile.parse_coordinate_system">
+<code class="sig-name descname">parse_coordinate_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.parse_coordinate_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads in coordinate system information from a binary result
+file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<em>file object</em>) – Open binary result file.</p></li>
+<li><p><strong>dict</strong> (<em>geometry_header</em><em>,</em>) – Dictionary containing pointers to geometry items in the ansys
+result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>c_systems</strong> – Dictionary containing one entry for each defined coordinate
+system.  If no non-standard coordinate systems have been
+defined, there will be only one None.  First coordinate system
+is assumed to be global cartesian.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>euler angles : [THXY, THYZ, THZX]</p>
+<ul class="simple">
+<li><p>First rotation about local Z (positive X toward Y).</p></li>
+<li><p>Second rotation about local X (positive Y toward Z).</p></li>
+<li><p>Third rotation about local Y (positive Z toward X).</p></li>
+</ul>
+<p>PAR1
+Used for elliptical, spheroidal, or toroidal systems. If KCS = 1
+or 2, PAR1 is the ratio of the ellipse Y-axis radius to X-axis
+radius (defaults to 1.0 (circle)). If KCS = 3, PAR1 is the major
+radius of the torus.</p>
+<p>PAR2
+Used for spheroidal systems. If KCS = 2, PAR2 = ratio of ellipse
+Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
+<dl class="simple">
+<dt>Coordinate system type:</dt><dd><ul class="simple">
+<li><p>0: Cartesian</p></li>
+<li><p>1: Cylindrical (circular or elliptical)</p></li>
+<li><p>2: Spherical (or spheroidal)</p></li>
+<li><p>3: Toroidal</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -898,6 +939,12 @@ containing all nodes of the component.  Default True.</p></li>
 <dd class="field-odd"><p>list</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -928,11 +975,12 @@ containing all nodes of the component.  Default True.</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>Plot thermal strain for result 0 of verification manual example 33
-Plot thermal strain for a static pontoon model
-&gt;&gt;&gt; import pyansys
-&gt;&gt;&gt; result = pyansys.download_pontoon()
-&gt;&gt;&gt; result.plot_nodal_elastic_strain(0)</p>
+<p>Plot thermal strain for a static pontoon model</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">download_pontoon</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_elastic_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -962,12 +1010,19 @@ containing all nodes of the component.  Default True.</p></li>
 </ul>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Plot plastic strain for a static pontoon model</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">download_pontoon</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_plastic_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_solution">
 <code class="sig-name descname">plot_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">max_disp=0.1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plots a nodal result.</p>
+<dd><p>Plots the nodal solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -992,18 +1047,25 @@ containing all nodes of the component.  Default True.</p></li>
 <dd class="field-odd"><p>list</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Plot the nodal solution result 0 of verification manual
+example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">download_verification_result</span><span class="p">(</span><span class="mi">33</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_stress">
-<code class="sig-name descname">plot_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp=None</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the stresses at each node in the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
 list containing (step, substep) of the requested result.</p></li>
-<li><p><strong>stype</strong> (<em>string</em>) – </p></li>
 <li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Thermal strain component to display.  Available options:
 - <code class="docutils literal notranslate"><span class="pre">&quot;X&quot;</span></code>
 - <code class="docutils literal notranslate"><span class="pre">&quot;Y&quot;</span></code>
@@ -1057,10 +1119,12 @@ containing all nodes of the component.  Default True.</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>Plot thermal strain for result 0 of verification manual example 33
-&gt;&gt;&gt; import pyansys
-&gt;&gt;&gt; result = pyansys.download_verification_result(33)
-&gt;&gt;&gt; result.plot_nodal_thermal_strain(0)</p>
+<p>Plot thermal strain for result 0 of verification manual example 33</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">download_verification_result</span><span class="p">(</span><span class="mi">33</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_thermal_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -1098,12 +1162,12 @@ containing all nodes of the component.  Default True.</p></li>
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.principal_nodal_stress">
 <code class="sig-name descname">principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the principal component stresses for each node in the
-solution.</p>
+<dd><p>Computes the principal component stresses for each node in
+the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a list containing
-(step, substep) of the requested result.</p>
+<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
@@ -1151,21 +1215,6 @@ Binary can only be selected for the legacy writer.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyansys.rst.ResultFile.solution_data_info">
-<code class="sig-name descname">solution_data_info</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.solution_data_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return an informative dictionary of solution data for a
-result.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>header</strong> – Integer solution data header data.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>dict</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="pyansys.rst.ResultFile.solution_info">
 <code class="sig-name descname">solution_info</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.solution_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an informative dictionary of solution data for a
@@ -1195,12 +1244,15 @@ VolBase - Initial total volume for VOF
 tstep   - Time Step size for FLOTRAN analysis
 0.0     - position not used
 accel   - linear acceleration terms
-omega   - angular velocity (first 3 terms) and angular acceleration (second 3 terms)
-omegacg - angular velocity (first 3 terms) and angular</p>
+omega   - angular velocity (first 3 terms) and angular acceleration</p>
 <blockquote>
-<div><p>acceleration (second 3 terms) these velocity/acceleration
-terms are computed about the center of gravity</p>
+<div><p>(second 3 terms)</p>
 </div></blockquote>
+<dl class="simple">
+<dt>omegacg - angular velocity (first 3 terms) and angular</dt><dd><p>acceleration (second 3 terms) these velocity/acceleration
+terms are computed about the center of gravity</p>
+</dd>
+</dl>
 <p>cgcent  - (x,y,z) location of center of gravity
 fatjack - FATJACK ocean wave data (wave height and period)
 dval1   - if pmeth=0: FATJACK ocean wave direction</p>

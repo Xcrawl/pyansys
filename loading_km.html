@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Full File (full) &mdash; pyansys 0.39.5 documentation</title>
+  <title>Working with a ANSYS Full File (full) &mdash; pyansys 0.39.6 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.39.5
+                0.39.6
               </div>
             
           
@@ -183,7 +183,7 @@
 
 <span class="c1"># Create result reader object and read in full file</span>
 <span class="n">full</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">fullfile</span><span class="p">)</span>
-<span class="n">dof_ref</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">full</span><span class="o">.</span><span class="n">load_km</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">dof_ref</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">full</span><span class="o">.</span><span class="n">load_km</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>ANSYS only stores the upper triangular matrix in the full file.  To make the full matrix:</p>
@@ -192,7 +192,7 @@
 </pre></div>
 </div>
 <p>If you have <code class="docutils literal notranslate"><span class="pre">scipy</span></code> installed, you can solve solve for the natural frequencies and mode shapes of a system.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">linalg</span>
 
 <span class="c1"># condition the k matrix</span>
@@ -222,7 +222,7 @@
 <div class="section" id="plotting-a-mode-shape">
 <h2>Plotting a Mode Shape<a class="headerlink" href="#plotting-a-mode-shape" title="Permalink to this headline">¶</a></h2>
 <p>You can also plot the mode shape of this finite element model.  Since the constrained degrees of freedom have been removed from the solution, you have to account for these when displaying the displacement.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="kn">as</span> <span class="nn">pv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 
 <span class="c1"># Get the 4th mode shape</span>
 <span class="n">full_mode_shape</span> <span class="o">=</span> <span class="n">v</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="c1"># x, y, z displacement for each node</span>
@@ -249,9 +249,9 @@
 <span class="n">new_grid</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">new_grid</span><span class="o">.</span><span class="n">points</span> <span class="o">+=</span> <span class="n">disp</span><span class="o">/</span><span class="mi">80</span>
 <span class="n">plobj</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">new_grid</span><span class="p">,</span> <span class="n">scalars</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">stitle</span><span class="o">=</span><span class="s1">&#39;Normalized</span><span class="se">\n</span><span class="s1">Displacement&#39;</span><span class="p">,</span>
-              <span class="n">flipscalars</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+              <span class="n">flipscalars</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">plobj</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s1">&#39;Cantliver Beam 4th Mode Shape at {:.4f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
+<span class="n">plobj</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s1">&#39;Cantliver Beam 4th Mode Shape at </span><span class="si">{:.4f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
                <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">plobj</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
