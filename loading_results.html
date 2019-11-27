@@ -801,6 +801,35 @@ Equivalent ANSYS command: PRNSOL, S</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="pyansys.rst.ResultFile.nodal_temperature">
+<code class="sig-name descname">nodal_temperature</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the temperature for each node in the
+solution.</p>
+<p>The order of the results corresponds to the sorted node
+numbering.</p>
+<p>Equivalent MAPDL command: PRNSOL, TEMP</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>numpy.ndarray</em>) – Node numbers of the result.</p></li>
+<li><p><strong>temperature</strong> (<em>numpy.ndarray</em>) – Tempature at each node.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_temperature</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyansys.rst.ResultFile.nodal_thermal_strain">
 <code class="sig-name descname">nodal_thermal_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_thermal_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nodal component plastic strains.  This record contains
@@ -1088,6 +1117,36 @@ containing all nodes of the component.  Default True.</p></li>
 <dd class="field-odd"><p>list</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.rst.ResultFile.plot_nodal_temperature">
+<code class="sig-name descname">plot_nodal_temperature</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot nodal temperature</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rnum</strong> (<em>int</em>) – Result number</p></li>
+<li><p><strong>show_displacement</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deforms mesh according to the result.</p></li>
+<li><p><strong>displacement_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – Increases or decreases displacement by a factor.</p></li>
+<li><p><strong>node_components</strong> (<em>list</em><em>, </em><em>optional</em>) – Accepts either a string or a list strings of node
+components to plot.  For example:
+<code class="docutils literal notranslate"><span class="pre">['MY_COMPONENT',</span> <span class="pre">'MY_OTHER_COMPONENT]</span></code></p></li>
+<li><p><strong>sel_type_all</strong> (<em>bool</em><em>, </em><em>optional</em>) – If node_components is specified, plots those elements
+containing all nodes of the component.  Default True.</p></li>
+<li><p><strong>**kwargs</strong> (<em>keyword arguments</em>) – Optional keyword arguments.  See help(pyvista.plot)</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Plot thermal strain of a sample file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_temperature</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Plot while showing edges and disabling lighting
+&gt;&gt;&gt; result.plot_nodal_temperature(0, show_edges=True, lighting=False)</p>
 </dd></dl>
 
 <dl class="method">
