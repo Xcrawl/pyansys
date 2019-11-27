@@ -843,8 +843,8 @@ K,4,0,1,0
 <dl class="class">
 <dt id="pyansys.Mapdl">
 <em class="property">class </em><code class="sig-prename descclassname">pyansys.</code><code class="sig-name descname">Mapdl</code><span class="sig-paren">(</span><em class="sig-param">exec_file=None</em>, <em class="sig-param">run_location=None</em>, <em class="sig-param">jobname='file'</em>, <em class="sig-param">nproc=2</em>, <em class="sig-param">override=False</em>, <em class="sig-param">loglevel='INFO'</em>, <em class="sig-param">additional_switches=''</em>, <em class="sig-param">start_timeout=120</em>, <em class="sig-param">interactive_plotting=False</em>, <em class="sig-param">log_broadcast=False</em>, <em class="sig-param">check_version=True</em>, <em class="sig-param">prefer_pexpect=True</em>, <em class="sig-param">log_apdl='w'</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl" title="Permalink to this definition">¶</a></dt>
-<dd><p>This class opens ANSYS in the background and allows commands to be
-passed to a persistent session.</p>
+<dd><p>This class opens ANSYS in the background and allows commands to
+be passed to a persistent session.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -889,7 +889,7 @@ Default ‘w’.  Set to ‘a’ to append to an existing log.</p></li>
 </dl>
 <p class="rubric">Examples</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">()</span>
 </pre></div>
 </div>
 <dl class="method">
