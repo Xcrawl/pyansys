@@ -45,6 +45,7 @@ load a sector modal analysis file
 
  .. code-block:: none
 
+    ANSYS MAPDL Result file object
     Units       : User Defined
     Version     : 15.0
     Cyclic      : True
@@ -154,7 +155,7 @@ animate a mode
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.343 seconds)
+   **Total running time of the script:** ( 0 minutes  6.056 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_sector_model.py:

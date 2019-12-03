@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.39.8 documentation</title>
+  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.39.9 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.39.8
+                0.39.9
               </div>
             
           
@@ -1084,6 +1084,10 @@ example</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>Plot with a white background and showing edges</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -1576,7 +1580,7 @@ image.</p>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_nodal_solution">
-<code class="sig-name descname">plot_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">label=''</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">label=''</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a nodal result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1588,7 +1592,6 @@ and ‘norm’, corresponding to the x directin, y direction,
 z direction, and the combined direction (x**2 + y**2 +
 z**2)**0.5</p></li>
 <li><p><strong>label</strong> (<em>str</em><em>, </em><em>optional</em>) – Annotation string to add to scalar bar in plot.</p></li>
-<li><p><strong>cmap</strong> (<em>str</em><em>, </em><em>optional</em>) – Cmap string.  See available matplotlib cmaps.</p></li>
 <li><p><strong>flip_scalars</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flip direction of cmap.</p></li>
 <li><p><strong>cpos</strong> (<em>list</em><em>, </em><em>optional</em>) – List of camera position, focal point, and view up.  Plot
 first, then output the camera position and save it.</p></li>
@@ -1616,7 +1619,7 @@ components to plot.  For example:
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_nodal_stress">
-<code class="sig-name descname">plot_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype</em>, <em class="sig-param">label=''</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype</em>, <em class="sig-param">label=''</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a nodal result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1625,7 +1628,6 @@ components to plot.  For example:
 list containing (step, substep) of the requested result.</p></li>
 <li><p><strong>stype</strong> (<em>string</em>) – Stress type from the following list: [Sx Sy Sz Sxy Syz Sxz]</p></li>
 <li><p><strong>label</strong> (<em>str</em><em>, </em><em>optional</em>) – Annotation string to add to scalar bar in plot.</p></li>
-<li><p><strong>cmap</strong> (<em>str</em><em>, </em><em>optional</em>) – Cmap string.  See available matplotlib cmaps.</p></li>
 <li><p><strong>flip_scalars</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flip direction of cmap.</p></li>
 <li><p><strong>cpos</strong> (<em>list</em><em>, </em><em>optional</em>) – List of camera position, focal point, and view up.  Plot
 first, then output the camera position and save it.</p></li>
@@ -1655,7 +1657,7 @@ containing all nodes of the component.  Default True.</p></li>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_point_scalars">
-<code class="sig-name descname">plot_point_scalars</code><span class="sig-paren">(</span><em class="sig-param">scalars</em>, <em class="sig-param">rnum=None</em>, <em class="sig-param">stitle=''</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">grid=None</em>, <em class="sig-param">add_text=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_point_scalars" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_point_scalars</code><span class="sig-paren">(</span><em class="sig-param">scalars</em>, <em class="sig-param">rnum=None</em>, <em class="sig-param">stitle=''</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">grid=None</em>, <em class="sig-param">add_text=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_point_scalars" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot point scalars on active mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1664,8 +1666,6 @@ containing all nodes of the component.  Default True.</p></li>
 <li><p><strong>rnum</strong> (<em>int</em><em>, </em><em>optional</em>) – Cumulative result number.  Used for adding informative
 text.</p></li>
 <li><p><strong>stitle</strong> (<em>str</em><em>, </em><em>optional</em>) – Title of the scalar bar.</p></li>
-<li><p><strong>cmap</strong> (<em>str</em><em>, </em><em>optional</em>) – See matplotlib cmaps:
-matplotlib.org/examples/color/cmaps_reference.html</p></li>
 <li><p><strong>flip_scalars</strong> (<em>bool</em><em>, </em><em>optional</em>) – Reverses the direction of the cmap.</p></li>
 <li><p><strong>screenshot</strong> (<em>str</em><em>, </em><em>optional</em>) – When a filename, saves screenshot to disk.</p></li>
 <li><p><strong>cpos</strong> (<em>list</em><em>, </em><em>optional</em>) – 3x3 list describing the camera position.  Obtain it by
@@ -1689,7 +1689,7 @@ instead.</p></li>
 
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_principal_nodal_stress">
-<code class="sig-name descname">plot_principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype</em>, <em class="sig-param">cmap=None</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot the principal stress at each node in the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1701,9 +1701,6 @@ stress intensity, and SEQV equivalent stress.</p>
 <p>Stress type must be a string from the following list:</p>
 <p>[‘1’, ‘2’, ‘3’, ‘INT’, ‘EQV’]</p>
 </p></li>
-<li><p><strong>cmap</strong> (<em>str</em><em>, </em><em>optional</em>) – Cmap string.  See available matplotlib cmaps.  Only
-applicable for when displaying scalars.  Defaults None
-(rainbow).  Requires matplotlib.</p></li>
 <li><p><strong>flip_scalars</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flip direction of cmap.</p></li>
 <li><p><strong>cpos</strong> (<em>list</em><em>, </em><em>optional</em>) – List of camera position, focal point, and view up.  Plot
 first, then output the camera position and save it.</p></li>
