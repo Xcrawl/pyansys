@@ -1006,10 +1006,7 @@ created/overwritten.</p>
 <code class="sig-name descname">read_float_from_inline_function</code><span class="sig-paren">(</span><em class="sig-param">function_str</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.read_float_from_inline_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use a APDL inline function to get a float value from ANSYS.
 Take note, that internally an APDL parameter __floatparameter__ is
-created/overwritten.
-.. rubric:: Example</p>
-<p>inline_function = “node({},{},{})”.format(x, y, z)
-node = apdl.read_float_from_inline_function(inline_function)</p>
+created/overwritten.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>function_str</strong> (<em>str</em>) – String containing an inline function as used in APDL..</p>
@@ -1021,6 +1018,11 @@ node = apdl.read_float_from_inline_function(inline_function)</p>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inline_function</span> <span class="o">=</span> <span class="s2">&quot;node(</span><span class="si">{}</span><span class="s2">,</span><span class="si">{}</span><span class="s2">,</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">node</span> <span class="o">=</span> <span class="n">apdl</span><span class="o">.</span><span class="n">read_float_from_inline_function</span><span class="p">(</span><span class="n">inline_function</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
