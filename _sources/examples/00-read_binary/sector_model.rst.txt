@@ -77,7 +77,6 @@ plot the rotor
 
  .. code-block:: none
 
-    WARNING:root:`.plot()` is deprecated. Please use `.show()` instead.
 
     [(6.501737475645392, 6.524253991464702, 6.091648804199281),
      (-0.0006467092362623106, 0.021869806583048046, -0.41073538068237314),
@@ -161,7 +160,7 @@ animate a mode
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.888 seconds)
+   **Total running time of the script:** ( 0 minutes  8.752 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_sector_model.py:
