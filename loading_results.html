@@ -670,6 +670,12 @@ the bottom layer is reported.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="pyansys.rst.ResultFile.n_sector">
+<em class="property">property </em><code class="sig-name descname">n_sector</code><a class="headerlink" href="#pyansys.rst.ResultFile.n_sector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of sectors</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyansys.rst.ResultFile.nodal_elastic_strain">
 <code class="sig-name descname">nodal_elastic_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_elastic_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nodal component elastic strains.  This record contains
@@ -1354,7 +1360,7 @@ dval1   - if pmeth=0: FATJACK ocean wave direction</p>
 <dl class="class">
 <dt id="pyansys.cyclic_reader.CyclicResult">
 <em class="property">class </em><code class="sig-prename descclassname">pyansys.cyclic_reader.</code><code class="sig-name descname">CyclicResult</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds cyclic functionality to the result reader in pyansys</p>
+<dd><p>Adds cyclic functionality to the result class</p>
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.animate_nodal_solution">
 <code class="sig-name descname">animate_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">max_disp=0.1</em>, <em class="sig-param">nangles=180</em>, <em class="sig-param">show_phase=True</em>, <em class="sig-param">show_result_info=True</em>, <em class="sig-param">interpolate_before_map=True</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">movie_filename=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
@@ -1489,22 +1495,21 @@ information as the duplicate sector.</p>
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.nodal_stress">
 <code class="sig-name descname">nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">as_complex=False</em>, <em class="sig-param">full_rotor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.nodal_stress" title="Permalink to this definition">¶</a></dt>
-<dd><p>Equivalent ANSYS command: PRNSOL, S</p>
-<p>Retrieves the component stresses for each node in the
+<dd><p>Retrieves the component stresses for each node in the
 solution.</p>
 <p>The order of the results corresponds to the sorted node
 numbering.</p>
-<p>This algorithm, like ANSYS, computes the nodal stress by
-averaging the stress for each element at each node.  Due to
-the discontinuities across elements, stresses will vary based
-on the element they are evaluated from.</p>
+<p>Computes the nodal stress by averaging the stress for each
+element at each node.  Due to the discontinuities across
+elements, stresses will vary based on the element they are
+evaluated from.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
 list containing (step, substep) of the requested result.</p></li>
 <li><p><strong>phase</strong> (<em>float</em>) – Phase adjustment of the stress in degrees.</p></li>
-<li><p><strong>as_complex</strong> (<em>bool</em><em>, </em><em>optional</em>) – Reports stess as a complex result.  Real and imaginary
+<li><p><strong>as_complex</strong> (<em>bool</em><em>, </em><em>optional</em>) – Reports stress as a complex result.  Real and imaginary
 stresses correspond to the stress of the main and repeated
 sector.  Stress can be “rotated” using the phase
 parameter.</p></li>
@@ -1522,6 +1527,12 @@ result is the result object.</p></li>
 </p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
 <p class="rubric">Notes</p>
 <p>Nodes without a stress value will be NAN.</p>
 </dd></dl>
