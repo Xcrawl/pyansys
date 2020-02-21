@@ -103,11 +103,8 @@ print the available result types
 
  .. code-block:: none
 
-    nodal stresses
-    elastic strains
-    thermal strains
 
-    ['ENS', 'EEL', 'ETH']
+    {'EMS': 'misc. data', 'ENF': 'nodal forces', 'ENS': 'nodal stresses', 'ENG': 'volume and energies', 'EEL': 'elastic strains', 'EUL': 'euler angles', 'MNL': 'material nonlinear record'}
 
 
 
@@ -202,7 +199,7 @@ Missing solution data will plot as a white mesh
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.180 seconds)
+   **Total running time of the script:** ( 0 minutes  7.038 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_pontoon.py:
