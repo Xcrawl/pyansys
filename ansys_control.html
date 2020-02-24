@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ANSYS APDL Interactive Control &mdash; pyansys 0.39.13 documentation</title>
+  <title>ANSYS APDL Interactive Control &mdash; pyansys 0.39.14 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.39.13
+                0.39.14
               </div>
             
           
@@ -874,8 +874,8 @@ included to start up the ANSYS MAPDL server.</p>
 </p></li>
 <li><p><strong>start_timeout</strong> (<em>float</em><em>, </em><em>optional</em>) – Time to wait before raising error that ANSYS is unable to
 start.</p></li>
-<li><p><strong>interactive_plotting</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enables interactive plotting using matplotlib.  Install
-matplotlib first.  Default False.</p></li>
+<li><p><strong>interactive_plotting</strong> (<em>bool</em><em>, </em><em>optional</em>) – Enables interactive plotting using <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>.  Default
+False.</p></li>
 <li><p><strong>log_broadcast</strong> (<em>bool</em><em>, </em><em>optional</em>) – Additional logging for ansys solution progress.  Default True
 and visible at log level ‘INFO’.</p></li>
 <li><p><strong>check_version</strong> (<em>bool</em><em>, </em><em>optional</em>) – Check version of binary file and raise exception when invalid.</p></li>
@@ -906,12 +906,6 @@ ansys binary</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyansys.Mapdl.close_apdl_log">
-<code class="sig-name descname">close_apdl_log</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.close_apdl_log" title="Permalink to this definition">¶</a></dt>
-<dd><p>Closes APDL log</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pyansys.Mapdl.enable_interactive_plotting">
 <code class="sig-name descname">enable_interactive_plotting</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.enable_interactive_plotting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enables interactive plotting.  Requires matplotlib</p>
@@ -932,10 +926,57 @@ created/overwritten.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="pyansys.Mapdl.inquire">
+<code class="sig-name descname">inquire</code><span class="sig-paren">(</span><em class="sig-param">func</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.inquire" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns system information</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>str</em>) – Specifies the type of system information returned.  See the
+notes section for more information.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>value</strong> – Value of the inquired item.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Allowable func entries
+LOGIN - Returns the pathname of the login directory on Linux
+systems or the pathname of the default directory (including
+drive letter) on Windows systems.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DOCU</span></code> - Pathname of the ANSYS docu directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">APDL</span></code> - Pathname of the ANSYS APDL directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PROG</span></code> - Pathname of the ANSYS executable directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AUTH</span></code> - Pathname of the directory in which the license file resides.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">USER</span></code> - Name of the user currently logged-in.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DIRECTORY</span></code> - Pathname of the current directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">JOBNAME</span></code> - Current Jobname.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RSTDIR</span></code> - Result file directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RSTFILE</span></code> - Result file name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RSTEXT</span></code> - Result file extension</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OUTPUT</span></code> - Current output file name</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<p>Return the job name</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">inquire</span><span class="p">(</span><span class="s1">&#39;JOBNAME&#39;</span><span class="p">)</span>
+<span class="go">&#39;file&#39;</span>
+</pre></div>
+</div>
+<p>Return the result file name</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mapdl</span><span class="o">.</span><span class="n">inquire</span><span class="p">(</span><span class="s1">&#39;RSTFILE&#39;</span><span class="p">)</span>
+<span class="go">&#39;file.rst&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="pyansys.Mapdl.jobname">
 <em class="property">property </em><code class="sig-name descname">jobname</code><a class="headerlink" href="#pyansys.Mapdl.jobname" title="Permalink to this definition">¶</a></dt>
 <dd><p>MAPDL job name.</p>
-<p>This is requested from teh active mapdl instance</p>
+<p>This is requested from the active mapdl instance</p>
 </dd></dl>
 
 <dl class="method">
@@ -989,12 +1030,6 @@ created/overwritten.</p>
 <dd class="field-odd"><p><strong>include_result</strong> (<em>bool</em><em>, </em><em>optional</em>) – Allow the result file to be post processed in the GUI.</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.Mapdl.open_process">
-<code class="sig-name descname">open_process</code><span class="sig-paren">(</span><em class="sig-param">nproc</em>, <em class="sig-param">timeout</em>, <em class="sig-param">additional_switches</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.open_process" title="Permalink to this definition">¶</a></dt>
-<dd><p>Opens an ANSYS process using pexpect</p>
 </dd></dl>
 
 <dl class="method">
@@ -1090,27 +1125,9 @@ not write command to log even through APDL command logging is enabled.</p></li>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyansys.Mapdl.run_corba_command">
-<code class="sig-name descname">run_corba_command</code><span class="sig-paren">(</span><em class="sig-param">command</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.run_corba_command" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sends a command to the mapdl server</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.Mapdl.run_process_command">
-<code class="sig-name descname">run_process_command</code><span class="sig-paren">(</span><em class="sig-param">command</em>, <em class="sig-param">return_response=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.run_process_command" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sends command and returns ANSYS’s response</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pyansys.Mapdl.set_log_level">
 <code class="sig-name descname">set_log_level</code><span class="sig-paren">(</span><em class="sig-param">loglevel</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.set_log_level" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets log level</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.Mapdl.start_broadcast_logger">
-<code class="sig-name descname">start_broadcast_logger</code><span class="sig-paren">(</span><em class="sig-param">update_rate=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.start_broadcast_logger" title="Permalink to this definition">¶</a></dt>
-<dd><p>separate logger using broadcast_file</p>
 </dd></dl>
 
 </dd></dl>

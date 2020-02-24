@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.39.13 documentation</title>
+  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.39.14 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.39.13
+                0.39.14
               </div>
             
           
@@ -1744,7 +1744,34 @@ containing all nodes of the component.  Default True.</p></li>
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.principal_nodal_stress">
 <code class="sig-name descname">principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">as_complex=False</em>, <em class="sig-param">full_rotor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns principal nodal stress for a cumulative result</p>
+<dd><p>Computes the principal component stresses for each node in
+the solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p></li>
+<li><p><strong>phase</strong> (<em>float</em>) – Phase adjustment of the stress in degrees.</p></li>
+<li><p><strong>as_complex</strong> (<em>bool</em><em>, </em><em>optional</em>) – Returns result as a complex number, otherwise as the real
+part rotated by phase.  Default False.</p></li>
+<li><p><strong>full_rotor</strong> (<em>bool</em><em>, </em><em>optional</em>) – Expand sector solution to full rotor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nodenum</strong> (<em>numpy.ndarray</em>) – Node numbers of the result.</p></li>
+<li><p><strong>pstress</strong> (<em>numpy.ndarray</em>) – Principal stresses, stress intensity, and equivalant stress.
+[sigma1, sigma2, sigma3, sint, seqv]</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>ANSYS equivalant of:
+PRNSOL, S, PRIN</p>
+<p>which returns:
+S1, S2, S3 principal stresses, SINT stress intensity, and SEQV
+equivalent stress.</p>
 </dd></dl>
 
 </dd></dl>
