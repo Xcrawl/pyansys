@@ -68,7 +68,7 @@ Geometry is stored both as a dictionary...
 
  .. code-block:: none
 
-    UnstructuredGrid (0x7fa8ff3adb40)
+    UnstructuredGrid (0x7fea4520abb0)
       N Cells:      25051
       N Points:     27132
       X Bounds:     0.000e+00, 2.700e+02
@@ -302,15 +302,15 @@ plot a mode shape with contours
 
 
 
-Animate a mode of a component the shaft 
+Animate a mode of a component the shaft
 
 
 .. code-block:: default
 
     shaft.animate_nodal_solution(5, node_components='SHAFT_MESH', comp='norm',
                                  max_disp=10, show_edges=True, cmap='bwr', cpos=cpos,
-                                 interactive=False)
-    # set interactive to True to plot continiously
+                                 loop=False)
+    # set loop to True to plot continiously
 
 
 
@@ -332,7 +332,7 @@ Animate a mode of a component the shaft
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.659 seconds)
+   **Total running time of the script:** ( 0 minutes  9.592 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_load_shaft_result.py:

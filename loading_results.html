@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.39.14 documentation</title>
+  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.39.15 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.39.14
+                0.39.15
               </div>
             
           
@@ -515,7 +515,7 @@ accessing:</p>
 <h2>ResultFile Object Methods<a class="headerlink" href="#resultfile-object-methods" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pyansys.rst.ResultFile">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.rst.</code><code class="sig-name descname">ResultFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">ignore_cyclic=False</em>, <em class="sig-param">read_geometry=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.rst.</code><code class="sig-name descname">ResultFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">read_geometry=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads a binary ANSYS result file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -543,18 +543,38 @@ list containing (step, substep) of the requested result.</p>
 <dt>comp<span class="classifier">str, optional</span></dt><dd><p>Scalar component to display.  Options are ‘x’, ‘y’, ‘z’,
 and ‘norm’, and None.</p>
 </dd>
+<dt>sel_type_all<span class="classifier">bool, optional</span></dt><dd><p>If node_components is specified, plots those elements
+containing all nodes of the component.  Default True.</p>
+</dd>
+<dt>add_text<span class="classifier">bool, optional</span></dt><dd><p>Adds information about the result when rnum is given.</p>
+</dd>
 <dt>max_disp<span class="classifier">float, optional</span></dt><dd><p>Maximum displacement in the units of the model.  Default
 0.1</p>
 </dd>
 <dt>nangles<span class="classifier">int, optional</span></dt><dd><p>Number of “frames” between each full cycle.</p>
 </dd>
-<dt>movie_filename<span class="classifier">str, optional</span></dt><dd><p>Filename of the movie to open.  Filename should end in mp4,
-but other filetypes may be supported.  See “imagio.get_writer”.
-A single loop of the mode will be recorded.</p>
+<dt>movie_filename<span class="classifier">str, optional</span></dt><dd><p>Filename of the movie to open.  Filename should end in
+<code class="docutils literal notranslate"><span class="pre">'mp4'</span></code>, but other filetypes may be supported.  See
+<code class="docutils literal notranslate"><span class="pre">imagio.get_writer</span></code>.  A single loop of the mode will be
+recorded.</p>
 </dd>
 <dt>kwargs<span class="classifier">optional keyword arguments, optional</span></dt><dd><p>See help(pyvista.Plot) for additional keyword arguments.</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Animate first result</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Animate second result while displaying the x scalars
+without looping</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">comp</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Animate second result and save as a movie</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">movie_filename</span><span class="o">=</span><span class="s1">&#39;disp.mp4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -1127,6 +1147,11 @@ containing all nodes of the component.  Default True.</p></li>
 <dd class="field-odd"><p>list</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Plot the X component nodal stress while showing displacement.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">plot_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">comp</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">show_displacement</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -1155,8 +1180,10 @@ containing all nodes of the component.  Default True.</p></li>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_temperature</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Plot while showing edges and disabling lighting
-&gt;&gt;&gt; result.plot_nodal_temperature(0, show_edges=True, lighting=False)</p>
+<p>Plot while showing edges and disabling lighting</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_temperature</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">lighting</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -1263,24 +1290,69 @@ equivalent stress.</p>
 
 <dl class="method">
 <dt id="pyansys.rst.ResultFile.save_as_vtk">
-<code class="sig-name descname">save_as_vtk</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.save_as_vtk" title="Permalink to this definition">¶</a></dt>
-<dd><p>Appends all results to an unstructured grid and writes it to
-disk.</p>
+<code class="sig-name descname">save_as_vtk</code><span class="sig-paren">(</span><em class="sig-param">filename, rsets=None, result_types=['ENS']</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.save_as_vtk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes results to a vtk readable file.</p>
 <p>The file extension will select the type of writer to use.
-‘.vtk’ will use the legacy writer, while ‘.vtu’ will select
-the VTK XML writer.</p>
+<code class="docutils literal notranslate"><span class="pre">'.vtk'</span></code> will use the legacy writer, while <code class="docutils literal notranslate"><span class="pre">'.vtu'</span></code> will
+select the VTK XML writer.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Filename of grid to be written.  The file extension will
-select the type of writer to use.  ‘.vtk’ will use the
-legacy writer, while ‘.vtu’ will select the VTK XML
-writer.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em>) – Filename of grid to be written.  The file extension will
+select the type of writer to use.  <code class="docutils literal notranslate"><span class="pre">'.vtk'</span></code> will use the
+legacy writer, while <code class="docutils literal notranslate"><span class="pre">'.vtu'</span></code> will select the VTK XML
+writer.</p></li>
+<li><p><strong>rsets</strong> (<em>collections.Iterable</em>) – List of result sets to write.  For example <code class="docutils literal notranslate"><span class="pre">range(3)</span></code></p></li>
+<li><p><strong>result_types</strong> (<em>list</em>) – <p>Result type to write.  For example <code class="docutils literal notranslate"><span class="pre">['ENF',</span> <span class="pre">'ENS']</span></code>
+List of some or all of the following:</p>
+<ul>
+<li><p>EMS: misc. data</p></li>
+<li><p>ENF: nodal forces</p></li>
+<li><p>ENS: nodal stresses</p></li>
+<li><p>ENG: volume and energies</p></li>
+<li><p>EGR: nodal gradients</p></li>
+<li><p>EEL: elastic strains</p></li>
+<li><p>EPL: plastic strains</p></li>
+<li><p>ECR: creep strains</p></li>
+<li><p>ETH: thermal strains</p></li>
+<li><p>EUL: euler angles</p></li>
+<li><p>EFX: nodal fluxes</p></li>
+<li><p>ELF: local forces</p></li>
+<li><p>EMN: misc. non-sum values</p></li>
+<li><p>ECD: element current densities</p></li>
+<li><p>ENL: nodal nonlinear data</p></li>
+<li><p>EHC: calculated heat generations</p></li>
+<li><p>EPT: element temperatures</p></li>
+<li><p>ESF: element surface stresses</p></li>
+<li><p>EDI: diffusion strains</p></li>
+<li><p>ETB: ETABLE items</p></li>
+<li><p>ECT: contact data</p></li>
+<li><p>EXY: integration point locations</p></li>
+<li><p>EBA: back stresses</p></li>
+<li><p>ESV: state variables</p></li>
+<li><p>MNL: material nonlinear record</p></li>
+</ul>
+</p></li>
+</ul>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
 <p>Binary files write much faster than ASCII, but binary files
 written on one system may not be readable on other systems.
 Binary can only be selected for the legacy writer.</p>
+<p class="rubric">Examples</p>
+<p>Write in binary</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">save_as_vtk</span><span class="p">(</span><span class="s1">&#39;results.vtk&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Write using the xml writer</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">save_as_vtk</span><span class="p">(</span><span class="s1">&#39;results.vtu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Write only nodal and elastic strain for the first result</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">save_as_vtk</span><span class="p">(</span><span class="s1">&#39;results.vtk&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;EEL&#39;</span><span class="p">,</span> <span class="s1">&#39;EPL&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="method">
@@ -1353,6 +1425,15 @@ dval1   - if pmeth=0: FATJACK ocean wave direction</p>
 <dt id="pyansys.rst.ResultFile.write_tables">
 <code class="sig-name descname">write_tables</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.write_tables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write binary tables to ASCII.  Assumes int32</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Filename to write the tables to.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">write_tables</span><span class="p">(</span><span class="s1">&#39;tables.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -1363,7 +1444,7 @@ dval1   - if pmeth=0: FATJACK ocean wave direction</p>
 <dd><p>Adds cyclic functionality to the result class</p>
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.animate_nodal_solution">
-<code class="sig-name descname">animate_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">max_disp=0.1</em>, <em class="sig-param">nangles=180</em>, <em class="sig-param">show_phase=True</em>, <em class="sig-param">show_result_info=True</em>, <em class="sig-param">interpolate_before_map=True</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">movie_filename=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">animate_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">max_disp=0.1</em>, <em class="sig-param">nangles=180</em>, <em class="sig-param">show_phase=True</em>, <em class="sig-param">show_result_info=True</em>, <em class="sig-param">loop=True</em>, <em class="sig-param">interpolate_before_map=True</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">movie_filename=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Animate nodal solution.  Assumes nodal solution is a
 displacement array from a modal solution.</p>
 <dl class="simple">
@@ -1406,18 +1487,6 @@ movie non-interactively.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="pyansys.cyclic_reader.CyclicResult.expand_cyclic_modal">
-<code class="sig-name descname">expand_cyclic_modal</code><span class="sig-paren">(</span><em class="sig-param">result</em>, <em class="sig-param">result_r</em>, <em class="sig-param">hindex</em>, <em class="sig-param">phase</em>, <em class="sig-param">as_complex</em>, <em class="sig-param">full_rotor</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.expand_cyclic_modal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Combines repeated results from ANSYS</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.cyclic_reader.CyclicResult.expand_cyclic_modal_stress">
-<code class="sig-name descname">expand_cyclic_modal_stress</code><span class="sig-paren">(</span><em class="sig-param">result</em>, <em class="sig-param">result_r</em>, <em class="sig-param">hindex</em>, <em class="sig-param">phase</em>, <em class="sig-param">as_complex</em>, <em class="sig-param">full_rotor</em>, <em class="sig-param">scale=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.expand_cyclic_modal_stress" title="Permalink to this definition">¶</a></dt>
-<dd><p>Combines repeated results from ANSYS</p>
-</dd></dl>
-
-<dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.expand_cyclic_static">
 <code class="sig-name descname">expand_cyclic_static</code><span class="sig-paren">(</span><em class="sig-param">result</em>, <em class="sig-param">tensor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.expand_cyclic_static" title="Permalink to this definition">¶</a></dt>
 <dd><p>expands cyclic static results</p>
@@ -1426,17 +1495,17 @@ movie non-interactively.</p>
 <dl class="method">
 <dt id="pyansys.cyclic_reader.CyclicResult.harmonic_index_to_cumulative">
 <code class="sig-name descname">harmonic_index_to_cumulative</code><span class="sig-paren">(</span><em class="sig-param">hindex</em>, <em class="sig-param">mode</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.harmonic_index_to_cumulative" title="Permalink to this definition">¶</a></dt>
-<dd><p>Converts a harmonic index and a 0 index mode number to a cumulative result
-index.</p>
-<p>Harmonic indices are stored as positive and negative pairs for modes other
-than 0 and N/nsectors.</p>
+<dd><p>Converts a harmonic index and a 0 index mode number to a
+cumulative result index.</p>
+<p>Harmonic indices are stored as positive and negative pairs for
+modes other than 0 and N/nsectors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>hindex</strong> (<em>int</em>) – Harmonic index.  Must be less than or equal to nsectors/2.  May be
-positive or negative</p></li>
-<li><p><strong>mode</strong> (<em>int</em>) – Mode number.  0 based indexing.  Access mode pairs by with a negative/positive
-harmonic index.</p></li>
+<li><p><strong>hindex</strong> (<em>int</em>) – Harmonic index.  Must be less than or equal to nsectors/2.
+May be positive or negative</p></li>
+<li><p><strong>mode</strong> (<em>int</em>) – Mode number.  0 based indexing.  Access mode pairs by with
+a negative/positive harmonic index.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1739,6 +1808,13 @@ containing all nodes of the component.  Default True.</p></li>
 </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pyansys.cyclic_reader.CyclicResult.positive_cyclic_dir">
+<em class="property">property </em><code class="sig-name descname">positive_cyclic_dir</code><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.positive_cyclic_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotor results are default anit-clockwise.  Set this to
+<cite>True</cite> if cyclic results to not look correct.</p>
 </dd></dl>
 
 <dl class="method">

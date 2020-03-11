@@ -45,7 +45,7 @@ Print the pontoon result
 
  .. code-block:: none
 
-    ANSYS MAPDL Result file object
+    PyANSYS MAPDL Result file object
     Title       : CASE  1001  'H =  1.0  T =  62.8  D =  -0.0  P =   0.0'
     Units       : User Defined
     Version     : 19.3
@@ -53,6 +53,15 @@ Print the pontoon result
     Result Sets : 1
     Nodes       : 8765
     Elements    : 8640
+
+    Available Results:
+    EMS : Misc. data
+    ENF : Nodal forces
+    ENS : Nodal stresses
+    ENG : Volume and energies
+    EEL : Elastic strains
+    EUL : Euler angles
+    MNL : Material nonlinear record
 
 
 
@@ -104,7 +113,7 @@ print the available result types
  .. code-block:: none
 
 
-    {'EMS': 'misc. data', 'ENF': 'nodal forces', 'ENS': 'nodal stresses', 'ENG': 'volume and energies', 'EEL': 'elastic strains', 'EUL': 'euler angles', 'MNL': 'material nonlinear record'}
+    {'EMS': 'Misc. data', 'ENF': 'Nodal forces', 'ENS': 'Nodal stresses', 'ENG': 'Volume and energies', 'EEL': 'Elastic strains', 'EUL': 'Euler angles', 'MNL': 'Material nonlinear record'}
 
 
 
@@ -199,7 +208,7 @@ Missing solution data will plot as a white mesh
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  5.972 seconds)
+   **Total running time of the script:** ( 0 minutes  6.405 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_pontoon.py:

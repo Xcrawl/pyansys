@@ -45,13 +45,23 @@ load a sector modal analysis file
 
  .. code-block:: none
 
-    ANSYS MAPDL Result file object
+    PyANSYS MAPDL Result file object
     Units       : User Defined
     Version     : 15.0
     Cyclic      : True
     Result Sets : 48
     Nodes       : 460
     Elements    : 210
+
+    Available Results:
+    EMS : Misc. data
+    ENF : Nodal forces
+    ENS : Nodal stresses
+    ENG : Volume and energies
+    EEL : Elastic strains
+    ETH : Thermal strains
+    EUL : Euler angles
+    EPT : Element temperatures
 
 
 
@@ -145,8 +155,8 @@ animate a mode
 
 .. code-block:: default
 
-    rotor.animate_nodal_solution(10, interactive=False)
-    # set interactive to True to enable continuous plotting
+    rotor.animate_nodal_solution(10, loop=False)
+    # set loop to True to enable continuous plotting
 
 
 
@@ -160,7 +170,7 @@ animate a mode
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.811 seconds)
+   **Total running time of the script:** ( 0 minutes  8.181 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_sector_model.py:

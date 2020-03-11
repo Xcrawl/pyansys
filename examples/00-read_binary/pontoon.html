@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Shell Static Analysis &mdash; pyansys 0.39.14 documentation</title>
+  <title>Shell Static Analysis &mdash; pyansys 0.39.15 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.39.14
+                0.39.15
               </div>
             
           
@@ -192,7 +192,7 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ANSYS MAPDL Result file object
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>PyANSYS MAPDL Result file object
 Title       : CASE  1001  &#39;H =  1.0  T =  62.8  D =  -0.0  P =   0.0&#39;
 Units       : User Defined
 Version     : 19.3
@@ -200,6 +200,15 @@ Cyclic      : False
 Result Sets : 1
 Nodes       : 8765
 Elements    : 8640
+
+Available Results:
+EMS : Misc. data
+ENF : Nodal forces
+ENS : Nodal stresses
+ENG : Volume and energies
+EEL : Elastic strains
+EUL : Euler angles
+MNL : Material nonlinear record
 </pre></div>
 </div>
 <p>Plot the nodal displacement</p>
@@ -219,7 +228,7 @@ Elements    : 8640
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;EMS&#39;: &#39;misc. data&#39;, &#39;ENF&#39;: &#39;nodal forces&#39;, &#39;ENS&#39;: &#39;nodal stresses&#39;, &#39;ENG&#39;: &#39;volume and energies&#39;, &#39;EEL&#39;: &#39;elastic strains&#39;, &#39;EUL&#39;: &#39;euler angles&#39;, &#39;MNL&#39;: &#39;material nonlinear record&#39;}
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>{&#39;EMS&#39;: &#39;Misc. data&#39;, &#39;ENF&#39;: &#39;Nodal forces&#39;, &#39;ENS&#39;: &#39;Nodal stresses&#39;, &#39;ENG&#39;: &#39;Volume and energies&#39;, &#39;EEL&#39;: &#39;Elastic strains&#39;, &#39;EUL&#39;: &#39;Euler angles&#39;, &#39;MNL&#39;: &#39;Material nonlinear record&#39;}
 </pre></div>
 </div>
 <p>Plot the shell elements</p>
@@ -261,7 +270,7 @@ Elements    : 8640
  (0.0, 0.0, 1.0)]
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  5.972 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  6.405 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-00-read-binary-pontoon-py">
 <div class="sphx-glr-download docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/23871ce12046ab88e0a02da0a6a30bb5/pontoon.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">pontoon.py</span></code></a></p>

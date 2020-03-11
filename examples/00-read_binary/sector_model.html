@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Shaft Modal Analysis &mdash; pyansys 0.39.14 documentation</title>
+  <title>Shaft Modal Analysis &mdash; pyansys 0.39.15 documentation</title>
   
 
   
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                0.39.14
+                0.39.15
               </div>
             
           
@@ -190,13 +190,23 @@
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>ANSYS MAPDL Result file object
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>PyANSYS MAPDL Result file object
 Units       : User Defined
 Version     : 15.0
 Cyclic      : True
 Result Sets : 48
 Nodes       : 460
 Elements    : 210
+
+Available Results:
+EMS : Misc. data
+ENF : Nodal forces
+ENS : Nodal stresses
+ENG : Volume and energies
+EEL : Elastic strains
+ETH : Thermal strains
+EUL : Euler angles
+EPT : Element temperatures
 </pre></div>
 </div>
 <p>plot the rotor</p>
@@ -233,12 +243,12 @@ Elements    : 210
 </pre></div>
 </div>
 <p>animate a mode</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="c1"># set interactive to True to enable continuous plotting</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotor</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># set loop to True to enable continuous plotting</span>
 </pre></div>
 </div>
 <img alt="../../_images/sphx_glr_sector_model_004.png" class="sphx-glr-single-img" src="../../_images/sphx_glr_sector_model_004.png" />
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  7.811 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  8.181 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-00-read-binary-sector-model-py">
 <div class="sphx-glr-download docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/4894182b8f3a37d0ee28d21df8a81d09/sector_model.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">sector_model.py</span></code></a></p>
