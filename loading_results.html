@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.39.16 documentation</title>
+  <title>Working with a ANSYS Result File (rst) &mdash; pyansys 0.39.17 documentation</title>
   
 
   
@@ -34,6 +34,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Archive and Result File Examples" href="examples.html" />
@@ -61,7 +63,7 @@
             
             
               <div class="version">
-                0.39.16
+                0.39.17
               </div>
             
           
@@ -513,9 +515,9 @@ accessing:</p>
 </div>
 <div class="section" id="resultfile-object-methods">
 <h2>ResultFile Object Methods<a class="headerlink" href="#resultfile-object-methods" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="pyansys.rst.ResultFile">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.rst.</code><code class="sig-name descname">ResultFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">read_geometry=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.rst.</code><code class="sig-name descname">ResultFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">read_geometry</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads a binary ANSYS result file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -531,17 +533,17 @@ accessing:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="method">
-<dt id="pyansys.rst.ResultFile.animate_nodal_solution">
-<code class="sig-name descname">animate_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">add_text=True</em>, <em class="sig-param">max_disp=0.1</em>, <em class="sig-param">nangles=100</em>, <em class="sig-param">movie_filename=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt id="pyansys.rst.ResultFile.animate_nodal_displacement">
+<code class="sig-name descname">animate_nodal_displacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span><span class="o">=</span><span class="default_value">'norm'</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">add_text</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">max_disp</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">nangles</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">movie_filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.animate_nodal_displacement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Animate nodal solution.  Assumes nodal solution is a
 displacement array from a modal solution.</p>
 <dl class="simple">
 <dt>rnum<span class="classifier">int or list</span></dt><dd><p>Cumulative result number with zero based indexing, or a
 list containing (step, substep) of the requested result.</p>
 </dd>
-<dt>comp<span class="classifier">str, optional</span></dt><dd><p>Scalar component to display.  Options are ‘x’, ‘y’, ‘z’,
-and ‘norm’, and None.</p>
+<dt>comp<span class="classifier">str, optional</span></dt><dd><p>Scalar component to display.  Options are <code class="docutils literal notranslate"><span class="pre">'x'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'y'</span></code>, <code class="docutils literal notranslate"><span class="pre">'z'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'norm'</span></code>, and <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 <dt>sel_type_all<span class="classifier">bool, optional</span></dt><dd><p>If node_components is specified, plots those elements
 containing all nodes of the component.  Default True.</p>
@@ -577,21 +579,67 @@ without looping</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="pyansys.rst.ResultFile.animate_nodal_solution">
+<code class="sig-name descname">animate_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span><span class="o">=</span><span class="default_value">'norm'</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">add_text</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">max_disp</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">nangles</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">movie_filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Animate nodal solution.  Assumes nodal solution is a
+displacement array from a modal solution.</p>
+<dl class="simple">
+<dt>rnum<span class="classifier">int or list</span></dt><dd><p>Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p>
+</dd>
+<dt>comp<span class="classifier">str, optional</span></dt><dd><p>Scalar component to display.  Options are <code class="docutils literal notranslate"><span class="pre">'x'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'y'</span></code>, <code class="docutils literal notranslate"><span class="pre">'z'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'norm'</span></code>, and <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt>sel_type_all<span class="classifier">bool, optional</span></dt><dd><p>If node_components is specified, plots those elements
+containing all nodes of the component.  Default True.</p>
+</dd>
+<dt>add_text<span class="classifier">bool, optional</span></dt><dd><p>Adds information about the result when rnum is given.</p>
+</dd>
+<dt>max_disp<span class="classifier">float, optional</span></dt><dd><p>Maximum displacement in the units of the model.  Default
+0.1</p>
+</dd>
+<dt>nangles<span class="classifier">int, optional</span></dt><dd><p>Number of “frames” between each full cycle.</p>
+</dd>
+<dt>movie_filename<span class="classifier">str, optional</span></dt><dd><p>Filename of the movie to open.  Filename should end in
+<code class="docutils literal notranslate"><span class="pre">'mp4'</span></code>, but other filetypes may be supported.  See
+<code class="docutils literal notranslate"><span class="pre">imagio.get_writer</span></code>.  A single loop of the mode will be
+recorded.</p>
+</dd>
+<dt>kwargs<span class="classifier">optional keyword arguments, optional</span></dt><dd><p>See help(pyvista.Plot) for additional keyword arguments.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Animate first result</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Animate second result while displaying the x scalars
+without looping</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">comp</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Animate second result and save as a movie</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span><span class="o">.</span><span class="n">animate_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">movie_filename</span><span class="o">=</span><span class="s1">&#39;disp.mp4&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.available_results">
 <em class="property">property </em><code class="sig-name descname">available_results</code><a class="headerlink" href="#pyansys.rst.ResultFile.available_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints available element result types and returns those keys</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.cs_4x4">
-<code class="sig-name descname">cs_4x4</code><span class="sig-paren">(</span><em class="sig-param">cs_cord</em>, <em class="sig-param">as_vtk_matrix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.cs_4x4" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">cs_4x4</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cs_cord</span></em>, <em class="sig-param"><span class="n">as_vtk_matrix</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.cs_4x4" title="Permalink to this definition">¶</a></dt>
 <dd><p>return a 4x4 transformation array for a given coordinate system</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.element_solution_data">
-<code class="sig-name descname">element_solution_data</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">datatype</em>, <em class="sig-param">sort=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.element_solution_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">element_solution_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">datatype</span></em>, <em class="sig-param"><span class="n">sort</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.element_solution_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrives element solution data.  Similar to ETABLE.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -654,9 +702,9 @@ position not used</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.element_stress">
-<code class="sig-name descname">element_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">principal=False</em>, <em class="sig-param">in_element_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.element_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">element_stress</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">principal</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">in_element_coord_sys</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.element_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrives the element component stresses.</p>
 <p>Equivalent ANSYS command: PRESOL, S</p>
 <dl class="field-list simple">
@@ -674,7 +722,7 @@ coordinate system.</p></li>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>element_stress</strong> (<em>list</em>) – Stresses at each element for each node for Sx Sy Sz Sxy
-Syz Sxz.  or SIGMA1, SIGMA2, SIGMA3, SINT, SEQV when
+Syz Sxz or SIGMA1, SIGMA2, SIGMA3, SINT, SEQV when
 principal is True.</p></li>
 <li><p><strong>enum</strong> (<em>np.ndarray</em>) – ANSYS element numbers corresponding to each element.</p></li>
 <li><p><strong>enode</strong> (<em>list</em>) – Node numbers corresponding to each element’s stress
@@ -689,76 +737,15 @@ layers.  Results are ordered such that the top layer and then
 the bottom layer is reported.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.n_sector">
 <em class="property">property </em><code class="sig-name descname">n_sector</code><a class="headerlink" href="#pyansys.rst.ResultFile.n_sector" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of sectors</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="pyansys.rst.ResultFile.nodal_elastic_strain">
-<code class="sig-name descname">nodal_elastic_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_elastic_strain" title="Permalink to this definition">¶</a></dt>
-<dd><p>Nodal component elastic strains.  This record contains
-strains in the order X, Y, Z, XY, YZ, XZ, EQV.</p>
-<p>Elastic strains can be can be nodal values extrapolated from
-the integration points or values at the integration points moved to
-the nodes</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
-list containing (step, substep) of the requested result.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>nnum</strong> (<em>np.ndarray</em>) – ANSYS node numbers.</p></li>
-<li><p><strong>elastic_strain</strong> (<em>np.ndarray</em>) – Nodal component elastic strains.  Array is in the order
-X, Y, Z, XY, YZ, XZ, EEL.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<p>Load the nodal elastic strain for the first solution.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">elastic_strain</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_elastic_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.rst.ResultFile.nodal_plastic_strain">
-<code class="sig-name descname">nodal_plastic_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_plastic_strain" title="Permalink to this definition">¶</a></dt>
-<dd><p>Nodal component plastic strains.  This record contains
-strains in the order X, Y, Z, XY, YZ, XZ, EQV.</p>
-<p>Plastic strains are always values at the integration points
-moved to the nodes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
-list containing (step, substep) of the requested result.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>nnum</strong> (<em>np.ndarray</em>) – ANSYS node numbers.</p></li>
-<li><p><strong>plastic_strain</strong> (<em>np.ndarray</em>) – Nodal component plastic strains.  Array is in the order
-X, Y, Z, XY, YZ, XZ, EEL.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-<p class="rubric">Examples</p>
-<p>Load the nodal plastic strain for the first solution.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">plastic_strain</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_plastic_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="pyansys.rst.ResultFile.nodal_solution">
-<code class="sig-name descname">nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">in_nodal_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_solution" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt id="pyansys.rst.ResultFile.nodal_displacement">
+<code class="sig-name descname">nodal_displacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">in_nodal_coord_sys</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_displacement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the DOF solution for each node in the global
 cartesian coordinate system or nodal coordinate system.</p>
 <dl class="field-list simple">
@@ -790,9 +777,104 @@ of freedom which includes <code class="docutils literal notranslate"><span class
 is reflected in the <code class="docutils literal notranslate"><span class="pre">result</span></code> and <code class="docutils literal notranslate"><span class="pre">nnum</span></code> arrays.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="pyansys.rst.ResultFile.nodal_elastic_strain">
+<code class="sig-name descname">nodal_elastic_strain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_elastic_strain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nodal component elastic strains.  This record contains
+strains in the order X, Y, Z, XY, YZ, XZ, EQV.</p>
+<p>Elastic strains can be can be nodal values extrapolated from
+the integration points or values at the integration points moved to
+the nodes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>np.ndarray</em>) – ANSYS node numbers.</p></li>
+<li><p><strong>elastic_strain</strong> (<em>np.ndarray</em>) – Nodal component elastic strains.  Array is in the order
+X, Y, Z, XY, YZ, XZ, EEL.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Load the nodal elastic strain for the first solution.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">elastic_strain</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_elastic_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.rst.ResultFile.nodal_plastic_strain">
+<code class="sig-name descname">nodal_plastic_strain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_plastic_strain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nodal component plastic strains.  This record contains
+strains in the order X, Y, Z, XY, YZ, XZ, EQV.</p>
+<p>Plastic strains are always values at the integration points
+moved to the nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>np.ndarray</em>) – ANSYS node numbers.</p></li>
+<li><p><strong>plastic_strain</strong> (<em>np.ndarray</em>) – Nodal component plastic strains.  Array is in the order
+X, Y, Z, XY, YZ, XZ, EEL.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Load the nodal plastic strain for the first solution.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">plastic_strain</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_plastic_strain</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.rst.ResultFile.nodal_solution">
+<code class="sig-name descname">nodal_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">in_nodal_coord_sys</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_solution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the DOF solution for each node in the global
+cartesian coordinate system or nodal coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p></li>
+<li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, returns results in the nodal coordinate system.
+Default False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nnum</strong> (<em>int np.ndarray</em>) – Node numbers associated with the results.</p></li>
+<li><p><strong>result</strong> (<em>float np.ndarray</em>) – Result is (<code class="docutils literal notranslate"><span class="pre">nnod</span></code> x <code class="docutils literal notranslate"><span class="pre">sumdof</span></code>), or number of nodes by degrees
+of freedom which includes <code class="docutils literal notranslate"><span class="pre">numdof</span></code> and <code class="docutils literal notranslate"><span class="pre">nfldof</span></code>.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rst</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">rst</span><span class="o">.</span><span class="n">nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Some solution results may not include all node numbers.  This
+is reflected in the <code class="docutils literal notranslate"><span class="pre">result</span></code> and <code class="docutils literal notranslate"><span class="pre">nnum</span></code> arrays.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.nodal_stress">
-<code class="sig-name descname">nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_stress</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the component stresses for each node in the
 solution.</p>
 <p>The order of the results corresponds to the sorted node
@@ -826,9 +908,9 @@ node.</p></li>
 Equivalent ANSYS command: PRNSOL, S</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.nodal_temperature">
-<code class="sig-name descname">nodal_temperature</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_temperature" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_temperature</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_temperature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the temperature for each node in the
 solution.</p>
 <p>The order of the results corresponds to the sorted node
@@ -855,9 +937,9 @@ list containing (step, substep) of the requested result.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.nodal_thermal_strain">
-<code class="sig-name descname">nodal_thermal_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_thermal_strain" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_thermal_strain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_thermal_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Nodal component plastic strains.  This record contains
 strains in the order X, Y, Z, XY, YZ, XZ, EQV, and eswell
 (element swelling strain).  Plastic strains are always values
@@ -885,17 +967,17 @@ X, Y, Z, XY, YZ, XZ, EQV, ESWELL</p></li>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.nodal_time_history">
-<code class="sig-name descname">nodal_time_history</code><span class="sig-paren">(</span><em class="sig-param">solution_type='NSL'</em>, <em class="sig-param">in_nodal_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_time_history" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_time_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">solution_type</span><span class="o">=</span><span class="default_value">'NSL'</span></em>, <em class="sig-param"><span class="n">in_nodal_coord_sys</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.nodal_time_history" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the DOF solution for each node in the global
 cartesian coordinate system or nodal coordinate system.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>solution_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify, whether nodal displacements (‘NSL’), nodal
-velocities (‘VEL’) or nodal accelerations (‘ACC’) will be
-read.</p></li>
+<li><p><strong>solution_type</strong> (<em>str</em><em>, </em><em>optional</em>) – Specify, whether nodal displacements (<code class="docutils literal notranslate"><span class="pre">'NSL'</span></code>), nodal
+velocities (<code class="docutils literal notranslate"><span class="pre">'VEL'</span></code>) or nodal accelerations (<code class="docutils literal notranslate"><span class="pre">'ACC'</span></code>)
+will be read.</p></li>
 <li><p><strong>in_nodal_coord_sys</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, returns results in the nodal coordinate system.
 Default False.</p></li>
 </ul>
@@ -911,33 +993,26 @@ time steps by number of nodes by degrees of freedom.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.node_components">
 <em class="property">property </em><code class="sig-name descname">node_components</code><a class="headerlink" href="#pyansys.rst.ResultFile.node_components" title="Permalink to this definition">¶</a></dt>
 <dd><p>dictionary of ansys node components</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.parse_coordinate_system">
 <code class="sig-name descname">parse_coordinate_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.parse_coordinate_system" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads in coordinate system information from a binary result
 file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>f</strong> (<em>file object</em>) – Open binary result file.</p></li>
-<li><p><strong>dict</strong> (<em>geometry_header</em><em>,</em>) – Dictionary containing pointers to geometry items in the ansys
-result.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>c_systems</strong> – Dictionary containing one entry for each defined coordinate
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>c_systems</strong> – Dictionary containing one entry for each defined coordinate
 system.  If no non-standard coordinate systems have been
 defined, there will be only one None.  First coordinate system
 is assumed to be global cartesian.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>dict</p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -966,15 +1041,15 @@ Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.parse_step_substep">
-<code class="sig-name descname">parse_step_substep</code><span class="sig-paren">(</span><em class="sig-param">user_input</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.parse_step_substep" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_step_substep</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_input</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.parse_step_substep" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts (step, substep) to a cumulative index</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.plot">
-<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot result geometry</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1002,9 +1077,52 @@ containing all nodes of the component.  Default True.</p></li>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
+<dt id="pyansys.rst.ResultFile.plot_nodal_displacement">
+<code class="sig-name descname">plot_nodal_displacement</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span><span class="o">=</span><span class="default_value">'norm'</span></em>, <em class="sig-param"><span class="n">show_displacement</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">displacement_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_displacement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots the nodal solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
+list containing (step, substep) of the requested result.</p></li>
+<li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Display component to display.  Options are <code class="docutils literal notranslate"><span class="pre">'x'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'y'</span></code>, <code class="docutils literal notranslate"><span class="pre">'z'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'norm'</span></code>.  This corresponds to the
+x directin, y direction, z direction, and the normalized
+result.</p></li>
+<li><p><strong>show_displacement</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deforms mesh according to the result.</p></li>
+<li><p><strong>displacement_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – Increases or decreases displacement by a factor.</p></li>
+<li><p><strong>node_components</strong> (<em>list</em><em>, </em><em>optional</em>) – Accepts either a string or a list strings of node
+components to plot.  For example:
+<code class="docutils literal notranslate"><span class="pre">['MY_COMPONENT',</span> <span class="pre">'MY_OTHER_COMPONENT]</span></code></p></li>
+<li><p><strong>sel_type_all</strong> (<em>bool</em><em>, </em><em>optional</em>) – If node_components is specified, plots those elements
+containing all nodes of the component.  Default True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cpos</strong> – Camera position from vtk render window.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Plot the nodal solution result 0 of verification manual
+example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">download_verification_result</span><span class="p">(</span><span class="mi">33</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Plot with a white background and showing edges</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span><span class="o">.</span><span class="n">plot_nodal_solution</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_elastic_strain">
-<code class="sig-name descname">plot_nodal_elastic_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp</em>, <em class="sig-param">stitle='Nodal Elastic Strain'</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_elastic_strain" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_elastic_strain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span></em>, <em class="sig-param"><span class="n">stitle</span><span class="o">=</span><span class="default_value">'Nodal Elastic Strain'</span></em>, <em class="sig-param"><span class="n">show_displacement</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">displacement_factor</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_elastic_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot nodal component elastic strains.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1038,9 +1156,9 @@ containing all nodes of the component.  Default True.</p></li>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_plastic_strain">
-<code class="sig-name descname">plot_nodal_plastic_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp</em>, <em class="sig-param">stitle='Nodal Plastic Strain'</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_plastic_strain" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_plastic_strain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span></em>, <em class="sig-param"><span class="n">stitle</span><span class="o">=</span><span class="default_value">'Nodal Plastic Strain'</span></em>, <em class="sig-param"><span class="n">show_displacement</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">displacement_factor</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_plastic_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot nodal component plastic strains.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1074,18 +1192,19 @@ containing all nodes of the component.  Default True.</p></li>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_solution">
-<code class="sig-name descname">plot_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">max_disp=0.1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span><span class="o">=</span><span class="default_value">'norm'</span></em>, <em class="sig-param"><span class="n">show_displacement</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">displacement_factor</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the nodal solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>rnum</strong> (<em>int</em><em> or </em><em>list</em>) – Cumulative result number with zero based indexing, or a
 list containing (step, substep) of the requested result.</p></li>
-<li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Display component to display.  Options are <code class="docutils literal notranslate"><span class="pre">'x'</span></code>, <code class="docutils literal notranslate"><span class="pre">'y'</span></code>, <code class="docutils literal notranslate"><span class="pre">'z'</span></code>,
-or <code class="docutils literal notranslate"><span class="pre">'norm'</span></code>.  This corresponds to the x directin, y direction,
-z direction, and the normalized result.</p></li>
+<li><p><strong>comp</strong> (<em>str</em><em>, </em><em>optional</em>) – Display component to display.  Options are <code class="docutils literal notranslate"><span class="pre">'x'</span></code>,
+<code class="docutils literal notranslate"><span class="pre">'y'</span></code>, <code class="docutils literal notranslate"><span class="pre">'z'</span></code>, or <code class="docutils literal notranslate"><span class="pre">'norm'</span></code>.  This corresponds to the
+x directin, y direction, z direction, and the normalized
+result.</p></li>
 <li><p><strong>show_displacement</strong> (<em>bool</em><em>, </em><em>optional</em>) – Deforms mesh according to the result.</p></li>
 <li><p><strong>displacement_factor</strong> (<em>float</em><em>, </em><em>optional</em>) – Increases or decreases displacement by a factor.</p></li>
 <li><p><strong>node_components</strong> (<em>list</em><em>, </em><em>optional</em>) – Accepts either a string or a list strings of node
@@ -1116,9 +1235,9 @@ example</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_stress">
-<code class="sig-name descname">plot_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp=None</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show_displacement</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">displacement_factor</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots the stresses at each node in the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1154,9 +1273,9 @@ containing all nodes of the component.  Default True.</p></li>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_temperature">
-<code class="sig-name descname">plot_nodal_temperature</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_temperature" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_temperature</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">show_displacement</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">displacement_factor</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_temperature" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot nodal temperature</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1186,9 +1305,9 @@ containing all nodes of the component.  Default True.</p></li>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.plot_nodal_thermal_strain">
-<code class="sig-name descname">plot_nodal_thermal_strain</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp</em>, <em class="sig-param">stitle='Nodal Thermal Strain'</em>, <em class="sig-param">show_displacement=False</em>, <em class="sig-param">displacement_factor=1</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_thermal_strain" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_thermal_strain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span></em>, <em class="sig-param"><span class="n">stitle</span><span class="o">=</span><span class="default_value">'Nodal Thermal Strain'</span></em>, <em class="sig-param"><span class="n">show_displacement</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">displacement_factor</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_nodal_thermal_strain" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot nodal component plastic strains.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1223,9 +1342,9 @@ containing all nodes of the component.  Default True.</p></li>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.plot_principal_nodal_stress">
-<code class="sig-name descname">plot_principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype=None</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">stype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.plot_principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot the principal stress at each node in the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1255,9 +1374,9 @@ containing all nodes of the component.  Default True.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.principal_nodal_stress">
-<code class="sig-name descname">principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the principal component stresses for each node in
 the solution.</p>
 <dl class="field-list simple">
@@ -1282,15 +1401,15 @@ S1, S2, S3 principal stresses, SINT stress intensity, and SEQV
 equivalent stress.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.principle_stress_for_plotting">
-<code class="sig-name descname">principle_stress_for_plotting</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.principle_stress_for_plotting" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">principle_stress_for_plotting</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">stype</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.principle_stress_for_plotting" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns stress used to plot</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.save_as_vtk">
-<code class="sig-name descname">save_as_vtk</code><span class="sig-paren">(</span><em class="sig-param">filename, rsets=None, result_types=['ENS']</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.save_as_vtk" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">save_as_vtk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">rsets</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">result_types</span><span class="o">=</span><span class="default_value">['ENS']</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.save_as_vtk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes results to a vtk readable file.</p>
 <p>The file extension will select the type of writer to use.
 <code class="docutils literal notranslate"><span class="pre">'.vtk'</span></code> will use the legacy writer, while <code class="docutils literal notranslate"><span class="pre">'.vtu'</span></code> will
@@ -1355,9 +1474,9 @@ Binary can only be selected for the legacy writer.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.solution_info">
-<code class="sig-name descname">solution_info</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.solution_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">solution_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.solution_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an informative dictionary of solution data for a
 result.</p>
 <dl class="field-list simple">
@@ -1403,27 +1522,27 @@ dval1   - if pmeth=0: FATJACK ocean wave direction</p>
 <p>pCnvVal - p-method convergence values</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.store_geometry">
 <code class="sig-name descname">store_geometry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.store_geometry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stores the geometry from the result file</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.text_result_table">
-<code class="sig-name descname">text_result_table</code><span class="sig-paren">(</span><em class="sig-param">rnum</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.text_result_table" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">text_result_table</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.text_result_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a text result table for plotting</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.version">
 <em class="property">property </em><code class="sig-name descname">version</code><a class="headerlink" href="#pyansys.rst.ResultFile.version" title="Permalink to this definition">¶</a></dt>
 <dd><p>The version of ANSYS used to generate this result file</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.write_tables">
-<code class="sig-name descname">write_tables</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.write_tables" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">write_tables</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.write_tables" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write binary tables to ASCII.  Assumes int32</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1438,13 +1557,13 @@ dval1   - if pmeth=0: FATJACK ocean wave direction</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="pyansys.cyclic_reader.CyclicResult">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.cyclic_reader.</code><code class="sig-name descname">CyclicResult</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.cyclic_reader.</code><code class="sig-name descname">CyclicResult</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds cyclic functionality to the result class</p>
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.animate_nodal_solution">
-<code class="sig-name descname">animate_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">max_disp=0.1</em>, <em class="sig-param">nangles=180</em>, <em class="sig-param">show_phase=True</em>, <em class="sig-param">show_result_info=True</em>, <em class="sig-param">loop=True</em>, <em class="sig-param">interpolate_before_map=True</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">movie_filename=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">animate_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span><span class="o">=</span><span class="default_value">'norm'</span></em>, <em class="sig-param"><span class="n">max_disp</span><span class="o">=</span><span class="default_value">0.1</span></em>, <em class="sig-param"><span class="n">nangles</span><span class="o">=</span><span class="default_value">180</span></em>, <em class="sig-param"><span class="n">show_phase</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">show_result_info</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">loop</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">interpolate_before_map</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">cpos</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">movie_filename</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">off_screen</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.animate_nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Animate nodal solution.  Assumes nodal solution is a
 displacement array from a modal solution.</p>
 <dl class="simple">
@@ -1480,21 +1599,21 @@ movie non-interactively.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.cs_4x4">
-<code class="sig-name descname">cs_4x4</code><span class="sig-paren">(</span><em class="sig-param">cs_cord</em>, <em class="sig-param">as_vtk_matrix=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.cs_4x4" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">cs_4x4</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cs_cord</span></em>, <em class="sig-param"><span class="n">as_vtk_matrix</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.cs_4x4" title="Permalink to this definition">¶</a></dt>
 <dd><p>return a 4x4 transformation array for a given coordinate system</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.expand_cyclic_static">
-<code class="sig-name descname">expand_cyclic_static</code><span class="sig-paren">(</span><em class="sig-param">result</em>, <em class="sig-param">tensor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.expand_cyclic_static" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">expand_cyclic_static</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">result</span></em>, <em class="sig-param"><span class="n">tensor</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.expand_cyclic_static" title="Permalink to this definition">¶</a></dt>
 <dd><p>expands cyclic static results</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.harmonic_index_to_cumulative">
-<code class="sig-name descname">harmonic_index_to_cumulative</code><span class="sig-paren">(</span><em class="sig-param">hindex</em>, <em class="sig-param">mode</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.harmonic_index_to_cumulative" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">harmonic_index_to_cumulative</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hindex</span></em>, <em class="sig-param"><span class="n">mode</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.harmonic_index_to_cumulative" title="Permalink to this definition">¶</a></dt>
 <dd><p>Converts a harmonic index and a 0 index mode number to a
 cumulative result index.</p>
 <p>Harmonic indices are stored as positive and negative pairs for
@@ -1517,15 +1636,15 @@ a negative/positive harmonic index.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.mode_table">
 <em class="property">property </em><code class="sig-name descname">mode_table</code><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.mode_table" title="Permalink to this definition">¶</a></dt>
 <dd><p>unique modes for cyclic results</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.nodal_solution">
-<code class="sig-name descname">nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">full_rotor=False</em>, <em class="sig-param">as_complex=False</em>, <em class="sig-param">in_nodal_coord_sys=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">phase</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">full_rotor</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">as_complex</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">in_nodal_coord_sys</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the DOF solution for each node in the global
 cartesian coordinate system.</p>
 <dl class="field-list simple">
@@ -1561,9 +1680,9 @@ result file size since harmonic pairs contain the same
 information as the duplicate sector.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.nodal_stress">
-<code class="sig-name descname">nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">as_complex=False</em>, <em class="sig-param">full_rotor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">nodal_stress</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">phase</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">as_complex</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">full_rotor</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieves the component stresses for each node in the
 solution.</p>
 <p>The order of the results corresponds to the sorted node
@@ -1606,9 +1725,9 @@ result is the result object.</p></li>
 <p>Nodes without a stress value will be NAN.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot">
-<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param">color='w'</em>, <em class="sig-param">show_edges=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">'w'</span></em>, <em class="sig-param"><span class="n">show_edges</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot the full rotor geometry.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1658,9 +1777,9 @@ image.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_nodal_solution">
-<code class="sig-name descname">plot_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">comp='norm'</em>, <em class="sig-param">label=''</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_solution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">comp</span><span class="o">=</span><span class="default_value">'norm'</span></em>, <em class="sig-param"><span class="n">label</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">flip_scalars</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cpos</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">screenshot</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">off_screen</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">full_rotor</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">phase</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_solution" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a nodal result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1697,9 +1816,9 @@ components to plot.  For example:
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_nodal_stress">
-<code class="sig-name descname">plot_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype</em>, <em class="sig-param">label=''</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">stype</span></em>, <em class="sig-param"><span class="n">label</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">flip_scalars</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cpos</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">screenshot</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">off_screen</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">full_rotor</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">phase</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plots a nodal result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1735,9 +1854,9 @@ containing all nodes of the component.  Default True.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_point_scalars">
-<code class="sig-name descname">plot_point_scalars</code><span class="sig-paren">(</span><em class="sig-param">scalars</em>, <em class="sig-param">rnum=None</em>, <em class="sig-param">stitle=''</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">grid=None</em>, <em class="sig-param">add_text=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_point_scalars" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_point_scalars</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scalars</span></em>, <em class="sig-param"><span class="n">rnum</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">stitle</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">flip_scalars</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">screenshot</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cpos</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">off_screen</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">grid</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">add_text</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_point_scalars" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot point scalars on active mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1767,9 +1886,9 @@ instead.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.plot_principal_nodal_stress">
-<code class="sig-name descname">plot_principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">stype</em>, <em class="sig-param">flip_scalars=None</em>, <em class="sig-param">cpos=None</em>, <em class="sig-param">screenshot=None</em>, <em class="sig-param">off_screen=None</em>, <em class="sig-param">full_rotor=True</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">node_components=None</em>, <em class="sig-param">sel_type_all=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">plot_principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">stype</span></em>, <em class="sig-param"><span class="n">flip_scalars</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cpos</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">screenshot</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">off_screen</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">full_rotor</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">phase</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">node_components</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sel_type_all</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.plot_principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot the principal stress at each node in the solution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1810,16 +1929,16 @@ containing all nodes of the component.  Default True.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.positive_cyclic_dir">
 <em class="property">property </em><code class="sig-name descname">positive_cyclic_dir</code><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.positive_cyclic_dir" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rotor results are default anit-clockwise.  Set this to
 <cite>True</cite> if cyclic results to not look correct.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.cyclic_reader.CyclicResult.principal_nodal_stress">
-<code class="sig-name descname">principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param">rnum</em>, <em class="sig-param">phase=0</em>, <em class="sig-param">as_complex=False</em>, <em class="sig-param">full_rotor=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">principal_nodal_stress</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em>, <em class="sig-param"><span class="n">phase</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">as_complex</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">full_rotor</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.cyclic_reader.CyclicResult.principal_nodal_stress" title="Permalink to this definition">¶</a></dt>
 <dd><p>Computes the principal component stresses for each node in
 the solution.</p>
 <dl class="field-list simple">

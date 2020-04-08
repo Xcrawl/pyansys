@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reading and Writing ANSYS Archives &mdash; pyansys 0.39.16 documentation</title>
+  <title>Reading and Writing ANSYS Archives &mdash; pyansys 0.39.17 documentation</title>
   
 
   
@@ -34,6 +34,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Working with a ANSYS Result File (rst)" href="loading_results.html" />
@@ -61,7 +63,7 @@
             
             
               <div class="version">
-                0.39.16
+                0.39.17
               </div>
             
           
@@ -264,18 +266,18 @@
 <div class="section" id="module-pyansys.archive">
 <span id="write-functions"></span><h2>Write Functions<a class="headerlink" href="#module-pyansys.archive" title="Permalink to this headline">¶</a></h2>
 <p>Module to read ANSYS ASCII block formatted CDB files</p>
-<dl class="class">
+<dl class="py class">
 <dt id="pyansys.archive.Archive">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">Archive</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">read_parameters=False</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">Archive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">read_parameters</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read a blocked ANSYS archive file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – Filename of block formatted cdb file</p>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.archive.Archive.parse_vtk">
-<code class="sig-name descname">parse_vtk</code><span class="sig-paren">(</span><em class="sig-param">force_linear=False</em>, <em class="sig-param">allowable_types=None</em>, <em class="sig-param">null_unallowed=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.parse_vtk" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">parse_vtk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">force_linear</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allowable_types</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">null_unallowed</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.parse_vtk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parses raw data into to VTK format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -303,15 +305,15 @@ element numbers.  Default False.</p></li>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="pyansys.archive.chunks">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">chunks</code><span class="sig-paren">(</span><em class="sig-param">l</em>, <em class="sig-param">n</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.chunks" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">chunks</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">l</span></em>, <em class="sig-param"><span class="n">n</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.chunks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Yield successive n-sized chunks from l</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="pyansys.archive.save_as_archive">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">save_as_archive</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">grid</em>, <em class="sig-param">mtype_start=1</em>, <em class="sig-param">etype_start=1</em>, <em class="sig-param">real_constant_start=1</em>, <em class="sig-param">mode='w'</em>, <em class="sig-param">nblock=True</em>, <em class="sig-param">enum_start=1</em>, <em class="sig-param">nnum_start=1</em>, <em class="sig-param">include_etype_header=True</em>, <em class="sig-param">reset_etype=False</em>, <em class="sig-param">allow_missing=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.save_as_archive" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">save_as_archive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">grid</span></em>, <em class="sig-param"><span class="n">mtype_start</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">etype_start</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">real_constant_start</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'w'</span></em>, <em class="sig-param"><span class="n">nblock</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">enum_start</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">nnum_start</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">include_etype_header</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">reset_etype</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allow_missing</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.save_as_archive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes FEM as an ANSYS APDL archive file.  This function
 supports the following element types:</p>
 <blockquote>
@@ -361,9 +363,9 @@ SOLID185).  Default True.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="pyansys.archive.write_cmblock">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_cmblock</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">items</em>, <em class="sig-param">comp_name</em>, <em class="sig-param">comp_type</em>, <em class="sig-param">digit_width=10</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_cmblock" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_cmblock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">items</span></em>, <em class="sig-param"><span class="n">comp_name</span></em>, <em class="sig-param"><span class="n">comp_type</span></em>, <em class="sig-param"><span class="n">digit_width</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_cmblock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes a component block, CMBLOCK, to a file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -378,9 +380,9 @@ SOLID185).  Default True.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="pyansys.archive.write_nblock">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_nblock</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">node_id</em>, <em class="sig-param">pos</em>, <em class="sig-param">angles=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_nblock" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_nblock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">node_id</span></em>, <em class="sig-param"><span class="n">pos</span></em>, <em class="sig-param"><span class="n">angles</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_nblock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes nodes and node angles to file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

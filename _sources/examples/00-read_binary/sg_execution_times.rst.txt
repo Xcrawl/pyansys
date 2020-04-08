@@ -5,14 +5,14 @@
 
 Computation times
 =================
-**00:26.287** total execution time for **examples_00-read_binary** files:
+**00:16.945** total execution time for **examples_00-read_binary** files:
 
 +---------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_00-read_binary_load_shaft_result.py` (``load_shaft_result.py``)     | 00:09.990 | 0.0 MB |
+| :ref:`sphx_glr_examples_00-read_binary_load_shaft_result.py` (``load_shaft_result.py``)     | 00:06.467 | 0.0 MB |
 +---------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_00-read_binary_sector_model.py` (``sector_model.py``)               | 00:07.253 | 0.0 MB |
+| :ref:`sphx_glr_examples_00-read_binary_sector_model.py` (``sector_model.py``)               | 00:05.900 | 0.0 MB |
 +---------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_00-read_binary_pontoon.py` (``pontoon.py``)                         | 00:06.806 | 0.0 MB |
+| :ref:`sphx_glr_examples_00-read_binary_pontoon.py` (``pontoon.py``)                         | 00:03.384 | 0.0 MB |
 +---------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_00-read_binary_load_thermal_result.py` (``load_thermal_result.py``) | 00:02.237 | 0.0 MB |
+| :ref:`sphx_glr_examples_00-read_binary_load_thermal_result.py` (``load_thermal_result.py``) | 00:01.194 | 0.0 MB |
 +---------------------------------------------------------------------------------------------+-----------+--------+

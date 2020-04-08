@@ -1,10 +1,12 @@
-.. note::
-    :class: sphx-glr-download-link-note
+.. only:: html
 
-    Click :ref:`here <sphx_glr_download_examples_00-read_binary_load_thermal_result.py>` to download the full example code
-.. rst-class:: sphx-glr-example-title
+    .. note::
+        :class: sphx-glr-download-link-note
 
-.. _sphx_glr_examples_00-read_binary_load_thermal_result.py:
+        Click :ref:`here <sphx_glr_download_examples_00-read_binary_load_thermal_result.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_examples_00-read_binary_load_thermal_result.py:
 
 
 .. _ref_load_thermal_result:
@@ -93,7 +95,7 @@ Plot with contours
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.237 seconds)
+   **Total running time of the script:** ( 0 minutes  1.194 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_load_thermal_result.py:
@@ -106,13 +108,13 @@ Plot with contours
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
      :download:`Download Python source code: load_thermal_result.py <load_thermal_result.py>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
      :download:`Download Jupyter notebook: load_thermal_result.ipynb <load_thermal_result.ipynb>`
 

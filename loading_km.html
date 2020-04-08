@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with a ANSYS Full File (full) &mdash; pyansys 0.39.16 documentation</title>
+  <title>Working with a ANSYS Full File (full) &mdash; pyansys 0.39.17 documentation</title>
   
 
   
@@ -34,6 +34,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Working with a ANSYS Element Matrix File (.emat)" href="loading_emat.html" />
@@ -61,7 +63,7 @@
             
             
               <div class="version">
-                0.39.16
+                0.39.17
               </div>
             
           
@@ -261,9 +263,9 @@
 </div>
 <div class="section" id="fullfile-object-methods">
 <h2>FullFile Object Methods<a class="headerlink" href="#fullfile-object-methods" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
+<dl class="py class">
 <dt id="pyansys.full.FullFile">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.full.</code><code class="sig-name descname">FullFile</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.full.FullFile" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.full.</code><code class="sig-name descname">FullFile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.full.FullFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stores the results of an ANSYS full file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -274,9 +276,9 @@
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">full</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="method">
+<dl class="py method">
 <dt id="pyansys.full.FullFile.load_km">
-<code class="sig-name descname">load_km</code><span class="sig-paren">(</span><em class="sig-param">as_sparse=True</em>, <em class="sig-param">sort=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.full.FullFile.load_km" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">load_km</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_sparse</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">sort</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.full.FullFile.load_km" title="Permalink to this definition">¶</a></dt>
 <dd><p>Load and construct mass and stiffness matrices from an
 ANSYS full file.</p>
 <dl class="field-list simple">

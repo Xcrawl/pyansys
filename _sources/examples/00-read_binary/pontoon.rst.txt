@@ -1,10 +1,12 @@
-.. note::
-    :class: sphx-glr-download-link-note
+.. only:: html
 
-    Click :ref:`here <sphx_glr_download_examples_00-read_binary_pontoon.py>` to download the full example code
-.. rst-class:: sphx-glr-example-title
+    .. note::
+        :class: sphx-glr-download-link-note
 
-.. _sphx_glr_examples_00-read_binary_pontoon.py:
+        Click :ref:`here <sphx_glr_download_examples_00-read_binary_pontoon.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_examples_00-read_binary_pontoon.py:
 
 
 .. _ref_pontoon:
@@ -89,8 +91,8 @@ Plot the nodal displacement
  .. code-block:: none
 
 
-    [(155.96910868165338, 109.9154768183639, 117.91039846874918),
-     (46.053758658436294, 0.0001267951468042483, 7.995048445532074),
+    [(150.01531583228476, 105.01530987846935, 108.01533810354724),
+     (45.000005954531886, 7.164882021015728e-10, 3.0000282257944133),
      (0.0, 0.0, 1.0)]
 
 
@@ -208,7 +210,7 @@ Missing solution data will plot as a white mesh
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.806 seconds)
+   **Total running time of the script:** ( 0 minutes  3.384 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_pontoon.py:
@@ -221,13 +223,13 @@ Missing solution data will plot as a white mesh
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
      :download:`Download Python source code: pontoon.py <pontoon.py>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
      :download:`Download Jupyter notebook: pontoon.ipynb <pontoon.ipynb>`
 

@@ -1,10 +1,12 @@
-.. note::
-    :class: sphx-glr-download-link-note
+.. only:: html
 
-    Click :ref:`here <sphx_glr_download_examples_00-read_binary_sector_model.py>` to download the full example code
-.. rst-class:: sphx-glr-example-title
+    .. note::
+        :class: sphx-glr-download-link-note
 
-.. _sphx_glr_examples_00-read_binary_sector_model.py:
+        Click :ref:`here <sphx_glr_download_examples_00-read_binary_sector_model.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_examples_00-read_binary_sector_model.py:
 
 
 .. _ref_load_shaft_result:
@@ -170,7 +172,7 @@ animate a mode
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  7.253 seconds)
+   **Total running time of the script:** ( 0 minutes  5.900 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_sector_model.py:
@@ -183,13 +185,13 @@ animate a mode
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
      :download:`Download Python source code: sector_model.py <sector_model.py>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
      :download:`Download Jupyter notebook: sector_model.ipynb <sector_model.ipynb>`
 
