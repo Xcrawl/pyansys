@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ANSYS APDL Interactive Control &mdash; pyansys 0.39.17 documentation</title>
+  <title>ANSYS APDL Interactive Control &mdash; pyansys 0.39.18 documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.39.17
+                0.39.18
               </div>
             
           
@@ -909,8 +909,16 @@ ansys binary</p>
 
 <dl class="py method">
 <dt id="pyansys.Mapdl.enable_interactive_plotting">
-<code class="sig-name descname">enable_interactive_plotting</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.enable_interactive_plotting" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">enable_interactive_plotting</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pixel_res</span><span class="o">=</span><span class="default_value">1600</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.enable_interactive_plotting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enables interactive plotting.  Requires matplotlib</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pixel_res</strong> (<em>int</em>) – Pixel resolution.  Valid values are from 256 to 2400.
+Lowering the pixel resolution produces a “fuzzier” image;
+increasing the resolution produces a “sharper” image but
+takes a little longer.</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
