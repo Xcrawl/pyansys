@@ -872,7 +872,8 @@ research license, would be added with:</p>
 <li><p>additional_switches=”-aa_r”</p></li>
 </ul>
 <p>Avoid adding switches like -i -o or -b as these are already
-included to start up the ANSYS MAPDL server.</p>
+included to start up the ANSYS MAPDL server.  See the notes
+section for additional details.</p>
 </p></li>
 <li><p><strong>start_timeout</strong> (<em>float</em><em>, </em><em>optional</em>) – Time to wait before raising error that ANSYS is unable to
 start.</p></li>
@@ -901,6 +902,153 @@ ansys binary</p>
 <span class="go">                          additional_switches=&#39;-smp&#39;)</span>
 </pre></div>
 </div>
+<p class="rubric">Notes</p>
+<p>ANSYS MAPDL has the following command line options as of v20.1</p>
+<dl class="simple">
+<dt>-aas<span class="classifier">Enables server mode</span></dt><dd><p>When enabling server mode, a custom name for the keyfile can be
+specified using the <code class="docutils literal notranslate"><span class="pre">-iorFile</span></code> option.  This is the CORBA that
+pyansys uses for Windows (and linux when
+<code class="docutils literal notranslate"><span class="pre">prefer_pexpect=False</span></code>).</p>
+</dd>
+<dt>-acc &lt;device&gt;<span class="classifier">Enables the use of GPU hardware.  Enables the use of</span></dt><dd><p>GPU hardware to accelerate the analysis. See GPU Accelerator
+Capability in the Parallel Processing Guide for more information.</p>
+</dd>
+<dt>-amfg<span class="classifier">Enables the additive manufacturing capability.</span></dt><dd><p>Requires an additive manufacturing license. For general
+information about this feature, see AM Process Simulation in
+ANSYS Workbench.</p>
+</dd>
+<dt>-ansexe &lt;executable&gt;<span class="classifier">activates a custom mechanical APDL executable.</span></dt><dd><p>In the ANSYS Workbench environment, activates a custom
+Mechanical APDL executable.</p>
+</dd>
+<dt>-b &lt;list or nolist&gt;<span class="classifier">Activates batch mode</span></dt><dd><p>The options <code class="docutils literal notranslate"><span class="pre">-b</span></code> list or <code class="docutils literal notranslate"><span class="pre">-b</span></code> by itself cause the input
+listing to be included in the output. The <code class="docutils literal notranslate"><span class="pre">-b</span></code> nolist option
+causes the input listing not to be included. For more information
+about running Mechanical APDL in batch mode, see Batch Mode.</p>
+</dd>
+<dt>-custom &lt;executable&gt;<span class="classifier">Calls a custom Mechanical APDL executable</span></dt><dd><p>See Running Your Custom Executable in the Programmer’s Reference
+for more information.</p>
+</dd>
+<dt>-d &lt;device&gt;<span class="classifier">Specifies the type of graphics device</span></dt><dd><p>This option applies only to interactive mode. For Linux systems,
+graphics device choices are X11, X11C, or 3D. For Windows
+systems, graphics device options are WIN32 or WIN32C, or 3D.</p>
+</dd>
+<dt>-db value<span class="classifier">Initial memory allocation</span></dt><dd><p>Defines the portion of workspace (memory) to be used as the
+initial allocation for the database. The default is 1024
+MB. Specify a negative number to force a fixed size throughout
+the run; useful on small memory systems.</p>
+</dd>
+<dt>-dir &lt;path&gt;<span class="classifier">Defines the initial working directory</span></dt><dd><p>Using the <code class="docutils literal notranslate"><span class="pre">-dir</span></code> option overrides the
+<code class="docutils literal notranslate"><span class="pre">ANSYS201_WORKING_DIRECTORY</span></code> environment variable.</p>
+</dd>
+<dt>-dis<span class="classifier">Enables Distributed ANSYS</span></dt><dd><p>See the Parallel Processing Guide for more information.</p>
+</dd>
+<dt>-dvt<span class="classifier">Enables ANSYS DesignXplorer advanced task (add-on).</span></dt><dd><p>Requires DesignXplorer.</p>
+</dd>
+<dt>-g<span class="classifier">Launches the Mechanical APDL program with the GUI</span></dt><dd><p>Graphical User Interface (GUI) on. If you select this option, an
+X11 graphics device is assumed for Linux unless the <code class="docutils literal notranslate"><span class="pre">-d</span></code> option
+specifies a different device. This option is not used on Windows
+systems. To activate the GUI after Mechanical APDL has started,
+enter two commands in the input window: /SHOW to define the
+graphics device, and /MENU,ON to activate the GUI. The <code class="docutils literal notranslate"><span class="pre">-g</span></code> option
+is valid only for interactive mode.  Note: If you start
+Mechanical APDL via the <code class="docutils literal notranslate"><span class="pre">-g</span></code> option, the program ignores any /SHOW
+command in the start.ans file and displays a splash screen
+briefly before opening the GUI windows.</p>
+</dd>
+<dt>-i &lt;inputname&gt;<span class="classifier">Specifies the name of the file to read</span></dt><dd><p>Inputs an input file into Mechanical APDL for batch
+processing.</p>
+</dd>
+<dt>-iorFile &lt;keyfile_name&gt;<span class="classifier">Specifies the name of the server keyfile</span></dt><dd><p>Name of the server keyfile when enabling server mode. If this
+option is not supplied, the default name of the keyfile is
+<code class="docutils literal notranslate"><span class="pre">aas_MapdlID.txt</span></code>. For more information, see Mechanical APDL as
+a Server Keyfile in the Mechanical APDL as a Server User’s Guide.</p>
+</dd>
+<dt>-j &lt;Jobname&gt;<span class="classifier">Specifies the initial jobname</span></dt><dd><p>A name assigned to all files generated by the program for a
+specific model. If you omit the <code class="docutils literal notranslate"><span class="pre">-j</span></code> option, the jobname is assumed
+to be file.</p>
+</dd>
+<dt>-l &lt;language&gt;<span class="classifier">Specifies a language file to use other than English</span></dt><dd><p>This option is valid only if you have a translated message file
+in an appropriately named subdirectory in
+<code class="docutils literal notranslate"><span class="pre">/ansys_inc/v201/ansys/docu</span></code> or
+<code class="docutils literal notranslate"><span class="pre">Program</span> <span class="pre">Files\ANSYS\Inc\V201\ANSYS\docu</span></code></p>
+</dd>
+<dt>-m &lt;workspace&gt;<span class="classifier">Specifies the total size of the workspace</span></dt><dd><p>Workspace (memory) in megabytes used for the initial
+allocation. If you omit the <code class="docutils literal notranslate"><span class="pre">-m</span></code> option, the default is 2 GB
+(2048 MB). Specify a negative number to force a fixed size
+throughout the run.</p>
+</dd>
+<dt>-machines &lt;IP&gt;<span class="classifier">Specifies the distributed machines</span></dt><dd><p>Machines on which to run a Distributed ANSYS analysis. See
+Starting Distributed ANSYS in the Parallel Processing Guide for
+more information.</p>
+</dd>
+<dt>-mpi &lt;value&gt;<span class="classifier">Specifies the type of MPI to use.</span></dt><dd><p>See the Parallel Processing Guide for more information.</p>
+</dd>
+<dt>-mpifile &lt;appfile&gt;<span class="classifier">Specifies an existing MPI file</span></dt><dd><p>Specifies an existing MPI file (appfile) to be used in a
+Distributed ANSYS run. See Using MPI Files in the Parallel
+Processing Guide for more information.</p>
+</dd>
+<dt>-na &lt;value&gt;: Specifies the number of GPU accelerator devices</dt><dd><p>Nubmer of GPU devices per machine or compute node when running
+with the GPU accelerator feature. See GPU Accelerator Capability
+in the Parallel Processing Guide for more information.</p>
+</dd>
+<dt>-name &lt;value&gt;<span class="classifier">Defines Mechanical APDL parameters</span></dt><dd><p>Set mechanical APDL parameters at program start-up. The parameter
+name must be at least two characters long. For details about
+parameters, see the ANSYS Parametric Design Language Guide.</p>
+</dd>
+<dt>-np &lt;value&gt;<span class="classifier">Specifies the number of processors</span></dt><dd><p>Number of processors to use when running Distributed ANSYS or
+Shared-memory ANSYS. See the Parallel Processing Guide for more
+information.</p>
+</dd>
+<dt>-o &lt;outputname&gt;<span class="classifier">Output file</span></dt><dd><p>Specifies the name of the file to store the output from a batch
+execution of Mechanical APDL</p>
+</dd>
+<dt>-p &lt;productname&gt;<span class="classifier">ANSYS session product</span></dt><dd><p>Defines the ANSYS session product that will run during the
+session. For more detailed information about the <code class="docutils literal notranslate"><span class="pre">-p</span></code> option,
+see Selecting an ANSYS Product via the Command Line.</p>
+</dd>
+<dt>-ppf &lt;license feature name&gt;<span class="classifier">HPC license</span></dt><dd><p>Specifies which HPC license to use during a parallel processing
+run. See HPC Licensing in the Parallel Processing Guide for more
+information.</p>
+</dd>
+<dt>-rcopy &lt;path&gt;<span class="classifier">Path to remote copy of files</span></dt><dd><p>On a Linux cluster, specifies the full path to the program used
+to perform remote copy of files. The default value is
+<code class="docutils literal notranslate"><span class="pre">/usr/bin/scp</span></code>.</p>
+</dd>
+<dt>-s &lt;read or noread&gt;<span class="classifier">Read startup file</span></dt><dd><p>Specifies whether the program reads the <code class="docutils literal notranslate"><span class="pre">start.ans</span></code> file at
+start-up. If you omit the <code class="docutils literal notranslate"><span class="pre">-s</span></code> option, Mechanical APDL reads the
+start.ans file in interactive mode and not in batch mode.</p>
+</dd>
+<dt>-schost &lt;host&gt;: Coupling service host</dt><dd><p>Specifies the host machine on which the coupling service is
+running (to which the co-simulation participant/solver must
+connect) in a System Coupling analysis.</p>
+</dd>
+<dt>-scid &lt;value&gt;<span class="classifier">System Coupling analysis licensing ID</span></dt><dd><p>Specifies the licensing ID of the System Coupling analysis.</p>
+</dd>
+<dt>-sclic &lt;<a class="reference external" href="mailto:port&#37;&#52;&#48;host">port<span>&#64;</span>host</a>&gt;<span class="classifier">System Coupling analysis host</span></dt><dd><p>Specifies the licensing port and host to use for the System
+Coupling analysis.</p>
+</dd>
+<dt>-scname &lt;solver&gt;<span class="classifier">Name of the co-simulation participant</span></dt><dd><p>Specifies the unique name used by the co-simulation participant
+to identify itself to the coupling service in a System Coupling
+analysis. For Linux systems, you need to quote the name to have
+the name recognized if it contains a space: (e.g.
+<code class="docutils literal notranslate"><span class="pre">-scname</span> <span class="pre">&quot;Solution</span> <span class="pre">1&quot;</span></code>)</p>
+</dd>
+<dt>-scport &lt;port&gt;<span class="classifier">Coupling service port</span></dt><dd><p>Specifies the port on the host machine upon which the coupling
+service is listening for connections from co-simulation
+participants in a System Coupling analysis.</p>
+</dd>
+<dt>-smp<span class="classifier">Enables shared-memory parallelism.</span></dt><dd><p>See the Parallel Processing Guide for more information.</p>
+</dd>
+<dt>-usersh<span class="classifier">Enable MPI remote shell.</span></dt><dd><p>Directs the MPI software (used by Distributed ANSYS) to use the
+remote shell (rsh) protocol instead of the default secure shell
+(ssh) protocol. See Configuring Distributed ANSYS in the Parallel
+Processing Guide for more information.</p>
+</dd>
+<dt>-v<span class="classifier">Return version info</span></dt><dd><p>Returns the Mechanical APDL release number, update number,
+copyright date, customer number, and license manager version
+number.</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt id="pyansys.Mapdl.add_file_handler">
 <code class="sig-name descname">add_file_handler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filepath</span></em>, <em class="sig-param"><span class="n">append</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.add_file_handler" title="Permalink to this definition">¶</a></dt>
