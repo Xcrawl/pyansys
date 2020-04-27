@@ -1147,6 +1147,15 @@ drive letter) on Windows systems.</p>
 <dt id="pyansys.Mapdl.load_parameters">
 <code class="sig-name descname">load_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.Mapdl.load_parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads and returns all current parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>parameters</strong> (<em>dict</em>) – Dictionary of single value parameters.</p></li>
+<li><p><strong>arrays</strong> (<em>dict</em>) – Dictionary of MAPDL arrays.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parameters</span><span class="p">,</span> <span class="n">arrays</span> <span class="o">=</span> <span class="n">mapdl</span><span class="o">.</span><span class="n">load_parameters</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
