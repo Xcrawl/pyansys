@@ -70,7 +70,7 @@ Geometry is stored both as a dictionary...
 
  .. code-block:: none
 
-    UnstructuredGrid (0x7fabbf420d00)
+    UnstructuredGrid (0x7fa897812440)
       N Cells:      25051
       N Points:     27132
       X Bounds:     0.000e+00, 2.700e+02
@@ -334,7 +334,7 @@ Animate a mode of a component the shaft
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.948 seconds)
+   **Total running time of the script:** ( 0 minutes  6.539 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_load_shaft_result.py:
