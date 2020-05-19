@@ -524,7 +524,8 @@ accessing:</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – Filename of the ANSYS binary result file.</p></li>
 <li><p><strong>ignore_cyclic</strong> (<em>bool</em><em>, </em><em>optional</em>) – Ignores any cyclic properties.</p></li>
-<li><p><strong>read_geometry</strong> (<em>bool</em><em>, </em><em>optional</em>) – Debug parameter.</p></li>
+<li><p><strong>read_geometry</strong> (<em>bool</em><em>, </em><em>optional</em>) – Debug parameter.  Set to False to disable reading in the
+geometry.</p></li>
 </ul>
 </dd>
 </dl>
@@ -735,6 +736,83 @@ results.  One list entry for each element.</p></li>
 <p>Shell stresses for element 181 are returned for top and bottom
 layers.  Results are ordered such that the top layer and then
 the bottom layer is reported.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.rst.ResultFile.materials">
+<em class="property">property </em><code class="sig-name descname">materials</code><a class="headerlink" href="#pyansys.rst.ResultFile.materials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Result file material properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>materials</strong> – Dictionary of Materials.  Keys are the material numbers,
+and each material is a dictionary of the material
+properrties of that material with only the valid entries filled.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Material properties:</p>
+<ul class="simple">
+<li><p>EX : Elastic modulus, element x direction (Force/Area)</p></li>
+<li><p>EY : Elastic modulus, element y direction (Force/Area)</p></li>
+<li><p>EZ : Elastic modulus, element z direction (Force/Area)</p></li>
+<li><p>ALPX : Coefficient of thermal expansion, element x direction (Strain/Temp)</p></li>
+<li><p>ALPY : Coefficient of thermal expansion, element y direction (Strain/Temp)</p></li>
+<li><p>ALPZ : Coefficient of thermal expansion, element z direction (Strain/Temp)</p></li>
+<li><p>REFT : Reference temperature (as a property) [TREF]</p></li>
+<li><p>PRXY : Major Poisson’s ratio, x-y plane</p></li>
+<li><p>PRYZ : Major Poisson’s ratio, y-z plane</p></li>
+<li><p>PRX  Z : Major Poisson’s ratio, x-z plane</p></li>
+<li><p>NUXY : Minor Poisson’s ratio, x-y plane</p></li>
+<li><p>NUYZ : Minor Poisson’s ratio, y-z plane</p></li>
+<li><p>NUXZ : Minor Poisson’s ratio, x-z plane</p></li>
+<li><p>GXY : Shear modulus, x-y plane (Force/Area)</p></li>
+<li><p>GYZ : Shear modulus, y-z plane (Force/Area)</p></li>
+<li><p>GXZ : Shear modulus, x-z plane (Force/Area)</p></li>
+<li><p>DAMP : K matrix multiplier for damping [BETAD] (Time)</p></li>
+<li><dl class="simple">
+<dt>MU<span class="classifier">Coefficient of friction (or, for FLUID29 and FLUID30</span></dt><dd><p>elements, boundary admittance)</p>
+</dd>
+</dl>
+</li>
+<li><p>DENS : Mass density (Mass/Vol)</p></li>
+<li><p>C : Specific heat (Heat/Mass*Temp)</p></li>
+<li><p>ENTH : Enthalpy (e DENS*C d(Temp)) (Heat/Vol)</p></li>
+<li><dl class="simple">
+<dt>KXX<span class="classifier">Thermal conductivity, element x direction</span></dt><dd><p>(Heat*Length / (Time*Area*Temp))</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>KYY<span class="classifier">Thermal conductivity, element y direction</span></dt><dd><p>(Heat*Length / (Time*Area*Temp))</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>KZZ<span class="classifier">Thermal conductivity, element z direction</span></dt><dd><p>(Heat*Length / (Time*Area*Temp))</p>
+</dd>
+</dl>
+</li>
+<li><p>HF : Convection (or film) coefficient (Heat / (Time*Area*Temp))</p></li>
+<li><p>EMIS : Emissivity</p></li>
+<li><p>QRATE : Heat generation rate (MASS71 element only) (Heat/Time)</p></li>
+<li><p>VISC : Viscosity (Force*Time / Length2)</p></li>
+<li><p>SONC : Sonic velocity (FLUID29 and FLUID30 elements only) (Length/Time)</p></li>
+<li><p>RSVX : Electrical resistivity, element x direction (Resistance*Area / Length)</p></li>
+<li><p>RSVY : Electrical resistivity, element y direction (Resistance*Area / Length)</p></li>
+<li><p>RSVZ : Electrical resistivity, element z direction (Resistance*Area / Length)</p></li>
+<li><p>PERX : Electric permittivity, element x direction (Charge2 / (Force*Length))</p></li>
+<li><p>PERY : Electric permittivity, element y direction (Charge2 / (Force*Length))</p></li>
+<li><p>PERZ : Electric permittivity, element z direction (Charge2 / (Force*Length))</p></li>
+<li><p>MURX : Magnetic relative permeability, element x direction</p></li>
+<li><p>MURY : Magnetic relative permeability, element y direction</p></li>
+<li><p>MURZ : Magnetic relative permeability, element z direction</p></li>
+<li><p>MGXX : Magnetic coercive force, element x direction (Charge / (Length*Time))</p></li>
+<li><p>MGYY : Magnetic coercive force, element y direction (Charge / (Length*Time))</p></li>
+<li><p>MGZZ : Magnetic coercive force, element z direction (Charge / (Length*Time))</p></li>
+</ul>
 </dd></dl>
 
 <dl class="py method">
@@ -997,48 +1075,6 @@ time steps by number of nodes by degrees of freedom.</p></li>
 <dt id="pyansys.rst.ResultFile.node_components">
 <em class="property">property </em><code class="sig-name descname">node_components</code><a class="headerlink" href="#pyansys.rst.ResultFile.node_components" title="Permalink to this definition">¶</a></dt>
 <dd><p>dictionary of ansys node components</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pyansys.rst.ResultFile.parse_coordinate_system">
-<code class="sig-name descname">parse_coordinate_system</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.parse_coordinate_system" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reads in coordinate system information from a binary result
-file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>c_systems</strong> – Dictionary containing one entry for each defined coordinate
-system.  If no non-standard coordinate systems have been
-defined, there will be only one None.  First coordinate system
-is assumed to be global cartesian.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>dict</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>euler angles : [THXY, THYZ, THZX]</p>
-<ul class="simple">
-<li><p>First rotation about local Z (positive X toward Y).</p></li>
-<li><p>Second rotation about local X (positive Y toward Z).</p></li>
-<li><p>Third rotation about local Y (positive Z toward X).</p></li>
-</ul>
-<p>PAR1
-Used for elliptical, spheroidal, or toroidal systems. If KCS = 1
-or 2, PAR1 is the ratio of the ellipse Y-axis radius to X-axis
-radius (defaults to 1.0 (circle)). If KCS = 3, PAR1 is the major
-radius of the torus.</p>
-<p>PAR2
-Used for spheroidal systems. If KCS = 2, PAR2 = ratio of ellipse
-Z-axis radius to X-axis radius (defaults to 1.0 (circle)).</p>
-<dl class="simple">
-<dt>Coordinate system type:</dt><dd><ul class="simple">
-<li><p>0: Cartesian</p></li>
-<li><p>1: Cylindrical (circular or elliptical)</p></li>
-<li><p>2: Spherical (or spheroidal)</p></li>
-<li><p>3: Toroidal</p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1475,6 +1511,25 @@ Binary can only be selected for the legacy writer.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pyansys.rst.ResultFile.section_data">
+<em class="property">property </em><code class="sig-name descname">section_data</code><a class="headerlink" href="#pyansys.rst.ResultFile.section_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>The section data from the result file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>section_data</strong> – Dictionary of the section data with the section numbers as
+keys.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>There is limited documentation on how ANSYS stores the
+sections within a result file, and as such it may be difficult
+to interpret the section data for a given model.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pyansys.rst.ResultFile.solution_info">
 <code class="sig-name descname">solution_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rnum</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.solution_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an informative dictionary of solution data for a
@@ -1520,12 +1575,6 @@ dval1   - if pmeth=0: FATJACK ocean wave direction</p>
 <div><p>if pmeth=1: p-method convergence values</p>
 </div></blockquote>
 <p>pCnvVal - p-method convergence values</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pyansys.rst.ResultFile.store_geometry">
-<code class="sig-name descname">store_geometry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.rst.ResultFile.store_geometry" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stores the geometry from the result file</p>
 </dd></dl>
 
 <dl class="py method">
