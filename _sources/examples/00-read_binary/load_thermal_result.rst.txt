@@ -46,6 +46,7 @@ Download the result file from verification manual test case 33
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_load_thermal_result_001.png
+    :alt: load thermal result
     :class: sphx-glr-single-img
 
 
@@ -76,6 +77,7 @@ Plot with contours
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_load_thermal_result_002.png
+    :alt: load thermal result
     :class: sphx-glr-single-img
 
 
@@ -95,7 +97,7 @@ Plot with contours
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.490 seconds)
+   **Total running time of the script:** ( 0 minutes  1.140 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_load_thermal_result.py:

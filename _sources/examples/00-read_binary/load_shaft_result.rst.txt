@@ -70,7 +70,7 @@ Geometry is stored both as a dictionary...
 
  .. code-block:: none
 
-    UnstructuredGrid (0x7fa9d9e25600)
+    UnstructuredGrid (0x7efbe66cf980)
       N Cells:      25051
       N Points:     27132
       X Bounds:     0.000e+00, 2.700e+02
@@ -94,6 +94,7 @@ Plot the shaft
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_load_shaft_result_001.png
+    :alt: load shaft result
     :class: sphx-glr-single-img
 
 
@@ -146,6 +147,7 @@ Plot a node component
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_load_shaft_result_002.png
+    :alt: load shaft result
     :class: sphx-glr-single-img
 
 
@@ -175,6 +177,7 @@ Plot a node component as a wireframe
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_load_shaft_result_003.png
+    :alt: load shaft result
     :class: sphx-glr-single-img
 
 
@@ -202,6 +205,7 @@ Plot the shaft with edges and with a blue color
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_load_shaft_result_004.png
+    :alt: load shaft result
     :class: sphx-glr-single-img
 
 
@@ -230,6 +234,7 @@ Plot the shaft without lighting but with edges and with a blue color
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_load_shaft_result_005.png
+    :alt: load shaft result
     :class: sphx-glr-single-img
 
 
@@ -259,6 +264,7 @@ plot a mode shape without contours
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_load_shaft_result_006.png
+    :alt: load shaft result
     :class: sphx-glr-single-img
 
 
@@ -288,6 +294,7 @@ plot a mode shape with contours
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_load_shaft_result_007.png
+    :alt: load shaft result
     :class: sphx-glr-single-img
 
 
@@ -317,6 +324,7 @@ Animate a mode of a component the shaft
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_load_shaft_result_008.png
+    :alt: load shaft result
     :class: sphx-glr-single-img
 
 
@@ -334,7 +342,7 @@ Animate a mode of a component the shaft
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  6.366 seconds)
+   **Total running time of the script:** ( 0 minutes  6.900 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_load_shaft_result.py:

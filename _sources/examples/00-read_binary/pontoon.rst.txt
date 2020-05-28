@@ -81,6 +81,7 @@ Plot the nodal displacement
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_pontoon_001.png
+    :alt: pontoon
     :class: sphx-glr-single-img
 
 
@@ -130,6 +131,7 @@ Plot the shell elements
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_pontoon_002.png
+    :alt: pontoon
     :class: sphx-glr-single-img
 
 
@@ -164,6 +166,7 @@ Plot the elastic strain and show exaggerated displacement
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_pontoon_003.png
+    :alt: pontoon
     :class: sphx-glr-single-img
 
 
@@ -191,6 +194,7 @@ Missing solution data will plot as a white mesh
 
 
 .. image:: /examples/00-read_binary/images/sphx_glr_pontoon_004.png
+    :alt: pontoon
     :class: sphx-glr-single-img
 
 
@@ -210,7 +214,7 @@ Missing solution data will plot as a white mesh
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.746 seconds)
+   **Total running time of the script:** ( 0 minutes  3.381 seconds)
 
 
 .. _sphx_glr_download_examples_00-read_binary_pontoon.py:

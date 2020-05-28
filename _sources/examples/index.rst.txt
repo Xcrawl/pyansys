@@ -31,6 +31,7 @@ Loading and Visualizing Result Files
 .. only:: html
 
  .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_load_shaft_result_thumb.png
+     :alt: Shaft Modal Analysis
 
      :ref:`sphx_glr_examples_00-read_binary_load_shaft_result.py`
 
@@ -51,6 +52,7 @@ Loading and Visualizing Result Files
 .. only:: html
 
  .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_load_thermal_result_thumb.png
+     :alt: Thermal Analysis
 
      :ref:`sphx_glr_examples_00-read_binary_load_thermal_result.py`
 
@@ -71,6 +73,7 @@ Loading and Visualizing Result Files
 .. only:: html
 
  .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_pontoon_thumb.png
+     :alt: Shell Static Analysis
 
      :ref:`sphx_glr_examples_00-read_binary_pontoon.py`
 
@@ -91,6 +94,7 @@ Loading and Visualizing Result Files
 .. only:: html
 
  .. figure:: /examples/00-read_binary/images/thumb/sphx_glr_sector_model_thumb.png
+     :alt: Shaft Modal Analysis
 
      :ref:`sphx_glr_examples_00-read_binary_sector_model.py`
 
