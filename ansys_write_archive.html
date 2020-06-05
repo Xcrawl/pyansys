@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Reading and Writing ANSYS Archives &mdash; pyansys 0.40.1 documentation</title>
+  <title>Reading and Writing ANSYS Archives &mdash; pyansys 0.40.2 documentation</title>
   
 
   
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.40.1
+                0.40.2
               </div>
             
           
@@ -102,7 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#supported-elements">Supported Elements</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-pyansys.archive">Write Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#archive-class">Archive Class</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="loading_results.html">Working with a ANSYS Result File (rst)</a></li>
@@ -182,29 +182,27 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="kn">from</span> <span class="nn">pyansys</span> <span class="kn">import</span> <span class="n">examples</span>
 
-<span class="c1"># Sample *.cdb</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span>
+<span class="c1"># Read a sample archive file</span>
+<span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
 
-<span class="c1"># Read ansys archive file</span>
-<span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="c1"># Print various raw data from cdb</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">nnum</span><span class="p">,</span> <span class="n">archive</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
 
-<span class="c1"># Print raw data from cdb</span>
-<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">:</span>
-   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> : </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
-
-<span class="c1"># Create a vtk unstructured grid from the raw data and plot it</span>
-<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">parse_vtk</span><span class="p">(</span><span class="n">force_linear</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># access a vtk unstructured grid from the raw data and plot it</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">archive</span><span class="o">.</span><span class="n">grid</span>
+<span class="n">archive</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can also optionally read in any stored parameters within the archive file by enabling the <code class="docutils literal notranslate"><span class="pre">read_parameters</span></code> parameter.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyansys</span>
-<span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="s1">&#39;mesh.cdb&#39;</span><span class="p">)</span>
+<span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="s1">&#39;mesh.cdb&#39;</span><span class="p">,</span> <span class="n">read_parameters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># parameters are stored as a dictionary</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">archive</span><span class="o">.</span><span class="n">raw</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">])</span>
+<span class="n">archive</span><span class="o">.</span><span class="n">parameters</span>
 </pre></div>
 </div>
+<p>See the <cite>Archive</cite> class documentation below for more details on the
+class methods and properties.</p>
 </div>
 <div class="section" id="writing-ansys-archives">
 <h2>Writing ANSYS Archives<a class="headerlink" href="#writing-ansys-archives" title="Permalink to this headline">¶</a></h2>
@@ -213,12 +211,13 @@
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
+<span class="c1"># load in a vtk unstructured grid</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">UnstructuredGrid</span><span class="p">(</span><span class="n">examples</span><span class="o">.</span><span class="n">hexbeamfile</span><span class="p">)</span>
 <span class="n">script_filename</span> <span class="o">=</span> <span class="s1">&#39;/tmp/grid.cdb&#39;</span>
 <span class="n">pyansys</span><span class="o">.</span><span class="n">save_as_archive</span><span class="p">(</span><span class="n">script_filename</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span>
 
 <span class="c1"># read in archive in ANSYS and generate cell shape quality report</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">ANSYS</span><span class="p">()</span>
+<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">()</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">cdread</span><span class="p">(</span><span class="s1">&#39;db&#39;</span><span class="p">,</span> <span class="n">script_filename</span><span class="p">)</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
 <span class="n">ansys</span><span class="o">.</span><span class="n">shpp</span><span class="p">(</span><span class="s1">&#39;SUMM&#39;</span><span class="p">)</span>
@@ -263,25 +262,20 @@
 <p>Linear element types will be written as SOLID185, quadratic elements will be written as SOLID186, except for quadratic tetrahedrals, which will be written as SOLID187.</p>
 </div>
 </div>
-<div class="section" id="module-pyansys.archive">
-<span id="write-functions"></span><h2>Write Functions<a class="headerlink" href="#module-pyansys.archive" title="Permalink to this headline">¶</a></h2>
-<p>Module to read ANSYS ASCII block formatted CDB files</p>
+<div class="section" id="archive-class">
+<h2>Archive Class<a class="headerlink" href="#archive-class" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="pyansys.archive.Archive">
-<em class="property">class </em><code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">Archive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">read_parameters</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">Archive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">read_parameters</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">parse_vtk</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">force_linear</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allowable_types</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">null_unallowed</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">verbose</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read a blocked ANSYS archive file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> (<em>string</em>) – Filename of block formatted cdb file</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt id="pyansys.archive.Archive.parse_vtk">
-<code class="sig-name descname">parse_vtk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">force_linear</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allowable_types</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">null_unallowed</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.parse_vtk" title="Permalink to this definition">¶</a></dt>
-<dd><p>Parses raw data into to VTK format.</p>
+<p>Reads a blocked CDB file and optionally parses it to a vtk grid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – Filename of block formatted cdb file</p></li>
+<li><p><strong>read_parameters</strong> (<em>bool</em><em>, </em><em>optional</em>) – Optionally read parameters from the archive file.  Default
+<code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><strong>parse_vtk</strong> (<em>bool</em><em>, </em><em>optional</em>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, parse the raw data into to VTK format.</p></li>
 <li><p><strong>force_linear</strong> (<em>bool</em><em>, </em><em>optional</em>) – This parser creates quadratic elements if available.  Set
 this to True to always create linear elements.  Defaults
 to False.</p></li>
@@ -294,106 +288,370 @@ as empty (null) elements.  Useful for debug or tracking
 element numbers.  Default False.</p></li>
 </ul>
 </dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hex_beam</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">hex_beam</span><span class="p">)</span>
+<span class="go">ANSYS Archive File HexBeam.cdb</span>
+<span class="go">  Number of Nodes:              40</span>
+<span class="go">  Number of Elements:           321</span>
+<span class="go">  Number of Element Types:      1</span>
+<span class="go">  Number of Node Components:    2</span>
+<span class="go">  Number of Element Components: 2</span>
+</pre></div>
+</div>
+<p>Print the node array</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hex_beam</span><span class="o">.</span><span class="n">nodes</span>
+<span class="go">array([[0.  , 0.  , 0.  ],</span>
+<span class="go">       [1.  , 0.  , 0.  ],</span>
+<span class="go">       [0.25, 0.  , 0.  ],</span>
+<span class="go">       ...,</span>
+<span class="go">       [0.75, 0.5 , 3.5 ],</span>
+<span class="go">       [0.75, 0.5 , 4.  ],</span>
+<span class="go">       [0.75, 0.5 , 4.5 ]])</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="pyansys.archive.Archive.ekey">
+<em class="property">property </em><code class="sig-name descname">ekey</code><a class="headerlink" href="#pyansys.archive.Archive.ekey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Element type key</p>
+<p>Array containing element type numbers in the first column and
+the element types (like SURF154) in the second column.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">ekey</span>
+<span class="go">array([[  1,  45],</span>
+<span class="go">       [  2,  95],</span>
+<span class="go">       [  3,  92],</span>
+<span class="go">       [ 60, 154]], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.elem">
+<em class="property">property </em><code class="sig-name descname">elem</code><a class="headerlink" href="#pyansys.archive.Archive.elem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of element connectivity.</p>
+<p>Each row is a element containing 20 entries of an individual
+elements connectivity.  Unused entries are <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">elem</span>
+<span class="go">array([[252576, 252577, 250644, ...,     -1,     -1,     -1],</span>
+<span class="go">       [252571, 252572, 250620, ...,     -1,     -1,     -1],</span>
+<span class="go">       [252577, 252578, 250619, ...,     -1,     -1,     -1],</span>
+<span class="go">       ...,</span>
+<span class="go">       [251878, 362635, 252073, ...,     -1,     -1,     -1],</span>
+<span class="go">       [252073, 362835, 252074, ...,     -1,     -1,     -1],</span>
+<span class="go">       [362635, 251878, 362623, ...,     -1,     -1,     -1]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.elem_real_constant">
+<em class="property">property </em><code class="sig-name descname">elem_real_constant</code><a class="headerlink" href="#pyansys.archive.Archive.elem_real_constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Real constant reference for each element.</p>
+<p>Use the data within <code class="docutils literal notranslate"><span class="pre">rlblock</span></code> and <code class="docutils literal notranslate"><span class="pre">rlblock_num</span></code> to get the
+real constant datat for each element.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">elem_real_constant</span>
+<span class="go">array([ 1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,</span>
+<span class="go">        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,</span>
+<span class="go">        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,</span>
+<span class="go">        ...,</span>
+<span class="go">        1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 61, 61, 61, 61,</span>
+<span class="go">       61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61,</span>
+<span class="go">       61], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.element_components">
+<em class="property">property </em><code class="sig-name descname">element_components</code><a class="headerlink" href="#pyansys.archive.Archive.element_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Element components for the archive.</p>
+<p>Output is a dictionary of element components.  Each entry is an
+array of MAPDL element numbers corresponding to the element
+component.  The keys are element component names.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">element_components</span>
+<span class="go">{&#39;ECOMP1 &#39;: array([17, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29,</span>
+<span class="go">                   30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],</span>
+<span class="go">                   dtype=int32),</span>
+<span class="go">&#39;ECOMP2 &#39;: array([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,</span>
+<span class="go">                  14, 15, 16, 17, 18, 19, 20, 23, 24], dtype=int32)}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.enum">
+<em class="property">property </em><code class="sig-name descname">enum</code><a class="headerlink" href="#pyansys.archive.Archive.enum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of element numbers.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">enum</span>
+<span class="go">array([    1,     2,     3, ...,  9998,  9999, 10000])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.etype">
+<em class="property">property </em><code class="sig-name descname">etype</code><a class="headerlink" href="#pyansys.archive.Archive.etype" title="Permalink to this definition">¶</a></dt>
+<dd><p>Element type of each element.</p>
+<p>This is the ansys element type for each element.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">ekey</span>
+<span class="go">array([ 45,  45,  45,  45,  45,  45,  45,  45,  45,  45,  45,</span>
+<span class="go">        45,  45,  45,  45,  45,  45,  45,  45,  92,  92,  92,</span>
+<span class="go">        92,  92,  92,  92,  92,  92,  92,  92,  92,  92,  92,</span>
+<span class="go">        ...,</span>
+<span class="go">        92,  92,  92,  92,  92, 154, 154, 154, 154, 154, 154,</span>
+<span class="go">       154, 154, 154, 154, 154, 154, 154, 154, 154, 154, 154,</span>
+<span class="go">       154], dtype=int32)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Element types are listed below.  Please see the APDL Element
+Reference for more details:</p>
+<p><a class="reference external" href="https://www.mm.bme.hu/~gyebro/files/vem/ansys_14_element_reference.pdf">https://www.mm.bme.hu/~gyebro/files/vem/ansys_14_element_reference.pdf</a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.grid">
+<em class="property">property </em><code class="sig-name descname">grid</code><a class="headerlink" href="#pyansys.archive.Archive.grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>VTK and pyvista grid of the archive file.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">grid</span>
+<span class="go">UnstructuredGrid (0x7ffa237f08a0)</span>
+<span class="go">  N Cells:      40</span>
+<span class="go">  N Points:     321</span>
+<span class="go">  X Bounds:     0.000e+00, 1.000e+00</span>
+<span class="go">  Y Bounds:     0.000e+00, 1.000e+00</span>
+<span class="go">  Z Bounds:     0.000e+00, 5.000e+00</span>
+<span class="go">  N Arrays:     13</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.key_option">
+<em class="property">property </em><code class="sig-name descname">key_option</code><a class="headerlink" href="#pyansys.archive.Archive.key_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Additional key options for element types</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">key_option</span>
+<span class="go">{}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.material_type">
+<em class="property">property </em><code class="sig-name descname">material_type</code><a class="headerlink" href="#pyansys.archive.Archive.material_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Material type index of each element in the archive.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">material_type</span>
+<span class="go">array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,</span>
+<span class="go">       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,</span>
+<span class="go">       1, 1, 1, 1], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.nnum">
+<em class="property">property </em><code class="sig-name descname">nnum</code><a class="headerlink" href="#pyansys.archive.Archive.nnum" title="Permalink to this definition">¶</a></dt>
+<dd><p>Array of node numbers.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">nnum</span>
+<span class="go">array([    1,     2,     3, ..., 19998, 19999, 20000])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.node_angles">
+<em class="property">property </em><code class="sig-name descname">node_angles</code><a class="headerlink" href="#pyansys.archive.Archive.node_angles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node angles from the archive file.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">nodes</span>
+<span class="go">[[0.   0.   0.  ]</span>
+<span class="go"> [0.   0.   0.  ]</span>
+<span class="go"> [0.   0.   0.  ]</span>
+<span class="go"> ...,</span>
+<span class="go"> [0.   0.   0.  ]</span>
+<span class="go"> [0.   0.   0.  ]</span>
+<span class="go"> [0.   0.   0.  ]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.node_components">
+<em class="property">property </em><code class="sig-name descname">node_components</code><a class="headerlink" href="#pyansys.archive.Archive.node_components" title="Permalink to this definition">¶</a></dt>
+<dd><p>Node components for the archive.</p>
+<p>Output is a dictionary of node components.  Each entry is an
+array of MAPDL node numbers corresponding to the node
+component.  The keys are node component names.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">node_components</span>
+<span class="go">{&#39;NCOMP2  &#39;: array([  1,   2,   3,   4,   5,   6,   7,   8,</span>
+<span class="go">         14,  15,  16,  17,  18,  19,  20,  21,  43,  44,</span>
+<span class="go">         62,  63,  64,  81,  82,  90,  91,  92,  93,  94,</span>
+<span class="go">         118, 119, 120, 121, 122, 123, 124, 125, 126, 137,</span>
+<span class="go">         147, 148, 149, 150, 151, 152, 153, 165, 166, 167,</span>
+<span class="go">         193, 194, 195, 202, 203, 204, 205, 206, 207, 221,</span>
+<span class="go">         240, 258, 267, 268, 276, 277, 278, 285, 286, 287,</span>
+<span class="go">         304, 305, 306, 313, 314, 315, 316], dtype=int32),</span>
+<span class="go">...,</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.nodes">
+<em class="property">property </em><code class="sig-name descname">nodes</code><a class="headerlink" href="#pyansys.archive.Archive.nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nodes from the archive file.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">nodes</span>
+<span class="go">[[0.   0.   0.  ]</span>
+<span class="go"> [1.   0.   0.  ]</span>
+<span class="go"> [0.25 0.   0.  ]</span>
+<span class="go"> ...,</span>
+<span class="go"> [0.75 0.5  3.5 ]</span>
+<span class="go"> [0.75 0.5  4.  ]</span>
+<span class="go"> [0.75 0.5  4.5 ]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.parameters">
+<em class="property">property </em><code class="sig-name descname">parameters</code><a class="headerlink" href="#pyansys.archive.Archive.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parameters stored in the archive file</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">,</span>
+<span class="go">                              read_parameters=True)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">parameters</span>
+<span class="go">{}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.archive.Archive.plot">
+<code class="sig-name descname">plot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">off_screen</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">full_screen</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">screenshot</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">interactive</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">cpos</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">window_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">show_bounds</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">show_axes</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">notebook</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">background</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">text</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">return_img</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">eye_dome_lighting</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">use_panel</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">volume</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">parallel_projection</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.Archive.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a vtk or numpy object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item</strong> (<em>vtk</em><em> or </em><em>numpy object</em>) – VTK object or numpy array to be plotted.</p></li>
+<li><p><strong>off_screen</strong> (<em>bool</em>) – Plots off screen when True.  Helpful for saving screenshots
+without a window popping up.</p></li>
+<li><p><strong>full_screen</strong> (<em>bool</em><em>, </em><em>optional</em>) – Opens window in full screen.  When enabled, ignores window_size.
+Default False.</p></li>
+<li><p><strong>screenshot</strong> (<em>str</em><em> or </em><em>bool</em><em>, </em><em>optional</em>) – <p>Saves screenshot to file when enabled.  See:
+help(pyvistanterface.Plotter.screenshot).  Default disabled.</p>
+<p>When True, takes screenshot and returns numpy array of image.</p>
+</p></li>
+<li><p><strong>window_size</strong> (<em>list</em><em>, </em><em>optional</em>) – Window size in pixels.  Defaults to [1024, 768]</p></li>
+<li><p><strong>show_bounds</strong> (<em>bool</em><em>, </em><em>optional</em>) – Shows mesh bounds when True.  Default False. Alias <code class="docutils literal notranslate"><span class="pre">show_grid</span></code> also
+accepted.</p></li>
+<li><p><strong>notebook</strong> (<em>bool</em><em>, </em><em>optional</em>) – When True, the resulting plot is placed inline a jupyter notebook.
+Assumes a jupyter console is active.</p></li>
+<li><p><strong>show_axes</strong> (<em>bool</em><em>, </em><em>optional</em>) – Shows a vtk axes widget.  Enabled by default.</p></li>
+<li><p><strong>text</strong> (<em>str</em><em>, </em><em>optional</em>) – Adds text at the bottom of the plot.</p></li>
+<li><p><strong>volume</strong> (<em>bool</em><em>, </em><em>optional</em>) – Use the <code class="docutils literal notranslate"><span class="pre">add_volume</span></code> method for volume rendering.</p></li>
+<li><p><strong>**kwargs</strong> (<em>optional keyword arguments</em>) – See help(Plotter.add_mesh) for additional options.</p></li>
+</ul>
+</dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>grid</strong> – VTK unstructured grid from archive file.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>vtk.vtkUnstructuredGrid</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>cpos</strong> (<em>list</em>) – List of camera position, focal point, and view up.</p></li>
+<li><p><strong>img</strong> (<em>numpy.ndarray</em>) – Array containing pixel RGB and alpha.  Sized:
+[Window height x Window width x 3] for transparent_background=False
+[Window height x Window width x 4] for transparent_background=True
+Returned only when screenshot enabled</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="pyansys.archive.Archive.quality">
+<em class="property">property </em><code class="sig-name descname">quality</code><a class="headerlink" href="#pyansys.archive.Archive.quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Minimum scaled jacobian cell quality.</p>
+<p>Negative values indicate invalid cells while positive values
+indicate valid cells.  Varies between -1 and 1.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">quality</span>
+<span class="go">array([1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,</span>
+<span class="go">       1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.,</span>
+<span class="go">       1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1., 1.])</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="py function">
-<dt id="pyansys.archive.chunks">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">chunks</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">l</span></em>, <em class="sig-param"><span class="n">n</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.chunks" title="Permalink to this definition">¶</a></dt>
-<dd><p>Yield successive n-sized chunks from l</p>
+<dl class="py method">
+<dt id="pyansys.archive.Archive.rlblock">
+<em class="property">property </em><code class="sig-name descname">rlblock</code><a class="headerlink" href="#pyansys.archive.Archive.rlblock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Real constant data from the RLBLOCK.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">rlblock</span>
+<span class="go">[[0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.02 ],</span>
+<span class="go"> [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.01 ],</span>
+<span class="go"> [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.005],</span>
+<span class="go"> [0.   , 0.   , 0.   , 0.   , 0.   , 0.   , 0.005]]</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="py function">
-<dt id="pyansys.archive.save_as_archive">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">save_as_archive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">grid</span></em>, <em class="sig-param"><span class="n">mtype_start</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">etype_start</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">real_constant_start</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'w'</span></em>, <em class="sig-param"><span class="n">nblock</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">enum_start</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">nnum_start</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">include_etype_header</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">reset_etype</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">allow_missing</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.save_as_archive" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes FEM as an ANSYS APDL archive file.  This function
-supports the following element types:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_TETRA</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_TETRA</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_PYRAMID</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_PYRAMID</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_WEDGE</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_WEDGE</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_HEXAHEDRON</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vtk.VTK_QUADRATIC_HEXAHEDRON</span></code></p></li>
-</ul>
-</div></blockquote>
-<p>Will automatically renumber nodes and elements if the FEM does not
-contain ANSYS node or element numbers.  Node numbers are stored as
-a point array “ansys_node_num”, and cell numbers are stored as
-cell array “ansys_elem_num”.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>str</em>) – Filename to write archive file.</p></li>
-<li><p><strong>grid</strong> (<em>vtk.UnstructuredGrid</em>) – VTK UnstructuredGrid to convert to an APDL archive file.</p></li>
-<li><p><strong>mtype_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Material number to assign to elements.  Can be set manually by
-adding the cell array “mtype” to the unstructured grid.</p></li>
-<li><p><strong>etype_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element type number.  Can be manually set by adding
-the cell array “ansys_etype” to the unstructured grid.</p></li>
-<li><p><strong>real_constant_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting real constant to assign to unset cells.  Can be
-manually set by adding the cell array “ansys_real_constant” to
-the unstructured grid.</p></li>
-<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>optional</em>) – File mode.  See help(open)</p></li>
-<li><p><strong>nblock</strong> (<em>bool</em><em>, </em><em>optional</em>) – Write node block when writing archive file.</p></li>
-<li><p><strong>enum_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element number to assign to unset cells.  Can be
-manually set by adding the cell array “ansys_elem_num” to the
-unstructured grid.</p></li>
-<li><p><strong>nnum_start</strong> (<em>int</em><em>, </em><em>optional</em>) – Starting element number to assign to unset points.  Can be
-manually set by adding the point array “ansys_node_num” to the
-unstructured grid.</p></li>
-<li><p><strong>include_etype_header</strong> (<em>bool</em><em>, </em><em>optional</em>) – For each element type, includes element type command
-(e.g. “ET, 1, 186”) in the archive file.</p></li>
-<li><p><strong>reset_etype</strong> (<em>bool</em><em>, </em><em>optional</em>) – Resets element type.  Element types will automatically be
-determined by the shape of the element (i.e. quadradic
-tetrahedrals will be saved as SOLID187, linear hexahedrals as
-SOLID185).  Default True.</p></li>
-</ul>
-</dd>
-</dl>
+<dl class="py method">
+<dt id="pyansys.archive.Archive.rlblock_num">
+<em class="property">property </em><code class="sig-name descname">rlblock_num</code><a class="headerlink" href="#pyansys.archive.Archive.rlblock_num" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indices from the real constant data</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Archive</span><span class="p">(</span><span class="n">pyansys</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">hexarchivefile</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">archive</span><span class="o">.</span><span class="n">rnum</span>
+<span class="go">array([60, 61, 62, 63])</span>
+</pre></div>
+</div>
 </dd></dl>
 
-<dl class="py function">
-<dt id="pyansys.archive.write_cmblock">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_cmblock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">items</span></em>, <em class="sig-param"><span class="n">comp_name</span></em>, <em class="sig-param"><span class="n">comp_type</span></em>, <em class="sig-param"><span class="n">digit_width</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_cmblock" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes a component block, CMBLOCK, to a file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>str</em><em> or </em><em>file handle</em>) – File to write CMBLOCK component to</p></li>
-<li><p><strong>items</strong> (<em>list</em><em> or </em><em>np.ndarray</em>) – Element or node numbers to write.</p></li>
-<li><p><strong>comp_name</strong> (<em>str</em>) – Name of the component</p></li>
-<li><p><strong>comp_type</strong> (<em>str</em>) – Component type to write.  Should be either ‘ELEMENT’ or ‘NODE’.</p></li>
-<li><p><strong>digit_width</strong> (<em>int</em><em>, </em><em>optional</em>) – Default 10</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt id="pyansys.archive.write_nblock">
-<code class="sig-prename descclassname">pyansys.archive.</code><code class="sig-name descname">write_nblock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">node_id</span></em>, <em class="sig-param"><span class="n">pos</span></em>, <em class="sig-param"><span class="n">angles</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.archive.write_nblock" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes nodes and node angles to file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>str</em><em> or </em><em>file handle</em>) – Filename to write node block to.</p></li>
-<li><p><strong>node_id</strong> (<em>np.ndarray</em>) – ANSYS node numbers.</p></li>
-<li><p><strong>pos</strong> (<em>np.ndarray</em>) – Node coordinates.</p></li>
-<li><p><strong>angles</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Writes the node angles for each node when included.</p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 </div>
