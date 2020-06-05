@@ -273,9 +273,67 @@
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">full</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">full</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">full</span><span class="p">)</span>
+<span class="go">PyANSYS - MAPDL Full File</span>
+<span class="go">Title                    : Demo</span>
+<span class="go">Version                  : 20.1</span>
+<span class="go">Platform                 : WINDOWS x64</span>
+<span class="go">Jobname                  : file</span>
+<span class="go">Matrices                 : 2</span>
+<span class="go">Equations                : 345</span>
+<span class="go">Nodes                    : 115</span>
+<span class="go">Degrees of Freedom       : 3</span>
 </pre></div>
 </div>
+<dl class="py method">
+<dt id="pyansys.full.FullFile.const">
+<em class="property">property </em><code class="sig-name descname">const</code><a class="headerlink" href="#pyansys.full.FullFile.const" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constrained DOF
+Returns the node number and DOF constrained in ANSYS.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">full</span><span class="o">.</span><span class="n">const</span>
+<span class="go">array([], shape=(0, 2), dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.full.FullFile.dof_ref">
+<em class="property">property </em><code class="sig-name descname">dof_ref</code><a class="headerlink" href="#pyansys.full.FullFile.dof_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorted degree of freedom reference.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">full</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">full</span><span class="o">.</span><span class="n">dof_ref</span>
+<span class="go">array([[  1,   0],</span>
+<span class="go">       [  1,   1],</span>
+<span class="go">       [  1,   2],</span>
+<span class="go">       [115,   0],</span>
+<span class="go">       [115,   1],</span>
+<span class="go">       [115,   2]], dtype=int32)</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>Obtain the unsorted degree of freedom reference with
+&gt;&gt;&gt; dof_ref, k, m = sparse_full.load_km(sort=False)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.full.FullFile.k">
+<em class="property">property </em><code class="sig-name descname">k</code><a class="headerlink" href="#pyansys.full.FullFile.k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stiffness Matrix corresponding to sorted DOF.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">full</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">full</span><span class="o">.</span><span class="n">k</span><span class="p">)</span>
+<span class="go">&lt;345x345 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;</span>
+<span class="go">        with 7002 stored elements in Compressed Sparse Column format&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="py method">
 <dt id="pyansys.full.FullFile.load_km">
 <code class="sig-name descname">load_km</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">as_sparse</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">sort</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyansys.full.FullFile.load_km" title="Permalink to this definition">¶</a></dt>
@@ -295,7 +353,7 @@ Also sorts dor_ref.</p></li>
 <dd class="field-even"><p><ul class="simple">
 <li><p><strong>dof_ref</strong> (<em>(n x 2) np.int32 array</em>) – This array contains the node and degree corresponding to
 each row and column in the mass and stiffness matrices.
-In a 3 DOF analysis the dof intergers will correspond to:
+In a 3 DOF analysis the dof integers will correspond to:
 0 - x
 1 - y
 2 - z
@@ -307,11 +365,39 @@ sort parameter.</p></li>
 </p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">full</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dof_ref</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">full</span><span class="o">.</span><span class="n">load_km</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="go">(0, 0)       163408119.6581276</span>
+<span class="go">(0, 1)               0.0423270</span>
+<span class="go">(1, 1)       163408119.6581276</span>
+<span class="go">:       :</span>
+<span class="go">(342, 344)     6590544.8717949</span>
+<span class="go">(343, 344)    -6590544.8717950</span>
+<span class="go">(344, 344)    20426014.9572689</span>
+</pre></div>
+</div>
 <p class="rubric">Notes</p>
 <p>Constrained entries are removed from the mass and stiffness
 matrices.</p>
-<p>Constrained DOF can be accessed with self.const, which returns
+<p>Constrained DOF can be accessed from <code class="docutils literal notranslate"><span class="pre">const</span></code>, which returns
 the node number and DOF constrained in ANSYS.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pyansys.full.FullFile.m">
+<em class="property">property </em><code class="sig-name descname">m</code><a class="headerlink" href="#pyansys.full.FullFile.m" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mass Matrix corresponding to sorted DOF.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">full</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;file.rst&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">full</span><span class="o">.</span><span class="n">m</span>
+<span class="go">&lt;345x345 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;</span>
+<span class="go">        with 2883 stored elements in Compressed Sparse Column format&gt;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
