@@ -25,6 +25,8 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/language_data.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -33,6 +35,7 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
@@ -170,12 +173,19 @@
 <dl class="simple">
 <dt>This Python module allows you to:</dt><dd><ul class="simple">
 <li><p>Interactively control an instance of ANSYS v17.0 + using Python.</p></li>
-<li><p>Extract data directly from binary ANSYS v14.5+ files and to display or animate them.</p></li>
-<li><p>Rapidly read in binary result <code class="docutils literal notranslate"><span class="pre">(.rst)</span></code>, binary mass and stiffness <code class="docutils literal notranslate"><span class="pre">(.full)</span></code>, and ASCII block archive <code class="docutils literal notranslate"><span class="pre">(.cdb)</span></code>, and element matrix <code class="docutils literal notranslate"><span class="pre">(.emat)</span></code> files.</p></li>
+<li><p>Extract data directly from binary ANSYS v14.5+ files and to display
+or animate them.</p></li>
+<li><p>Rapidly read in binary result <code class="docutils literal notranslate"><span class="pre">(.rst)</span></code>, binary mass and stiffness
+<code class="docutils literal notranslate"><span class="pre">(.full)</span></code>, and ASCII block archive <code class="docutils literal notranslate"><span class="pre">(.cdb)</span></code>, and element matrix
+<code class="docutils literal notranslate"><span class="pre">(.emat)</span></code> files.</p></li>
 </ul>
 </dd>
 </dl>
-<p>This python module is a community driven work in progress with additional features regularly added based on user requests.  Open an issue at <a class="reference external" href="https://github.com/akaszynski/pyansys/issues">pyansys Issues</a> if you identity a bug or would like to request an additional method or feature.</p>
+<p>This python module is a community driven work in progress with
+additional features regularly added based on user requests.  Open an
+issue at <a class="reference external" href="https://github.com/akaszynski/pyansys/issues">pyansys Issues</a>
+if you identity a bug or would like to request an additional method or
+feature.</p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="section" id="installation">
@@ -196,27 +206,28 @@
 <span class="kn">import</span> <span class="nn">pyansys</span>
 
 <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">ansys</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">Mapdl</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+<span class="n">mapdl</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">launch_mapdl</span><span class="p">(</span><span class="n">run_location</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
 
 <span class="c1"># create a square area using keypoints</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">al</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-<span class="n">ansys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">prep7</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">k</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">al</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="n">mapdl</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="direct-access-to-binary-files">
 <h3>Direct Access to Binary Files<a class="headerlink" href="#direct-access-to-binary-files" title="Permalink to this headline">¶</a></h3>
-<p>Here’s a quick example code block to show how easy it is to load and plots results directly from an ANSYS result file using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>:</p>
+<p>Here’s a quick example code block to show how easy it is to load and
+plots results directly from an ANSYS result file using <code class="docutils literal notranslate"><span class="pre">pyansys</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyansys</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pyansys</span><span class="o">.</span><span class="n">read_binary</span><span class="p">(</span><span class="s1">&#39;rotor.rst&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">nnum</span><span class="p">,</span> <span class="n">stress</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">principal_nodal_stress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -290,7 +301,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Alex Kaszynski
+        &copy; Copyright 2020, Alex Kaszynski
 
     </p>
   </div>
